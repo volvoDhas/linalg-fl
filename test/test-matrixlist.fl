@@ -160,3 +160,20 @@ let test_mulel =
 ;
 
 check_res test_mulel;
+
+//testcases for divel
+(printf "test_divel\n");
+let test_divel = 
+    (check_eq (divel {[]::int list} 1) {[]::int list}):
+    (check_eq (divel [1,1] 2) [0,0]):
+    (check_eq (divel [1.0,1.0] 2.0) [0.5,0.5]):
+    (check_eq 
+	(divel [int2bv 1, int2bv 1] 
+	     (int2bv 2)) 
+	[int2bv 0,int2bv 0]
+    ):
+    (check_fail (divel [1,1] 0) []):
+    []
+;
+
+check_res test_divel;
