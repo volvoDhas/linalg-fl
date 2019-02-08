@@ -9,3 +9,8 @@ letrec sum [] = '0
     /\sum vs =
     (hd vs) + (sum (tl vs))
 ;
+
+letrec add [] [] = []
+    /\ add us vs =
+    ((hd us) + (hd vs)) : (add (tl us) (tl vs))
+;

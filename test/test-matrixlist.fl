@@ -57,3 +57,18 @@ let test_sum =
 
 check_res test_sum;
 
+//testcases for add
+(printf "test_add\n");
+let test_add = 
+    (check_eq (add {[]::int list} {[]::int list}) {[]::int list}):
+    (check_eq (add [1,2] [-1,-2]) [0,0]):
+    (check_eq (add [1.0,2.0] [-1.0,-2.0]) [0.0,0.0]):
+    (check_eq 
+	(add [int2bv 1, int2bv 2] 
+	     [int2bv (-1),int2bv (-2)]) 
+	[int2bv 0, int2bv 0]
+    ):
+    []
+;
+
+check_res test_add
