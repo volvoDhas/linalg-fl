@@ -31,3 +31,5 @@ let diff us vs = map (\(f,s). f - s) (zip us vs);
 //a type inference bug in fl
 let diffel us v = map (\u. u-v) us;
 
+//returns dot product of 2 lists
+let dot us vs = sum (map2 (\u. \v. u*v) us vs);

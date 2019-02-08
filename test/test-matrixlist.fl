@@ -6,7 +6,10 @@ load (DIR^"../lib/matrixlist.fl");
 let check_eq a b = a == b;
 
 //check if executing the function fails
-//supply fflag as a sanity check - it can be anything
+//supply fflag as a sanity check
+//fflag should be the same type as the correct output
+//and choose a value that cannot be expected even if 
+//execution does not fail
 
 let check_fail f fflag = 
     let trycatch f =
@@ -122,3 +125,22 @@ let test_diffel =
 ;
 
 check_res test_diffel;
+
+//testcases for dot
+(print "test_dot\n");
+let test_dot =
+    let xi = [1,0,0,1] in
+    let yi = [4,1,2,2] in
+    let yi' = [4,1,2] in
+    let xf = map int2float xi in
+    let yf = map int2float yi in
+    let xb = map int2bv xi in
+    let yb = map int2bv yi in 
+    (check_eq (dot xi yi) 6):
+    (check_eq (dot xf yf) (int2float 6)):
+    (check_eq (dot xb yb) (int2bv 6)):
+    (check_fail (dot xi yi') (-255)):
+    []
+;
+
+check_res test_dot;
