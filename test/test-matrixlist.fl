@@ -2,13 +2,22 @@
 
 load (DIR^"../lib/matrixlist.fl");
 
+//check equivalence between output and expected result
 let check_eq a b = a == b;
+
+//check if executing the function fails
+//supply fflag as a sanity check - it can be anything
+
 let check_fail f fflag = 
     let trycatch f =
 	f gen_catch (\e. fflag)
     in
    (trycatch f) == fflag
 ;
+
+//checks and compiles results of a test case
+//rs:: a list of T or F depending upon 
+//whether a test pased or failed
 
 let check_res rs =
     let ntcs = (length rs) in
