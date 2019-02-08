@@ -5,7 +5,7 @@ let zeros n =
     replicate n 0
 ;
 
-letrec sum [] = 0
+letrec sum [] = '0
     /\sum vs =
     (hd vs) + (sum (tl vs))
 ;

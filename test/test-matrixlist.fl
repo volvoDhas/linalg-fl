@@ -46,6 +46,12 @@ check_res test_zeros;
 let test_sum = 
     (check_eq (sum []) 0):
     (check_eq (sum [1,-1,2,-2,3,-3]) 0):
+    (check_eq (sum [1.0,-1.0,2.0,-2.0]) 0.0):
+    (check_eq
+	(sum [(int2bv 1),(int2bv (-1)),
+	      (int2bv 2),(int2bv (-2))])
+	(int2bv 0)
+    ):
     []
 ;
 
