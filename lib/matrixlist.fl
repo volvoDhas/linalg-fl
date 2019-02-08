@@ -1,15 +1,20 @@
 //core matrix arithmetic library
 //implements matrix as a list of lists
 
+
+//returns an int list of zeros
 let zeros n =
     replicate n 0
 ;
 
+//returns sum of elements of a list
+//all numeric types applicable
 letrec sum [] = '0
     /\sum vs =
     (hd vs) + (sum (tl vs))
 ;
 
+//returns a list of element-wise sum 2 lists
 letrec add [] [] = []
     /\ add us vs =
     ((hd us) + (hd vs)) : (add (tl us) (tl vs))
