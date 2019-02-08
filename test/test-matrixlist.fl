@@ -71,4 +71,20 @@ let test_add =
     []
 ;
 
-check_res test_add
+check_res test_add;
+
+//testcases for diff
+(printf "test_diff\n");
+let test_diff = 
+    (check_eq (diff {[]::int list} {[]::int list}) {[]::int list}):
+    (check_eq (diff [1,2] [1,2]) [0,0]):
+    (check_eq (diff [1.0,2.0] [1.0,2.0]) [0.0,0.0]):
+    (check_eq 
+	(diff [int2bv 1, int2bv 2] 
+	     [int2bv 1,int2bv 2]) 
+	[int2bv 0, int2bv 0]
+    ):
+    []
+;
+
+check_res test_diff;

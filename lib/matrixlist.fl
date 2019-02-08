@@ -15,7 +15,8 @@ letrec sum [] = '0
 ;
 
 //returns a list of element-wise sum 2 lists
-letrec add [] [] = []
-    /\ add us vs =
-    ((hd us) + (hd vs)) : (add (tl us) (tl vs))
-;
+let add us vs = map (\(f,s). f + s) (zip us vs);
+
+//returns a list of element-wise difference 2 lists
+let diff us vs = map (\(f,s). f - s) (zip us vs);
+
