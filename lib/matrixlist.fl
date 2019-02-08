@@ -14,28 +14,28 @@ letrec sum [] = '0
     (hd vs) + (sum (tl vs))
 ;
 
-//returns an element-wise sum 2 lists
+//returns the element-wise sum 2 lists
 let add us vs =  map2 (\u. \v. u + v) us vs;
 
-//returns a list of element-wise sum of a list and a scalar
+//returns the element-wise sum of a list and a scalar
 //NOTE - add & addel cannot be overloaded becuse of
 //a type inference bug in fl
 let addel us v = map (\u. u+v) us;
 
 
-//returns an element-wise difference of 2 lists
+//returns the element-wise difference of 2 lists
 let diff us vs = map (\(f,s). f - s) (zip us vs);
 
-//returns an element-wise difference between a list and a scalar
+//returns the element-wise difference between a list and a scalar
 //NOTE - diff & diffel cannot be overloaded becuse of
 //a type inference bug in fl
 let diffel us v = map (\u. u-v) us;
 
-//returns dot product of 2 lists
+//returns the dot product of 2 lists
 let dot us vs = sum (map2 (\u. \v. u*v) us vs);
 
-//returns an element-wise product of a list and a scalar
+//returns the element-wise product of a list and a scalar
 let mulel us v = map (\u. u*v) us;
 
-//returns an element-wise quotient of a list and a scalar
+//returns the element-wise quotient of a list and a scalar
 let divel us v = map (\u. u/v) us;
