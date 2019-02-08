@@ -8,6 +8,11 @@ More information on fl can be found in this (private) github repo https://github
 ## Main intent of this project
 To enable work realated to my research, this project aims to develop a linear numerical computation library. The library's scope is a little fluid at the moment.
 
+## Repo structure
+
+|_lib -> core library logic
+|_test -> unit test cases
+
 ### Minimal versioning guidelines
 Prepend commit messages with 
 *repo	 - repo structure changes
