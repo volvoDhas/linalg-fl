@@ -27,7 +27,7 @@ let check_res rs =
 	(printf "TC -%3d failed\n" n) seq (check_test (n+1))
     in
     let npass = check_test 1 in
-    (printf "Result - %d/%d TCs passed\n" npass ntcs) seq ()
+    (printf "Result - %d/%d TCs passed\n\n" npass ntcs) seq ()
 ;
 
 //testcases for zeros
@@ -40,3 +40,14 @@ let test_zeros =
 ;
 
 check_res test_zeros;
+
+//testcases for sum
+(printf "test_sum\n");
+let test_sum = 
+    (check_eq (sum []) 0):
+    (check_eq (sum [1,-1,2,-2,3,-3]) 0):
+    []
+;
+
+check_res test_sum;
+
