@@ -144,3 +144,19 @@ let test_dot =
 ;
 
 check_res test_dot;
+
+//testcases for mulel
+(printf "test_mulel\n");
+let test_mulel = 
+    (check_eq (mulel {[]::int list} 1) {[]::int list}):
+    (check_eq (mulel [1,1] 0) [0,0]):
+    (check_eq (mulel [1.0,1.0] 0.0) [0.0,0.0]):
+    (check_eq 
+	(mulel [int2bv 1, int2bv 1] 
+	     (int2bv 0)) 
+	[int2bv 0,int2bv 0]
+    ):
+    []
+;
+
+check_res test_mulel;
