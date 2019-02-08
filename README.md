@@ -10,8 +10,8 @@ To enable work realated to my research, this project aims to develop a linear nu
 
 ### Minimal versioning guidelines
 Prepend commit messages with 
-repo	 - repo structure changes
-feature  - feature additions
-fix	 - minor & major (bug) fixes
-test	 - test cases
-refactor - noteworthy refactoring
+-repo	 - repo structure changes
+-feature  - feature additions
+-fix	 - minor & major (bug) fixes
+-test	 - test cases
+-refactor - noteworthy refactoring
