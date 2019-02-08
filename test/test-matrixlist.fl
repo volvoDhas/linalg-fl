@@ -3,6 +3,13 @@
 load (DIR^"../lib/matrixlist.fl");
 
 let assert_eq a b = a == b;
+let assert_fail f fflag = 
+    let trycatch f =
+	f gen_catch (\e. fflag)
+    in
+   (trycatch f) == fflag
+;
+
 let check_res rs =
     (printf "\n\n") seq
     let ntcs = (length rs) in
@@ -19,9 +26,8 @@ let check_res rs =
 let test_zeros =
     (assert_eq (zeros 0) []):
     (assert_eq (length (zeros 10)) 10):
+    (assert_fail (zeros (-10)) []):
     []
 ;
 
 check_res test_zeros;
-
-//TODO - add support for assertfail
