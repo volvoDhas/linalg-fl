@@ -10,8 +10,8 @@ To enable work realated to my research, this project aims to develop a linear nu
 
 ## Repo structure
 
-|_lib -> core library logic
-|_test -> unit test cases
+|_lib -> core library logic  
+|_test -> unit test cases  
 
 ### Minimal versioning guidelines
 Prepend commit messages with 
