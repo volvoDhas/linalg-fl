@@ -60,3 +60,8 @@ letrec fstindexof us u =
     let index = search us in
     index > (length us) => 0 | index
 ;
+
+
+//returns the index of the max element in the list
+//NOTE - in fl, list indices start from 1
+letrec argmax us = fstindexof us (lmax us);
