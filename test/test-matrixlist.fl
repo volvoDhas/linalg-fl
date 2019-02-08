@@ -207,3 +207,14 @@ let test_lmin =
 ;
 
 check_res test_lmin;
+
+//testcases for fstindexof
+(printf "test_fstindexof\n");
+let test_fstindexof = 
+    (check_eq (fstindexof [] 4) 0):
+    (check_eq (fstindexof [1,-1,2,-2,3,-3] 4) 0):
+    (check_eq (fstindexof [1,-1,2,-2,3,-3] 2) 3):
+    []
+;
+
+check_res test_fstindexof;

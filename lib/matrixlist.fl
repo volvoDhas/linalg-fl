@@ -49,3 +49,14 @@ letrec lmin us =
     length us <= 1 => hd us |
     min (hd us) (lmax (tl us))
 ;
+
+
+//retruns the first index of an element in the list
+//NOTE - in fl, list indices start from 1
+letrec fstindexof us u =
+    letrec search [] = 1
+	/\search us = (hd us) == u => 1 | 1 + (search (tl us))
+    in
+    let index = search us in
+    index > (length us) => 0 | index
+;
