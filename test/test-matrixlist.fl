@@ -1,1 +1,26 @@
 //tests for ../lib/matrixlist.fl
+
+load (DIR^"../lib/matrixlist.fl");
+
+let assert_eq a b = a == b;
+let check_res rs =
+    (printf "\n\n") seq
+    let ntcs = (length rs) in
+    letrec check_test n =
+	n > ntcs => 0 |
+	(el n rs) => 1 + (check_test (n+1)) |
+	(printf "TC -%3d failed\n" n) seq (check_test (n+1))
+    in
+    let npass = check_test 1 in
+    (printf "Result - %d/%d TCs passed\n" npass ntcs) seq ()
+;
+
+let test_zeros =
+    (assert_eq (zeros 0) []):
+    (assert_eq (length (zeros 10)) 10):
+    []
+;
+
+check_res test_zeros;
+
+//TODO - add support for assertfail

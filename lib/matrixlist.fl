@@ -1,2 +1,6 @@
 //core matrix arithmetic library
 //implements matrix as a list of lists
+
+let zeros n =
+    replicate n 0
+;
