@@ -15,6 +15,7 @@ let check_res rs =
     (printf "Result - %d/%d TCs passed\n" npass ntcs) seq ()
 ;
 
+//testcases for zeros
 let test_zeros =
     (assert_eq (zeros 0) []):
     (assert_eq (length (zeros 10)) 10):
