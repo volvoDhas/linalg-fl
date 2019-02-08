@@ -76,19 +76,20 @@ check_res test_add;
 
 //testcases for addel
 (printf "test_addel\n");
-let test_added = 
+let test_addel = 
     (check_eq (addel {[]::int list} 1) {[]::int list}):
     (check_eq (addel [1,1] (-1)) [0,0]):
     (check_eq (addel [1.0,1.0] (-1.0)) [0.0,0.0]):
     (check_eq 
-	(addel [int2bv 1, int2bv 2] 
+	(addel [int2bv 1, int2bv 1] 
 	     (int2bv (-1))) 
 	[int2bv 0,int2bv 0]
     ):
     []
 ;
 
-check_res test_add;
+check_res test_addel;
+
 //testcases for diff
 (printf "test_diff\n");
 let test_diff = 
@@ -105,3 +106,19 @@ let test_diff =
 ;
 
 check_res test_diff;
+
+//testcases for diffel
+(printf "test_diffel\n");
+let test_diffel = 
+    (check_eq (diffel {[]::int list} 1) {[]::int list}):
+    (check_eq (diffel [1,1] 1) [0,0]):
+    (check_eq (diffel [1.0,1.0] 1.0) [0.0,0.0]):
+    (check_eq 
+	(diffel [int2bv 1, int2bv 1] 
+	     (int2bv 1)) 
+	[int2bv 0,int2bv 0]
+    ):
+    []
+;
+
+check_res test_diffel;

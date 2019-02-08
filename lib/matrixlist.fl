@@ -23,9 +23,11 @@ let add us vs =  map2 (\u. \v. u + v) us vs;
 let addel us v = map (\u. u+v) us;
 
 
-
-
-
 //returns a list of element-wise difference 2 lists
 let diff us vs = map (\(f,s). f - s) (zip us vs);
+
+//returns a list of element-wise difference of the list and a scalar
+//NOTE - diff & diffel cannot be overloaded becuse of
+//a type inference bug in fl
+let diffel us v = map (\u. u-v) us;
 
