@@ -3,9 +3,7 @@
 
 
 //returns an int list of zeros
-let zeros n =
-    replicate n 0
-;
+let zeros n = replicate n 0;
 
 //returns sum of elements of a list
 //all numeric types applicable
@@ -39,3 +37,15 @@ let mulel us v = map (\u. u*v) us;
 
 //returns the element-wise quotient of a list and a scalar
 let divel us v = map (\u. u/v) us;
+
+//retruns the highest element of a list
+letrec lmax us = 
+    length us <= 1 => hd us |
+    max (hd us) (lmax (tl us))
+;
+
+//retruns the lowest element of a list
+letrec lmin us = 
+    length us <= 1 => hd us |
+    min (hd us) (lmax (tl us))
+;

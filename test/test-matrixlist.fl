@@ -177,3 +177,33 @@ let test_divel =
 ;
 
 check_res test_divel;
+
+//testcases for lmax
+(printf "test_lmax\n");
+let test_lmax = 
+    (check_eq (lmax [1,-1,2,-2,3,-3]) 3):
+    (check_eq (lmax [1.0,-1.0,2.0,-2.0]) 2.0):
+    (check_eq
+	(lmax [(int2bv 1),(int2bv (-1)),
+	      (int2bv 2),(int2bv (-2))])
+	(int2bv 2)
+    ):
+    []
+;
+
+check_res test_lmax;
+
+//testcases for lmin
+(printf "test_lmin\n");
+let test_lmin = 
+    (check_eq (lmin [1,-1,2,-2,3,-3]) (-3)):
+    (check_eq (lmin [1.0,-1.0,2.0,-2.0]) (-2.0)):
+    (check_eq
+	(lmin [(int2bv 1),(int2bv (-1)),
+	      (int2bv 2),(int2bv (-2))])
+	(int2bv (-2))
+    ):
+    []
+;
+
+check_res test_lmin;
