@@ -15,7 +15,16 @@ letrec sum [] = '0
 ;
 
 //returns a list of element-wise sum 2 lists
-let add us vs = map (\(f,s). f + s) (zip us vs);
+let add us vs =  map2 (\u. \v. u + v) us vs;
+
+//returns a list of element-wise sum of the list and a scalar
+//NOTE - add & addel cannot be overloaded becuse of
+//a type inference bug in fl
+let addel us v = map (\u. u+v) us;
+
+
+
+
 
 //returns a list of element-wise difference 2 lists
 let diff us vs = map (\(f,s). f - s) (zip us vs);

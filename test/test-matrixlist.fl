@@ -74,6 +74,21 @@ let test_add =
 
 check_res test_add;
 
+//testcases for addel
+(printf "test_addel\n");
+let test_added = 
+    (check_eq (addel {[]::int list} 1) {[]::int list}):
+    (check_eq (addel [1,1] (-1)) [0,0]):
+    (check_eq (addel [1.0,1.0] (-1.0)) [0.0,0.0]):
+    (check_eq 
+	(addel [int2bv 1, int2bv 2] 
+	     (int2bv (-1))) 
+	[int2bv 0,int2bv 0]
+    ):
+    []
+;
+
+check_res test_add;
 //testcases for diff
 (printf "test_diff\n");
 let test_diff = 
