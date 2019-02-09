@@ -43,17 +43,28 @@ let check_res rs =
 (printf "test_islempty\n");
 let test_islempty = 
     let l = replicate 4 1 in
-    let m = replicate 4 l in
     let e = {[]::int list} in
-//    let me = [[]] in //replicate 4 e in
     (check_false (islempty l)):
     (check_true (islempty e)):
-//    (check_false (isempty m)):
-//    (check_true (isempty me)):
     []
 ;
 
 check_res test_islempty;
+
+//testcases for islempty
+(printf "test_islempty\n");
+let test_ismempty = 
+    let l = replicate 4 1 in
+    let m = replicate 4 l in
+    let e = {[]::int list} in
+    let me = replicate 4 e in
+    (check_false (ismempty m)):
+    (check_true (ismempty me)):
+    []
+;
+
+check_res test_ismempty;
+
 
 //testcases for zeros
 (printf "test_zeros\n");
