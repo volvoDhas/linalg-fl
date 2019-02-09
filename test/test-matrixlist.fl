@@ -39,6 +39,10 @@ let test_zeros =
     (check_eq (zeros 0) []):
     (check_eq (length (zeros 10)) 10):
     (check_fail (zeros (-10)) []):
+    (check_eq (zeros 0 0) []):
+    (check_eq (length (zeros 10 10)) 10):
+    (check_eq (length (el 1 (zeros 10 10))) 10):
+    (check_fail (zeros 10 (-10)) []):
     []
 ;
 
