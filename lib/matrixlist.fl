@@ -25,7 +25,7 @@ letrec lsum us = length us == 0 => '0 | (hd us) + (lsum (tl us));
 let msum m = map lsum m;
 
 //NOTE - lsum & msum cannot be overloaded becuse of
-//a type inference bug in fl
+//a presumed type inference bug in fl
 //overload sum lsum msum;
 
 //returns the element-wise sum 2 lists
@@ -34,9 +34,13 @@ let ladd us vs =  map2 (\u.\v. u+v) us vs;
 //returns the row-wise sum of a matrix and a vector
 let madd m vs = map (\r. ladd r vs) m;
 
+//NOTE - ladd & madd cannot be overloaded becuse of
+//a presumed type inference bug in fl
+//overload add ladd madd;
+
 //returns the element-wise sum of a list and a scalar
 //NOTE - add & addel cannot be overloaded becuse of
-//a type inference bug in fl
+//a presumed type inference bug in fl
 let addel us v = map (\u. u+v) us;
 
 
@@ -45,7 +49,7 @@ let diff us vs = map (\(f,s). f - s) (zip us vs);
 
 //returns the element-wise difference between a list and a scalar
 //NOTE - diff & diffel cannot be overloaded becuse of
-//a type inference bug in fl
+//a presumed type inference bug in fl
 let diffel us v = map (\u. u-v) us;
 
 //returns the dot product of 2 lists
