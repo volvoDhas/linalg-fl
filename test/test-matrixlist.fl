@@ -2,6 +2,9 @@
 
 load (DIR^"../lib/matrixlist.fl");
 
+//check if evaluation of f returns T
+let check_true f =  f == T;
+
 //check equivalence between output and expected result
 let check_eq a b = a == b;
 
