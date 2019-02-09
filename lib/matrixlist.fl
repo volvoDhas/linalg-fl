@@ -18,7 +18,11 @@ let mmap f m = map (\r. map f r) m;
 
 //returns sum of elements of a list
 //all numeric types applicable
-letrec sum us = length us == 0 => '0 | (hd us) + (sum (tl us));
+letrec lsum us = length us == 0 => '0 | (hd us) + (lsum (tl us));
+let msum m = map lsum m;
+//NOTE - lsum & msum cannot be overloaded becuse of
+//a type inference bug in fl
+//overload sum lsum msum;
 
 //returns the element-wise sum 2 lists
 let add us vs =  map2 (\u.\v. u+v) us vs;
@@ -38,7 +42,7 @@ let diff us vs = map (\(f,s). f - s) (zip us vs);
 let diffel us v = map (\u. u-v) us;
 
 //returns the dot product of 2 lists
-let dot us vs = sum (map2 (\u. \v. u*v) us vs);
+let dot us vs = lsum (map2 (\u. \v. u*v) us vs);
 
 //returns the element-wise product of a list and a scalar
 let mulel us v = map (\u. u*v) us;
