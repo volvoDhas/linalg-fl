@@ -7,6 +7,9 @@ let lzeros n = replicate n 0;
 let mzeros m n = replicate m (replicate n 0);
 overload zeros lzeros mzeros;
 
+//returns the element-wise map of f over a (list) list m
+let mmap m f = map (\r. map f r) m;
+
 //returns sum of elements of a list
 //all numeric types applicable
 letrec sum us = length us == 0 => '0 | (hd us) + (sum (tl us));
