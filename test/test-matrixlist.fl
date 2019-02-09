@@ -126,14 +126,18 @@ check_res test_lsum;
 
 //testcases for ladd
 (printf "test_ladd\n");
-let test_ladd = 
-    (check_eq (ladd {[]::int list} {[]::int list}) {[]::int list}):
-    (check_eq (ladd [1,2] [-1,-2]) [0,0]):
-    (check_eq (ladd [1.0,2.0] [-1.0,-2.0]) [0.0,0.0]):
-    (check_eq 
-	(ladd [int2bv 1, int2bv 2] 
-	     [int2bv (-1),int2bv (-2)]) 
-	[int2bv 0, int2bv 0]
+let test_ladd =
+    let le =	{[]::int list} in
+    let lip =	[1,2] in
+    let lin =	[-1,-2] in
+    let lfp =	[1.0,2.0] in
+    let lfn =	[-1.0,-2.0] in
+    let lbvp =	[int2bv 1, int2bv 2] in
+    let lbvn =  [int2bv (-1),int2bv (-2)] in
+    (check_lempty (ladd le le)):
+    (check_eq (ladd lip lin) [0,0]):
+    (check_eq (ladd lfp lfn) [0.0,0.0]):
+    (check_eq (ladd lbvp lbvn) [int2bv 0, int2bv 0]
     ):
     (check_fail (ladd [1,2] [-1]) []):
     []
