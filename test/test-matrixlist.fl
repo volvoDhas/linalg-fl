@@ -124,6 +124,8 @@ let test_lsum =
 
 check_res test_lsum;
 
+//TODO - add utcs for msum
+
 //testcases for ladd
 (printf "test_ladd\n");
 let test_ladd =
@@ -144,6 +146,9 @@ let test_ladd =
 ;
 
 check_res test_ladd;
+
+//TODO - add utcs for madd
+
 
 //testcases for addel
 (printf "test_addel\n");
