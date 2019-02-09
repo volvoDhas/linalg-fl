@@ -102,7 +102,7 @@ let test_mmap =
     let m = zeros 2 2 in
     let mm = mmap (\e. e+1) m in
     let fmm = filter (\e. e!=1) (flat mm) in 
-    (check_eq (length fmm) 0):
+    (check_len fmm 0):
     []
 ;
 
