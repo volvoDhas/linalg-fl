@@ -5,6 +5,9 @@ load (DIR^"../lib/matrixlist.fl");
 //check if evaluation of f returns T
 let check_true f =  f == T;
 
+//check if evaluation of f returns F
+let check_false f =  f == F;
+
 //check equivalence between output and expected result
 let check_eq a b = a == b;
 
@@ -36,6 +39,19 @@ let check_res rs =
     (printf "Result - %d/%d TCs passed\n\n" npass ntcs) seq ()
 ;
 
+//testcases for isempty
+(printf "test_isempty\n");
+let test_isempty = 
+    let l = replicate 4 1 in
+    let m = replicate 4 l in
+    let e = [] in
+    let me = replicate 4 e in
+    (check_false (isempty l)):
+    (check_true (isempty e)):
+    []
+;
+
+check_res test_isempty;
 
 //testcases for zeros
 (printf "test_zeros\n");

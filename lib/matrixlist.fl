@@ -1,8 +1,8 @@
 //core matrix arithmetic library
 //implements matrix as a list of lists
 
-//returns true if list/matrix is empty, false otherwise
-let isempty m = length (flat m) == 0 => T | F;
+//returns true if list is empty, false otherwise
+let isempty l = length l == 0 => T | F;
 
 //returns an list/matrix of zeros
 let lzeros n = replicate n '0;
