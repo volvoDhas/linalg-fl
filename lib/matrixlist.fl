@@ -2,9 +2,9 @@
 //implements matrix as a list of lists
 
 
-//returns an int list of zeros
-let lzeros n = replicate n 0;
-let mzeros m n = replicate m (replicate n 0);
+//returns an list/matrix of zeros
+let lzeros n = replicate n '0;
+let mzeros m n = replicate m (lzeros n);
 overload zeros lzeros mzeros;
 
 //returns the element-wise map of f over a (list) list m
