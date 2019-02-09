@@ -2,7 +2,9 @@
 //implements matrix as a list of lists
 
 //returns true if list is empty, false otherwise
-let isempty l = length l == 0 => T | F;
+let islempty l = length l == 0 => T | F;
+let ismempty m = length (flat m) == 0 => T | F;
+overload isempty islempty ismempty;
 
 //returns an list/matrix of zeros
 let lzeros n = replicate n '0;

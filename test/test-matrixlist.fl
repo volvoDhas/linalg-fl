@@ -44,7 +44,7 @@ let check_res rs =
 let test_isempty = 
     let l = replicate 4 1 in
     let m = replicate 4 l in
-    let e = [] in
+    let e = {[]::int list} in
     let me = replicate 4 e in
     (check_false (isempty l)):
     (check_true (isempty e)):
