@@ -17,6 +17,9 @@ let check_mempty f = ismempty f;
 //check equivalence between output and expected result
 let check_eq a b = a == b;
 
+//check if length of returned list is equal to expected value
+let check_len l n = check_eq (length l) n;
+
 //check if executing the function fails
 //supply fflag as a sanity check
 //fflag should be the same type as the correct output
