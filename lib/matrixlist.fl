@@ -4,7 +4,9 @@
 //returns true if list is empty, false otherwise
 let islempty l = length l == 0 => T | F;
 let ismempty m = length (flat m) == 0 => T | F;
-overload isempty islempty ismempty;
+
+//overloading seems to fail because of a type inf bug in fl
+//overload isempty islempty ismempty;
 
 //returns an list/matrix of zeros
 let lzeros n = replicate n '0;

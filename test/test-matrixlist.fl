@@ -39,19 +39,21 @@ let check_res rs =
     (printf "Result - %d/%d TCs passed\n\n" npass ntcs) seq ()
 ;
 
-//testcases for isempty
-(printf "test_isempty\n");
-let test_isempty = 
+//testcases for islempty
+(printf "test_islempty\n");
+let test_islempty = 
     let l = replicate 4 1 in
     let m = replicate 4 l in
     let e = {[]::int list} in
-    let me = replicate 4 e in
-    (check_false (isempty l)):
-    (check_true (isempty e)):
+//    let me = [[]] in //replicate 4 e in
+    (check_false (islempty l)):
+    (check_true (islempty e)):
+//    (check_false (isempty m)):
+//    (check_true (isempty me)):
     []
 ;
 
-check_res test_isempty;
+check_res test_islempty;
 
 //testcases for zeros
 (printf "test_zeros\n");
