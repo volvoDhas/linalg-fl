@@ -8,6 +8,12 @@ let check_true f =  f == T;
 //check if evaluation of f returns F
 let check_false f =  f == F;
 
+//check if evaluation is an empty list
+let check_lempty f = islempty f;
+
+//check if evaluation is an empty matrix
+let check_mempty f = ismempty f;
+
 //check equivalence between output and expected result
 let check_eq a b = a == b;
 
@@ -69,13 +75,19 @@ check_res test_ismempty;
 //testcases for zeros
 (printf "test_zeros\n");
 let test_zeros =
-//    (check_eq ( (zeros 0)) []):
-//    (check_eq (length (zeros 10)) 10):
-//    (check_fail (zeros (-10)) []):
-  //  (check_eq (tointlist (zeros 0 0)) []):
-   // (check_eq (length (zeros 10 10)) 10):
-   // (check_eq (length (el 1 (zeros 10 10))) 10):
-   // (check_fail (zeros 10 (-10)) []):
+    let e1 = {zeros 0 :: int list} in
+    let e2 = {zeros (-10) :: int list} in
+    let z1 = {zeros 10 :: int list} in
+    let me1 = {zeros 0 0 :: (int list) list} in
+    let me2 = {zeros 10 (-10) :: (int list) list} in
+    let mz1 = {zeros 10 10 :: (int list) list} in
+    (check_lempty e1):
+    (check_fail e2 []):
+    (check_eq (length z1) 10):
+    (check_mempty me1):
+    (check_eq (length mz1) 10):
+    (check_eq (length (el 1 mz1)) 10):
+    (check_fail me2 []):
     []
 ;
 
