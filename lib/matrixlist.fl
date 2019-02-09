@@ -8,7 +8,7 @@ let mzeros m n = replicate m (replicate n 0);
 overload zeros lzeros mzeros;
 
 //returns the element-wise map of f over a (list) list m
-let mmap m f = map (\r. map f r) m;
+let mmap f m = map (\r. map f r) m;
 
 //returns sum of elements of a list
 //all numeric types applicable
