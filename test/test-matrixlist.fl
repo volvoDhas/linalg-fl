@@ -86,10 +86,10 @@ let test_zeros =
     let mz1 = {zeros 10 10 :: (int list) list} in
     (check_lempty e1):
     (check_fail e2 []):
-    (check_eq (length z1) 10):
+    (check_len z1 10):
     (check_mempty me1):
-    (check_eq (length mz1) 10):
-    (check_eq (length (el 1 mz1)) 10):
+    (check_len mz1 10):
+    (check_len (el 1 mz1) 10):
     (check_fail me2 []):
     []
 ;
