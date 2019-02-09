@@ -19,7 +19,11 @@ let mmap f m = map (\r. map f r) m;
 //returns sum of elements of a list
 //all numeric types applicable
 letrec lsum us = length us == 0 => '0 | (hd us) + (lsum (tl us));
+
+//returns a list of sum of elements of each row
+//all numeric types applicable
 let msum m = map lsum m;
+
 //NOTE - lsum & msum cannot be overloaded becuse of
 //a type inference bug in fl
 //overload sum lsum msum;
