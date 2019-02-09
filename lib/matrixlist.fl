@@ -3,7 +3,9 @@
 
 
 //returns an int list of zeros
-let zeros n = replicate n 0;
+let lzeros n = replicate n 0;
+let mzeros m n = replicate m (replicate n 0);
+overload zeros lzeros mzeros;
 
 //returns sum of elements of a list
 //all numeric types applicable
