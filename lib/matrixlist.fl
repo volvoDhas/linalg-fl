@@ -29,7 +29,10 @@ let msum m = map lsum m;
 //overload sum lsum msum;
 
 //returns the element-wise sum 2 lists
-let add us vs =  map2 (\u.\v. u+v) us vs;
+let ladd us vs =  map2 (\u.\v. u+v) us vs;
+
+//returns the row-wise sum of a matrix and a vector
+let madd m vs = map (\r. ladd r vs) m;
 
 //returns the element-wise sum of a list and a scalar
 //NOTE - add & addel cannot be overloaded becuse of

@@ -124,22 +124,22 @@ let test_lsum =
 
 check_res test_lsum;
 
-//testcases for add
-(printf "test_add\n");
-let test_add = 
-    (check_eq (add {[]::int list} {[]::int list}) {[]::int list}):
-    (check_eq (add [1,2] [-1,-2]) [0,0]):
-    (check_eq (add [1.0,2.0] [-1.0,-2.0]) [0.0,0.0]):
+//testcases for ladd
+(printf "test_ladd\n");
+let test_ladd = 
+    (check_eq (ladd {[]::int list} {[]::int list}) {[]::int list}):
+    (check_eq (ladd [1,2] [-1,-2]) [0,0]):
+    (check_eq (ladd [1.0,2.0] [-1.0,-2.0]) [0.0,0.0]):
     (check_eq 
-	(add [int2bv 1, int2bv 2] 
+	(ladd [int2bv 1, int2bv 2] 
 	     [int2bv (-1),int2bv (-2)]) 
 	[int2bv 0, int2bv 0]
     ):
-    (check_fail (add [1,2] [-1]) []):
+    (check_fail (ladd [1,2] [-1]) []):
     []
 ;
 
-check_res test_add;
+check_res test_ladd;
 
 //testcases for addel
 (printf "test_addel\n");
