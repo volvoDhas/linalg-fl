@@ -244,21 +244,21 @@ let test_ldiffl =
 
 check_res test_ldiffl;
 
-//testcases for diffel
-(printf "test_diffel\n");
-let test_diffel = 
-    (check_eq (diffel {[]::int list} 1) {[]::int list}):
-    (check_eq (diffel [1,1] 1) [0,0]):
-    (check_eq (diffel [1.0,1.0] 1.0) [0.0,0.0]):
+//testcases for ldiffsc
+(printf "test_ldiffsc\n");
+let test_ldiffsc = 
+    (check_eq (ldiffsc {[]::int list} 1) {[]::int list}):
+    (check_eq (ldiffsc [1,1] 1) [0,0]):
+    (check_eq (ldiffsc [1.0,1.0] 1.0) [0.0,0.0]):
     (check_eq 
-	(diffel [int2bv 1, int2bv 1] 
+	(ldiffsc [int2bv 1, int2bv 1] 
 	     (int2bv 1)) 
 	[int2bv 0,int2bv 0]
     ):
     []
 ;
 
-check_res test_diffel;
+check_res test_ldiffsc;
 
 //testcases for dot
 (print "test_dot\n");

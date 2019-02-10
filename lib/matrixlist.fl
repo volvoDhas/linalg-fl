@@ -43,7 +43,7 @@ let laddsc us s = map (\u. u+s) us;
 let maddsc m s = map (\r. laddsc r s) m;
 
 //TODO - overloading of all add ops
-//because of a presumed type inference bug in fl
+//paused because of a presumed type inference bug in fl
 
 //--------- diff ops-----------------------
 
@@ -51,9 +51,9 @@ let maddsc m s = map (\r. laddsc r s) m;
 let ldiffl us vs = map2 (\u.\v. u-v) us vs;
 
 //returns the element-wise difference between a list and a scalar
-//NOTE - diff & diffel cannot be overloaded becuse of
+//NOTE - diff & ldiffsc cannot be overloaded becuse of
 //a presumed type inference bug in fl
-let diffel us v = map (\u. u-v) us;
+let ldiffsc us v = map (\u. u-v) us;
 
 //returns the dot product of 2 lists
 let dot us vs = lsum (map2 (\u. \v. u*v) us vs);
