@@ -32,7 +32,7 @@ let msum m = map lsum m;
 let ladd us vs =  map2 (\u.\v. u+v) us vs;
 
 //returns the row-wise sum of a matrix and a vector
-let madd m vs = map (\r. ladd r vs) m;
+let maddl m vs = map (\r. ladd r vs) m;
 
 //NOTE - ladd & madd cannot be overloaded becuse of
 //a presumed type inference bug in fl
