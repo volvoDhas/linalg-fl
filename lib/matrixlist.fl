@@ -45,7 +45,7 @@ let laddsc us v = map (\u. u+v) us;
 
 
 //returns the element-wise sum of a matrix and a scalar
-let maddel m vs = map (\r. laddsc r vs) m;
+let maddsc m vs = map (\r. laddsc r vs) m;
 
 
 //returns the element-wise difference of 2 lists
