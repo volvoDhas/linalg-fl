@@ -51,6 +51,9 @@ let check_res rs =
 //some handy definitions
 let lei = {[]::int list};
 let mei = replicate 4 lei;
+let li1 = [1,1];
+let lf1 = map int2float li1;
+let lbv1 = map int2bv li1;
 let lip = [1,2];
 let lfp = map int2float lip;
 let lbvp = map int2bv lip;
@@ -247,14 +250,10 @@ check_res test_ldiffl;
 //testcases for ldiffsc
 (printf "test_ldiffsc\n");
 let test_ldiffsc = 
-    (check_eq (ldiffsc {[]::int list} 1) {[]::int list}):
-    (check_eq (ldiffsc [1,1] 1) [0,0]):
-    (check_eq (ldiffsc [1.0,1.0] 1.0) [0.0,0.0]):
-    (check_eq 
-	(ldiffsc [int2bv 1, int2bv 1] 
-	     (int2bv 1)) 
-	[int2bv 0,int2bv 0]
-    ):
+    (check_lempty (ldiffsc lei 1)):
+    (check_eq (ldiffsc li1 1) lzi):
+    (check_eq (ldiffsc lf1 1.0) lzf):
+    (check_eq (ldiffsc lbv1 (int2bv 1)) lzbv):
     []
 ;
 
