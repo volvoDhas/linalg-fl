@@ -124,7 +124,28 @@ let test_lsum =
 
 check_res test_lsum;
 
-//TODO - add utcs for msum
+//testcases for msum
+(printf "test_msum\n");
+let test_msum = 
+    let me = replicate 4 {[]::int list} in
+    let li = [1,-1,2,-2,3,-3] in
+    let mi = replicate 4 li in
+    let lf = [1.0,-1.0,2.0,-2.0] in
+    let mf = replicate 4 lf in
+    let lbv =  map int2bv li in
+    let mbv = replicate 4 lbv in
+    let lzi = {zeros 4 :: int list} in
+    let lzf = {zeros 4 :: float list} in
+    let lzbv = map int2bv lzi in
+    (check_eq (msum me) lzi):
+    (check_eq (msum mi) lzi):
+    (check_eq (msum mf) lzf):
+    (check_eq (msum mbv) lzbv):
+    []
+;
+
+check_res test_msum;
+
 
 //testcases for ladd
 (printf "test_ladd\n");
