@@ -80,7 +80,7 @@ let mmulm m1 m2 =
     in
     letrec rowit i =
 	i > (length m1) => [] |
-	(colit (el i m1) i):(rowit (i+1))
+	(colit (el i m1) 1):(rowit (i+1))
     in
     rowit 1
 ;

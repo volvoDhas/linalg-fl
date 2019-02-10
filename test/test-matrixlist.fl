@@ -308,6 +308,26 @@ let test_dot =
 
 check_res test_dot;
 
+let miid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
+let mfid = mmap int2float miid;
+let mbvid = mmap int2bv miid;
+
+//testcases for mmulm
+(print "test_mmulm\n");
+let test_mmulm =
+    let yi = replicate 4 [4,1,2,2] in
+    let yi' = replicate 3 [4,1,2] in
+    let yf = mmap int2float yi in
+    let yb = mmap int2bv yi in 
+    (check_eq (mmulm miid yi) yi):
+    (check_eq (mmulm mfid yf) yf):
+    (check_eq (mmulm mbvid yb) yb):
+    (check_fail (mmulm miid yi') [[]]):
+    []
+;
+
+check_res test_mmulm;
+
 //testcases for lmulsc
 (printf "test_lmulsc\n");
 let test_lmulsc = 
