@@ -41,11 +41,11 @@ let maddl m vs = map (\r. ladd r vs) m;
 //returns the element-wise sum of a list and a scalar
 //NOTE - add & addel cannot be overloaded becuse of
 //a presumed type inference bug in fl
-let laddel us v = map (\u. u+v) us;
+let laddsc us v = map (\u. u+v) us;
 
 
 //returns the element-wise sum of a matrix and a scalar
-let maddel m vs = map (\r. laddel r vs) m;
+let maddel m vs = map (\r. laddsc r vs) m;
 
 
 //returns the element-wise difference of 2 lists

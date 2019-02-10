@@ -191,24 +191,24 @@ let test_maddl =
 check_res test_maddl;
 
 
-//testcases for laddel
-(printf "test_laddel\n");
-let test_laddel = 
+//testcases for laddsc
+(printf "test_laddsc\n");
+let test_laddsc = 
     let l1i = [1,1] in
     let l1f = [1.0,1.0] in
     let l1bv = map int2bv l1i in
     let lzi = {zeros 2 :: int list} in
     let lzf = {zeros 2 :: float list} in
     let lzbv = {zeros 2 :: bv list} in
-    (check_lempty (laddel lei 1)):
-    (check_eq (laddel l1i (-1)) lzi):
-    (check_eq (laddel l1f (-1.0)) lzf):
-    (check_eq (laddel l1bv  (int2bv (-1))) lzbv
+    (check_lempty (laddsc lei 1)):
+    (check_eq (laddsc l1i (-1)) lzi):
+    (check_eq (laddsc l1f (-1.0)) lzf):
+    (check_eq (laddsc l1bv  (int2bv (-1))) lzbv
     ):
     []
 ;
 
-check_res test_laddel;
+check_res test_laddsc;
 
 //testcases for maddel
 (printf "test_maddel\n");
