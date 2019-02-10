@@ -28,13 +28,10 @@ let msum m = map lsum m;
 //a presumed type inference bug in fl
 //overload sum lsum msum;
 
-//--------- vector-vector ops-----------------------
+//--------- add ops-----------------------
 
 //returns the element-wise sum 2 lists
 let laddl us vs =  map2 (\u.\v. u+v) us vs;
-
-//returns the element-wise difference of 2 lists
-let ldiffl us vs = map2 (\u.\v. u-v) us vs;
 
 //returns the row-wise sum of a matrix and a vector
 let maddl m vs = map (\r. laddl r vs) m;
@@ -52,7 +49,10 @@ let laddsc us s = map (\u. u+s) us;
 //returns the element-wise sum of a matrix and a scalar
 let maddsc m s = map (\r. laddsc r s) m;
 
+//--------- diff ops-----------------------
 
+//returns the element-wise difference of 2 lists
+let ldiffl us vs = map2 (\u.\v. u-v) us vs;
 
 //returns the element-wise difference between a list and a scalar
 //NOTE - diff & diffel cannot be overloaded becuse of

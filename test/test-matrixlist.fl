@@ -168,18 +168,6 @@ let test_laddl =
 
 check_res test_laddl;
 
-//testcases for ldiffl
-(printf "test_ldiffl\n");
-let test_ldiffl = 
-    (check_lempty (ldiffl lei lei)):
-    (check_eq (ldiffl lip lip) lzi):
-    (check_eq (ldiffl lfp lfp) lzf):
-    (check_eq (ldiffl lbvp lbvp) lzbv):
-    (check_fail (ldiffl lip [-1]) []):
-    []
-;
-
-check_res test_ldiffl;
 
 //testcases for maddl
 (printf "test_maddl\n");
@@ -243,6 +231,18 @@ let test_maddsc =
 
 check_res test_maddsc;
 
+//testcases for ldiffl
+(printf "test_ldiffl\n");
+let test_ldiffl = 
+    (check_lempty (ldiffl lei lei)):
+    (check_eq (ldiffl lip lip) lzi):
+    (check_eq (ldiffl lfp lfp) lzf):
+    (check_eq (ldiffl lbvp lbvp) lzbv):
+    (check_fail (ldiffl lip [-1]) []):
+    []
+;
+
+check_res test_ldiffl;
 
 //testcases for diffel
 (printf "test_diffel\n");
