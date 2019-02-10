@@ -159,11 +159,10 @@ let test_laddl =
     let lfn =	[-1.0,-2.0] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
     (check_lempty (laddl lei lei)):
-    (check_eq (laddl lip lin) [0,0]):
-    (check_eq (laddl lfp lfn) [0.0,0.0]):
-    (check_eq (laddl lbvp lbvn) [int2bv 0, int2bv 0]
-    ):
-    (check_fail (laddl [1,2] [-1]) []):
+    (check_eq (laddl lip lin) lzi):
+    (check_eq (laddl lfp lfn) lzf):
+    (check_eq (laddl lbvp lbvn) lzbv):
+    (check_fail (laddl lip [-1]) []):
     []
 ;
 
