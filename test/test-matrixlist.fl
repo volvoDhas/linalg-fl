@@ -176,20 +176,22 @@ check_res test_ladd;
 let test_maddl =
     let le =	{[]::int list} in
     let me =	replicate 4 le in
-    let mz =	zeros 4 2 in
+    let mzi =	{zeros 4 2 :: (int list) list} in
     let lip =	[1,2] in
     let mip =	replicate 4 lip in
     let lin =	[-1,-2] in
+    let mzf =	{zeros 4 2 :: (float list) list} in
     let lfp =	[1.0,2.0] in
     let mfp =	replicate 4 lfp in
     let lfn =	[-1.0,-2.0] in
+    let mzbv =	{zeros 4 2 :: (bv list) list} in
     let lbvp =	[int2bv 1, int2bv 2] in
     let mbvp =  replicate 4 lbvp in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
     (check_mempty (maddl me le)):
-    //(check_eq (maddl mip lin) mz):
-    (check_eq (maddl mfp lfn) mz):
-    //(check_eq (maddl mbvp lbvn) mz):
+    (check_eq (maddl mip lin) mzi):
+    (check_eq (maddl mfp lfn) mzf):
+    (check_eq (maddl mbvp lbvn) mzbv):
     []
 ;
 
