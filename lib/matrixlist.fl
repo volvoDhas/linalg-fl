@@ -53,10 +53,14 @@ let maddsc m s = map (\r. laddsc r s) m;
 //returns the element-wise difference of 2 lists
 let ldiffl us vs = map2 (\u.\v. u-v) us vs;
 
+//returns the row-wise difference between a matrix and a vector
+let mdiffl m vs = map (\r. ldiffl r vs) m;
+
 //returns the element-wise difference between a list and a scalar
-//NOTE - diff & ldiffsc cannot be overloaded becuse of
-//a presumed type inference bug in fl
 let ldiffsc us v = map (\u. u-v) us;
+
+//returns the element-wise difference between a matrix and a scalar
+let mdiffsc m v = mmap (\e. e-v) m;
 
 //--------- mul ops-----------------------
 
