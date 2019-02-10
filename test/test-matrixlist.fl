@@ -69,6 +69,9 @@ let mfp	    = replicate 4 lfp;
 let mzbv    = {zeros 4 2 :: (bv list) list};
 let lbvp    = [int2bv 1, int2bv 2];
 let mbvp    = replicate 4 lbvp;
+let mi1	    = replicate 4 li1;
+let mf1	    = mmap int2float mi1;
+let mbv1    = mmap int2bv mi1;
 
 //testcases for islempty
 (printf "test_islempty\n");
@@ -272,6 +275,19 @@ let test_ldiffsc =
 ;
 
 check_res test_ldiffsc;
+
+//testcases for mdiffsc
+(printf "test_mdiffsc\n");
+let test_mdiffsc = 
+    (check_mempty (mdiffsc mei 1)):
+    (check_eq (mdiffsc mi1 1) mzi):
+    (check_eq (mdiffsc mf1 1.0) mzf):
+    (check_eq (mdiffsc mbv1 (int2bv 1)) mzbv):
+    []
+;
+
+check_res test_ldiffsc;
+
 
 //testcases for dot
 (print "test_dot\n");
