@@ -62,6 +62,9 @@ let ldiffsc us v = map (\u. u-v) us;
 //returns the element-wise difference between a matrix and a scalar
 let mdiffsc m v = mmap (\e. e-v) m;
 
+//TODO - overloading of all diff ops
+//paused because of a presumed type inference bug in fl
+
 //--------- mul ops-----------------------
 
 //returns the dot product of 2 lists
