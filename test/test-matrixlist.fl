@@ -343,7 +343,7 @@ check_res test_lmulsc;
 //testcases for divel
 (printf "test_divel\n");
 let test_divel = 
-    (check_eq (divel {[]::int list} 1) {[]::int list}):
+    (check_lempty (divel lei 1)):
     (check_eq (divel [1,1] 2) [0,0]):
     (check_eq (divel [1.0,1.0] 2.0) [0.5,0.5]):
     (check_eq 
