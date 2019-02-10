@@ -71,7 +71,7 @@ let mdiffsc m v = mmap (\e. e-v) m;
 let dot us vs = lsum (map2 (\u. \v. u*v) us vs);
 
 //returns the element-wise product of a list and a scalar
-let mulel us v = map (\u. u*v) us;
+let lmulsc us v = map (\u. u*v) us;
 
 //--------- div ops-----------------------
 
