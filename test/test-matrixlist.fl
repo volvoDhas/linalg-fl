@@ -398,13 +398,13 @@ let test_fstindexof =
 
 check_res test_fstindexof;
 
-//testcases for argmax
-(printf "test_argmax\n");
-let test_argmax = 
-    (check_eq (argmax {[]::int list}) 0):
-    (check_eq (argmax [1,-1,2,-2,3,-3]) 5):
-    (check_eq (argmax [1,1,1,1,1,1]) 1):
+//testcases for largmax
+(printf "test_largmax\n");
+let test_largmax = 
+    (check_eq (largmax {[]::int list}) 0):
+    (check_eq (largmax [1,-1,2,-2,3,-3]) 5):
+    (check_eq (largmax [1,1,1,1,1,1]) 1):
     []
 ;
 
-check_res test_argmax;
+check_res test_largmax;

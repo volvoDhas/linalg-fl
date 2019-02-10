@@ -124,4 +124,4 @@ letrec fstindexof us u =
 
 
 //returns the index of the max element in the list
-letrec argmax us = fstindexof us (lmax us);
+letrec largmax us = fstindexof us (lmax us);
