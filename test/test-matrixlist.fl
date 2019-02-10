@@ -215,22 +215,22 @@ let test_laddel =
 
 check_res test_laddel;
 
-//testcases for diff
-(printf "test_diff\n");
-let test_diff = 
-    (check_eq (diff {[]::int list} {[]::int list}) {[]::int list}):
-    (check_eq (diff [1,2] [1,2]) [0,0]):
-    (check_eq (diff [1.0,2.0] [1.0,2.0]) [0.0,0.0]):
+//testcases for ldiff
+(printf "test_ldiff\n");
+let test_ldiff = 
+    (check_eq (ldiff {[]::int list} {[]::int list}) {[]::int list}):
+    (check_eq (ldiff [1,2] [1,2]) [0,0]):
+    (check_eq (ldiff [1.0,2.0] [1.0,2.0]) [0.0,0.0]):
     (check_eq 
-	(diff [int2bv 1, int2bv 2] 
+	(ldiff [int2bv 1, int2bv 2] 
 	     [int2bv 1,int2bv 2]) 
 	[int2bv 0, int2bv 0]
     ):
-    (check_fail (diff [1,2] [-1]) []):
+    (check_fail (ldiff [1,2] [-1]) []):
     []
 ;
 
-check_res test_diff;
+check_res test_ldiff;
 
 //testcases for diffel
 (printf "test_diffel\n");

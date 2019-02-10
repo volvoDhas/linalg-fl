@@ -49,7 +49,7 @@ let laddel us v = map (\u. u+v) us;
 
 
 //returns the element-wise difference of 2 lists
-let diff us vs = map (\(f,s). f - s) (zip us vs);
+let ldiff us vs = map (\(f,s). f - s) (zip us vs);
 
 //returns the element-wise difference between a list and a scalar
 //NOTE - diff & diffel cannot be overloaded becuse of
