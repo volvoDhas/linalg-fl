@@ -125,3 +125,6 @@ letrec fstindexof us u =
 
 //returns the index of the max element in the list
 letrec largmax us = fstindexof us (lmax us);
+
+//returns a vector of indexes of max element in each row
+letrec margmax m = map largmax m;
