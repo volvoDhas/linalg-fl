@@ -311,14 +311,10 @@ check_res test_dot;
 //testcases for lmulsc
 (printf "test_lmulsc\n");
 let test_lmulsc = 
-    (check_eq (lmulsc {[]::int list} 1) {[]::int list}):
-    (check_eq (lmulsc [1,1] 0) [0,0]):
-    (check_eq (lmulsc [1.0,1.0] 0.0) [0.0,0.0]):
-    (check_eq 
-	(lmulsc [int2bv 1, int2bv 1] 
-	     (int2bv 0)) 
-	[int2bv 0,int2bv 0]
-    ):
+    (check_lempty (lmulsc lei 1)):
+    (check_eq (lmulsc li1 0) lzi):
+    (check_eq (lmulsc lf1 0.0) lzf):
+    (check_eq (lmulsc lbv1 (int2bv 0)) lzbv):
     []
 ;
 
