@@ -168,7 +168,8 @@ let test_ladd =
 
 check_res test_ladd;
 
-//TODO - add utcs for madd
+//TODO - fix overload resolution problem
+//error occurs upon uncommenting 2 utcs
 
 //testcases for maddl
 (printf "test_maddl\n");
