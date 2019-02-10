@@ -48,27 +48,28 @@ let check_res rs =
     (printf "Result - %d/%d TCs passed\n\n" npass ntcs) seq ()
 ;
 
+//some handy definitions
+let lei = {[]::int list};
+let mei = replicate 4 lei;
+
 //testcases for islempty
 (printf "test_islempty\n");
 let test_islempty = 
     let l = replicate 4 1 in
-    let e = {[]::int list} in
     (check_false (islempty l)):
-    (check_true (islempty e)):
+    (check_true (islempty lei)):
     []
 ;
 
 check_res test_islempty;
 
 //testcases for islempty
-(printf "test_islempty\n");
+(printf "test_ismempty\n");
 let test_ismempty = 
     let l = replicate 4 1 in
     let m = replicate 4 l in
-    let e = {[]::int list} in
-    let me = replicate 4 e in
     (check_false (ismempty m)):
-    (check_true (ismempty me)):
+    (check_true (ismempty mei)):
     []
 ;
 
@@ -111,11 +112,10 @@ check_res test_mmap;
 //testcases for lsum
 (printf "test_lsum\n");
 let test_lsum = 
-    let e = [] in
     let li = [1,-1,2,-2,3,-3] in
     let lf = [1.0,-1.0,2.0,-2.0] in
     let lbv =  map int2bv li in
-    (check_eq (lsum e) 0):
+    (check_eq (lsum lei) 0):
     (check_eq (lsum li) 0):
     (check_eq (lsum lf) 0.0):
     (check_eq (lsum lbv) (int2bv 0)):
@@ -127,7 +127,6 @@ check_res test_lsum;
 //testcases for msum
 (printf "test_msum\n");
 let test_msum = 
-    let me = replicate 4 {[]::int list} in
     let li = [1,-1,2,-2,3,-3] in
     let mi = replicate 4 li in
     let lf = [1.0,-1.0,2.0,-2.0] in
@@ -137,7 +136,7 @@ let test_msum =
     let lzi = {zeros 4 :: int list} in
     let lzf = {zeros 4 :: float list} in
     let lzbv = map int2bv lzi in
-    (check_eq (msum me) lzi):
+    (check_eq (msum mei) lzi):
     (check_eq (msum mi) lzi):
     (check_eq (msum mf) lzf):
     (check_eq (msum mbv) lzbv):
@@ -150,14 +149,13 @@ check_res test_msum;
 //testcases for ladd
 (printf "test_ladd\n");
 let test_ladd =
-    let le =	{[]::int list} in
     let lip =	[1,2] in
     let lin =	[-1,-2] in
     let lfp =	[1.0,2.0] in
     let lfn =	[-1.0,-2.0] in
     let lbvp =	[int2bv 1, int2bv 2] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
-    (check_lempty (ladd le le)):
+    (check_lempty (ladd lei lei)):
     (check_eq (ladd lip lin) [0,0]):
     (check_eq (ladd lfp lfn) [0.0,0.0]):
     (check_eq (ladd lbvp lbvn) [int2bv 0, int2bv 0]
@@ -171,8 +169,6 @@ check_res test_ladd;
 //testcases for maddl
 (printf "test_maddl\n");
 let test_maddl =
-    let le =	{[]::int list} in
-    let me =	replicate 4 le in
     let mzi =	{zeros 4 2 :: (int list) list} in
     let lip =	[1,2] in
     let mip =	replicate 4 lip in
@@ -185,7 +181,7 @@ let test_maddl =
     let lbvp =	[int2bv 1, int2bv 2] in
     let mbvp =  replicate 4 lbvp in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
-    (check_mempty (maddl me le)):
+    (check_mempty (maddl mei lei)):
     (check_eq (maddl mip lin) mzi):
     (check_eq (maddl mfp lfn) mzf):
     (check_eq (maddl mbvp lbvn) mzbv):
@@ -198,14 +194,13 @@ check_res test_maddl;
 //testcases for laddel
 (printf "test_laddel\n");
 let test_laddel = 
-    let le = {[]::int list} in
     let l1i = [1,1] in
     let l1f = [1.0,1.0] in
     let l1bv = map int2bv l1i in
     let lzi = {zeros 2 :: int list} in
     let lzf = {zeros 2 :: float list} in
     let lzbv = {zeros 2 :: bv list} in
-    (check_lempty (laddel le 1)):
+    (check_lempty (laddel lei 1)):
     (check_eq (laddel l1i (-1)) lzi):
     (check_eq (laddel l1f (-1.0)) lzf):
     (check_eq (laddel l1bv  (int2bv (-1))) lzbv
