@@ -49,7 +49,7 @@ let maddsc m s = map (\r. laddsc r s) m;
 
 
 //returns the element-wise difference of 2 lists
-let ldiff us vs = map (\(f,s). f - s) (zip us vs);
+let ldiffl us vs = map (\(f,s). f - s) (zip us vs);
 
 //returns the element-wise difference between a list and a scalar
 //NOTE - diff & diffel cannot be overloaded becuse of
