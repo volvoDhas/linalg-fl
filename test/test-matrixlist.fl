@@ -51,9 +51,9 @@ let check_res rs =
 //some handy definitions
 let lei	    = {[]::int list};
 let mei	    = replicate 4 lei;
-let li1	    = [1,1];
-let lf1	    = map int2float li1;
-let lbv1    = map int2bv li1;
+let l1i	    = [1,1];
+let l1f	    = map int2float l1i;
+let l1bv    = map int2bv l1i;
 let lip	    = [1,2];
 let lfp	    = map int2float lip;
 let lbvp    = map int2bv lip;
@@ -69,7 +69,7 @@ let mfp	    = replicate 4 lfp;
 let mzbv    = {zeros 4 2 :: (bv list) list};
 let lbvp    = [int2bv 1, int2bv 2];
 let mbvp    = replicate 4 lbvp;
-let mi1	    = replicate 4 li1;
+let mi1	    = replicate 4 l1i;
 let mf1	    = mmap int2float mi1;
 let mbv1    = mmap int2bv mi1;
 
@@ -268,9 +268,9 @@ check_res test_mdiffl;
 (printf "test_ldiffsc\n");
 let test_ldiffsc = 
     (check_lempty (ldiffsc lei 1)):
-    (check_eq (ldiffsc li1 1) lzi):
-    (check_eq (ldiffsc lf1 1.0) lzf):
-    (check_eq (ldiffsc lbv1 (int2bv 1)) lzbv):
+    (check_eq (ldiffsc l1i 1) lzi):
+    (check_eq (ldiffsc l1f 1.0) lzf):
+    (check_eq (ldiffsc l1bv (int2bv 1)) lzbv):
     []
 ;
 
@@ -312,9 +312,9 @@ check_res test_dot;
 (printf "test_lmulsc\n");
 let test_lmulsc = 
     (check_lempty (lmulsc lei 1)):
-    (check_eq (lmulsc li1 0) lzi):
-    (check_eq (lmulsc lf1 0.0) lzf):
-    (check_eq (lmulsc lbv1 (int2bv 0)) lzbv):
+    (check_eq (lmulsc l1i 0) lzi):
+    (check_eq (lmulsc l1f 0.0) lzf):
+    (check_eq (lmulsc l1bv (int2bv 0)) lzbv):
     []
 ;
 
