@@ -210,6 +210,24 @@ let test_laddel =
 
 check_res test_laddel;
 
+//testcases for maddel
+(printf "test_maddel\n");
+let test_maddel = 
+    let m1i = replicate 2 [1,1] in
+    let m1f = replicate 2 [1.0,1.0] in
+    let m1bv = mmap int2bv m1i in
+    let mzi = {zeros 2 2 :: (int list) list} in
+    let mzf = {zeros 2 2 :: (float list) list} in
+    let mzbv = {zeros 2 2 :: (bv list) list} in
+    (check_mempty (maddel mei 1)):
+    (check_eq (maddel m1i (-1)) mzi):
+    (check_eq (maddel m1f (-1.0)) mzf):
+    (check_eq (maddel m1bv  (int2bv (-1))) mzbv):
+    []
+;
+
+check_res test_maddel;
+
 //testcases for ldiff
 (printf "test_ldiff\n");
 let test_ldiff = 
