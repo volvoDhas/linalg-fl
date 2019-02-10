@@ -111,14 +111,14 @@ check_res test_mmap;
 //testcases for lsum
 (printf "test_lsum\n");
 let test_lsum = 
-    (check_eq (lsum []) 0):
-    (check_eq (lsum [1,-1,2,-2,3,-3]) 0):
-    (check_eq (lsum [1.0,-1.0,2.0,-2.0]) 0.0):
-    (check_eq
-	(lsum [(int2bv 1),(int2bv (-1)),
-	      (int2bv 2),(int2bv (-2))])
-	(int2bv 0)
-    ):
+    let e = [] in
+    let li = [1,-1,2,-2,3,-3] in
+    let lf = [1.0,-1.0,2.0,-2.0] in
+    let lbv =  map int2bv li in
+    (check_eq (lsum e) 0):
+    (check_eq (lsum li) 0):
+    (check_eq (lsum lf) 0.0):
+    (check_eq (lsum lbv) (int2bv 0)):
     []
 ;
 
