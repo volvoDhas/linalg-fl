@@ -28,6 +28,8 @@ let msum m = map lsum m;
 //a presumed type inference bug in fl
 //overload sum lsum msum;
 
+//--------- vector-vector ops-----------------------
+
 //returns the element-wise sum 2 lists
 let laddl us vs =  map2 (\u.\v. u+v) us vs;
 
