@@ -195,21 +195,21 @@ let test_maddl =
 
 check_res test_maddl;
 
-//testcases for addel
-(printf "test_addel\n");
-let test_addel = 
-    (check_eq (addel {[]::int list} 1) {[]::int list}):
-    (check_eq (addel [1,1] (-1)) [0,0]):
-    (check_eq (addel [1.0,1.0] (-1.0)) [0.0,0.0]):
+//testcases for laddel
+(printf "test_laddel\n");
+let test_laddel = 
+    (check_eq (laddel {[]::int list} 1) {[]::int list}):
+    (check_eq (laddel [1,1] (-1)) [0,0]):
+    (check_eq (laddel [1.0,1.0] (-1.0)) [0.0,0.0]):
     (check_eq 
-	(addel [int2bv 1, int2bv 1] 
+	(laddel [int2bv 1, int2bv 1] 
 	     (int2bv (-1))) 
 	[int2bv 0,int2bv 0]
     ):
     []
 ;
 
-check_res test_addel;
+check_res test_laddel;
 
 //testcases for diff
 (printf "test_diff\n");
