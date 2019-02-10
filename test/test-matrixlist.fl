@@ -247,6 +247,20 @@ let test_ldiffl =
 
 check_res test_ldiffl;
 
+//testcases for mdiffl
+(printf "test_mdiffl\n");
+let test_mdiffl = 
+    (check_mempty (mdiffl mei lei)):
+    (check_eq (mdiffl mip lip) mzi):
+    (check_eq (mdiffl mfp lfp) mzf):
+    (check_eq (mdiffl mbvp lbvp) mzbv):
+    (check_fail (mdiffl mip [-1]) [[]]):
+    []
+;
+
+check_res test_mdiffl;
+
+
 //testcases for ldiffsc
 (printf "test_ldiffsc\n");
 let test_ldiffsc = 
