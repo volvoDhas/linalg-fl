@@ -146,25 +146,25 @@ let test_msum =
 check_res test_msum;
 
 
-//testcases for ladd
-(printf "test_ladd\n");
-let test_ladd =
+//testcases for laddl
+(printf "test_laddl\n");
+let test_laddl =
     let lip =	[1,2] in
     let lin =	[-1,-2] in
     let lfp =	[1.0,2.0] in
     let lfn =	[-1.0,-2.0] in
     let lbvp =	[int2bv 1, int2bv 2] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
-    (check_lempty (ladd lei lei)):
-    (check_eq (ladd lip lin) [0,0]):
-    (check_eq (ladd lfp lfn) [0.0,0.0]):
-    (check_eq (ladd lbvp lbvn) [int2bv 0, int2bv 0]
+    (check_lempty (laddl lei lei)):
+    (check_eq (laddl lip lin) [0,0]):
+    (check_eq (laddl lfp lfn) [0.0,0.0]):
+    (check_eq (laddl lbvp lbvn) [int2bv 0, int2bv 0]
     ):
-    (check_fail (ladd [1,2] [-1]) []):
+    (check_fail (laddl [1,2] [-1]) []):
     []
 ;
 
-check_res test_ladd;
+check_res test_laddl;
 
 //testcases for maddl
 (printf "test_maddl\n");

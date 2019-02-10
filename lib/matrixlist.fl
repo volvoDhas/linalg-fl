@@ -29,14 +29,14 @@ let msum m = map lsum m;
 //overload sum lsum msum;
 
 //returns the element-wise sum 2 lists
-let ladd us vs =  map2 (\u.\v. u+v) us vs;
+let laddl us vs =  map2 (\u.\v. u+v) us vs;
 
 //returns the row-wise sum of a matrix and a vector
-let maddl m vs = map (\r. ladd r vs) m;
+let maddl m vs = map (\r. laddl r vs) m;
 
-//NOTE - ladd & madd cannot be overloaded becuse of
+//NOTE - laddl & maddl cannot be overloaded becuse of
 //a presumed type inference bug in fl
-//overload add ladd madd;
+//overload add laddl maddl;
 
 //returns the element-wise sum of a list and a scalar
 //NOTE - add & addel cannot be overloaded becuse of
