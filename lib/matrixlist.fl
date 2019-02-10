@@ -1,6 +1,9 @@
 //core matrix arithmetic library
 //implements matrix as a list of lists
 
+
+//--------- special ops-----------------------
+
 //returns true if list is empty, false otherwise
 let islempty l = length l == 0 => T | F;
 let ismempty m = length (flat m) == 0 => T | F;
@@ -55,14 +58,20 @@ let ldiffl us vs = map2 (\u.\v. u-v) us vs;
 //a presumed type inference bug in fl
 let ldiffsc us v = map (\u. u-v) us;
 
+//--------- mul ops-----------------------
+
 //returns the dot product of 2 lists
 let dot us vs = lsum (map2 (\u. \v. u*v) us vs);
 
 //returns the element-wise product of a list and a scalar
 let mulel us v = map (\u. u*v) us;
 
+//--------- div ops-----------------------
+
 //returns the element-wise quotient of a list and a scalar
 let divel us v = map (\u. u/v) us;
+
+//--------- min-max ops-----------------------
 
 //retruns the highest element of a list
 letrec lmax us = 
@@ -76,9 +85,10 @@ letrec lmin us =
     min (hd us) (lmax (tl us))
 ;
 
+//--------- index ops-----------------------
+//NOTE - in fl, indices start from 1
 
 //retruns the first index of an element in the list
-//NOTE - in fl, list indices start from 1
 letrec fstindexof us u =
     letrec search [] = 1
 	/\search us = (hd us) == u => 1 | 1 + (search (tl us))
@@ -89,5 +99,4 @@ letrec fstindexof us u =
 
 
 //returns the index of the max element in the list
-//NOTE - in fl, list indices start from 1
 letrec argmax us = fstindexof us (lmax us);
