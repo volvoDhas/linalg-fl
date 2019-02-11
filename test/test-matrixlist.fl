@@ -328,6 +328,22 @@ let test_mmulm =
 
 check_res test_mmulm;
 
+//testcases for mmultm
+(print "test_mmultm\n");
+let test_mmultm =
+    let yi = transpose (replicate 4 [4,1,2,2]) in
+    let yi' = transpose (replicate 3 [4,1,2]) in
+    let yf = transpose (mmap int2float yi) in
+    let yb = transpose (mmap int2bv yi) in 
+    (check_eq (mmultm miid yi) (transpose yi)):
+    (check_eq (mmultm mfid yf) (transpose yf)):
+    (check_eq (mmultm mbvid yb) (transpose yb)):
+    (check_fail (mmultm miid yi') [[]]):
+    []
+;
+
+check_res test_mmultm;
+
 //testcases for lmulsc
 (printf "test_lmulsc\n");
 let test_lmulsc = 
