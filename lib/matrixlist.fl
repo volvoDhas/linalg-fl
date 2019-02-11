@@ -85,6 +85,14 @@ let mmulm m1 m2 =
     rowit 1
 ;
 
+
+//returns the product of 2 matrices lhs*rhs 
+//with rhs in a transposed form
+let mmultm m1 tm2 =
+    let rcmap row = map (\col. dot row col) tm2 in
+    map rcmap m1
+;
+
 //returns the element-wise product of a list and a scalar
 let lmulsc us v = map (\u. u*v) us;
 
