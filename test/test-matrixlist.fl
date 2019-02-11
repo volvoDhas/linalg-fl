@@ -1,52 +1,7 @@
 //tests for ../lib/matrixlist.fl
 
 load (DIR^"../lib/matrixlist.fl");
-
-//check if evaluation of f returns T
-let check_true f =  f == T;
-
-//check if evaluation of f returns F
-let check_false f =  f == F;
-
-//check if evaluation is an empty list
-let check_lempty f = islempty f;
-
-//check if evaluation is an empty matrix
-let check_mempty f = ismempty f;
-
-//check equivalence between output and expected result
-let check_eq a b = a == b;
-
-//check if length of returned list is equal to expected value
-let check_len l n = check_eq (length l) n;
-
-//check if executing the function fails
-//supply fflag as a sanity check
-//fflag should be the same type as the correct output
-//and choose a value that cannot be expected even if 
-//execution does not fail
-
-let check_fail f fflag = 
-    let trycatch f =
-	f gen_catch (\e. fflag)
-    in
-   (trycatch f) == fflag
-;
-
-//checks and compiles results of a test case
-//rs:: a list of T or F depending upon 
-//whether a test pased or failed
-
-let check_res rs =
-    let ntcs = (length rs) in
-    letrec check_test n =
-	n > ntcs => 0 |
-	(el n rs) => 1 + (check_test (n+1)) |
-	(printf "TC -%3d failed\n" n) seq (check_test (n+1))
-    in
-    let npass = check_test 1 in
-    (printf "Result - %d/%d TCs passed\n\n" npass ntcs) seq ()
-;
+load (DIR^"flunit.fl");
 
 //some handy definitions
 let lei	    = {[]::int list};
