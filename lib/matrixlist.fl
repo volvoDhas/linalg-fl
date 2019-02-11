@@ -82,11 +82,25 @@ let mmultm m1 tm2 =
     map crossmap m1
 ;
 
+//returns the product of 2 scaled matrices lhs*rhs 
+//with rhs in a transposed form
+let smmultm m1 tm2 scale =
+    let crossmap row = map (\col. sdot row col scale) tm2 in
+    map crossmap m1
+;
+
 //returns the product of 2 matrices
 //TODO - change to an efficient version
 let mmulm m1 m2 =
     let tm2 = transpose m2 in
     mmultm m1 tm2;
+;
+
+//returns the product of 2 scaled matrices
+//TODO - change to an efficient version
+let smmulm m1 m2 scale =
+    let tm2 = transpose m2 in
+    smmultm m1 tm2 scale;
 ;
 
 
