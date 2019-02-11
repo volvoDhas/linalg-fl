@@ -1,7 +1,16 @@
 //core matrix arithmetic library
 //implements matrix as a list of lists
 
+//--------- type definitions------------------
 
+//lettype matrix =
+//    MATRIX
+    //scalar value by which each element is scaled
+//    {scl:: int}
+    //T if the matrix is in transposed form, F if not
+//    {trn:: bool}
+//    data
+; 
 //--------- special ops-----------------------
 
 //returns true if list is empty, false otherwise
