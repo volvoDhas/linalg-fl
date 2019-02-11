@@ -72,6 +72,11 @@ let mbvp    = replicate 4 lbvp;
 let mi1	    = replicate 4 l1i;
 let mf1	    = mmap int2float mi1;
 let mbv1    = mmap int2bv mi1;
+let scale   = '256;
+let miid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
+let mfid = mmap int2float miid;
+let mbvid = mmap int2bv miid;
+
 
 //testcases for islempty
 (printf "test_islempty\n");
@@ -308,7 +313,6 @@ let test_dot =
 
 check_res test_dot;
 
-let scale = '256;
 
 //testcases for sdot
 (print "test_sdot\n");
@@ -328,10 +332,6 @@ let test_sdot =
 ;
 
 check_res test_sdot;
-
-let miid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
-let mfid = mmap int2float miid;
-let mbvid = mmap int2bv miid;
 
 //testcases for mmulm
 (print "test_mmulm\n");
