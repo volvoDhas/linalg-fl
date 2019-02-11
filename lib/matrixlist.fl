@@ -70,6 +70,11 @@ let mdiffsc m v = mmap (\e. e-v) m;
 //returns the dot product of 2 lists
 let dot us vs = lsum (map2 (\u. \v. u*v) us vs);
 
+//returns the dot product of 2 scaled lists
+//output in scaled form
+let sdot us vs scale = lsum (map2 (\u. \v. u*v/scale) us vs);
+
+
 //returns the product of 2 matrices lhs*rhs 
 //with rhs in a transposed form
 let mmultm m1 tm2 =
