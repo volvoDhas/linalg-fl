@@ -349,6 +349,21 @@ let test_mmulm =
 
 check_res test_mmulm;
 
+//testcases for smmulm
+(print "test_smmulm\n");
+let test_smmulm =
+    let yi = replicate 4 [4,1,2,2] in
+    let smiid = mmulsc miid scale in
+    let syi = mmulsc yi scale in
+    let yi' = replicate 3 [4,1,2] in
+    let yf = mmap int2float yi in
+    let yb = mmap int2bv yi in 
+    (check_eq (smmulm smiid syi scale) syi):
+    []
+;
+
+check_res test_smmulm;
+
 //testcases for mmultm
 (print "test_mmultm\n");
 let test_mmultm =
@@ -364,6 +379,19 @@ let test_mmultm =
 ;
 
 check_res test_mmultm;
+
+//testcases for smmultm
+(print "test_smmultm\n");
+let test_smmultm =
+    let yi = transpose (replicate 4 [4,1,2,2]) in
+    let smiid = mmulsc miid scale in
+    let syi = mmulsc yi scale in
+    let tsyi = transpose syi in
+    (check_eq (smmultm smiid syi scale) tsyi):
+    []
+;
+
+check_res test_smmultm;
 
 //testcases for lmulsc
 (printf "test_lmulsc\n");
