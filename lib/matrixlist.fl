@@ -70,28 +70,20 @@ let mdiffsc m v = mmap (\e. e-v) m;
 //returns the dot product of 2 lists
 let dot us vs = lsum (map2 (\u. \v. u*v) us vs);
 
-//returns the product of 2 matrices
-//TODO - change to an efficient version
-let mmulm m1 m2 =
-    let tm2 = transpose m2 in
-    letrec colit row j =
-	j > (length tm2) => [] |
-	(dot row (el j tm2)):(colit row (j+1))
-    in
-    letrec rowit i =
-	i > (length m1) => [] |
-	(colit (el i m1) 1):(rowit (i+1))
-    in
-    rowit 1
-;
-
-
 //returns the product of 2 matrices lhs*rhs 
 //with rhs in a transposed form
 let mmultm m1 tm2 =
     let crossmap row = map (\col. dot row col) tm2 in
     map crossmap m1
 ;
+
+//returns the product of 2 matrices
+//TODO - change to an efficient version
+let mmulm m1 m2 =
+    let tm2 = transpose m2 in
+    mmultm m1 tm2;
+;
+
 
 //returns the element-wise product of a list and a scalar
 let lmulsc us v = map (\u. u*v) us;
