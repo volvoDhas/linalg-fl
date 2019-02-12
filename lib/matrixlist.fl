@@ -56,6 +56,7 @@ let maddsc m s = map (\r. laddsc r s) m;
 
 //TODO - overloading of all add ops
 //paused because of a presumed type inference bug in fl
+//overload add laddl maddl laddsc maddsc;
 
 //--------- diff ops-----------------------
 
