@@ -48,7 +48,7 @@ let msum m = map lsum m;
 //--------- add ops-----------------------
 
 //returns the element-wise sum 2 lists
-let laddl us vs =  map2 (\u.\v. u+v) us vs;
+let laddl us vs =  zipwith us vs (defix +);
 
 //returns the row-wise sum of a matrix and a vector
 let maddl m vs = map (\r. laddl r vs) m;
