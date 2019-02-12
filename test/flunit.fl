@@ -18,8 +18,8 @@ let check_eq a b = a == b;
 //check if length of returned list is equal to expected value
 let check_len l n = check_eq (length l) n;
 
-//check if absolute value of the evaluation is less than
-let check_maglt f n = (abs f) < n;
+//check if (absolute) delta between f1 & f2 is less than expected value
+let check_dellt f1 f2 e = abs (f1-f2) < e;
 
 //check if executing the function fails
 //supply fflag as a sanity check
