@@ -15,8 +15,11 @@
 
 //--------- special ops-----------------------
 
+//applies the operator f for each element of a list with a scalar
+let zipwithsc xs n f = map (\x. f x n) xs;
+
 //applies the operator f element-wise to 2 lists
-let zipwith x y f = map2 f x y;
+let zipwith xs ys f = map2 f xs ys;
 
 //returns true if list is empty, false otherwise
 let islempty l = length l == 0 => T | F;
