@@ -33,14 +33,14 @@ let mfid = mmap int2float miid;
 let mbvid = mmap int2bv miid;
 
 
-//testcases for lbinop
-let test_lbinop = 
-(printf "test_lbinop\n") seq
-    (check_eq (lbinop li1 li1 (defix +)) (lbinop li1 [2,2] (defix *))):
+//testcases for zipwith
+let test_zipwith = 
+(printf "test_zipwith\n") seq
+    (check_eq (zipwith li1 li1 (defix +)) (zipwith li1 [2,2] (defix *))):
     []
 ;
 
-check_res test_lbinop;
+check_res test_zipwith;
 
 //testcases for islempty
 (printf "test_islempty\n");

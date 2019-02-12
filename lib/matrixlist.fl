@@ -15,8 +15,8 @@
 
 //--------- special ops-----------------------
 
-//applies the binary operator f element-wise to 2 lists
-let lbinop x y f = map2 f x y;
+//applies the operator f element-wise to 2 lists
+let zipwith x y f = map2 f x y;
 
 //returns true if list is empty, false otherwise
 let islempty l = length l == 0 => T | F;
