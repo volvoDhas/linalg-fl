@@ -50,14 +50,17 @@ let msum m = map lsum m;
 
 //--------- add ops-----------------------
 
+//the defix + operator
+let opplus = (defix +);
+
 //returns the element-wise sum 2 lists
-let laddl us vs =  zipwith us vs (defix +);
+let laddl us vs =  zipwith us vs opplus;
 
 //returns the row-wise sum of a matrix and a vector
 let maddl m vs = map (\r. laddl r vs) m;
 
 //returns the element-wise sum of a list and a scalar
-let laddsc us s = zipwithsc us s (defix +);
+let laddsc us s = zipwithsc us s opplus;
 
 //returns the element-wise sum of a matrix and a scalar
 let maddsc m s = map (\r. laddsc r s) m;
