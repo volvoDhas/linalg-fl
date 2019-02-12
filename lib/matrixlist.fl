@@ -61,7 +61,7 @@ let laddl us vs =  zipwith us vs opplus;
 
 
 //returns the row-wise sum of a matrix and a vector
-let maddl m vs = map (\r. laddl r vs) m;
+let maddl m vs = lmap laddl m vs;
 
 //returns the element-wise sum of a list and a scalar
 let laddsc us s = zipwithsc us s opplus;
@@ -82,7 +82,7 @@ let opminus = (defix -);
 let ldiffl us vs = zipwith us vs opminus;
 
 //returns the row-wise difference between a matrix and a vector
-let mdiffl m vs = map (\r. ldiffl r vs) m;
+let mdiffl m vs = lmap ldiffl m vs;
 
 //returns the element-wise difference between a list and a scalar
 let ldiffsc us v = zipwithsc us v opminus;
