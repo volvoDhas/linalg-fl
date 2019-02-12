@@ -144,8 +144,11 @@ let mmulsc m v = mmap (\e. e*v) m;
 
 //--------- div ops-----------------------
 
+//the defix / operator
+let opdiv = (defix /);
+
 //returns the element-wise quotient of a list and a scalar
-let divel us v = map (\u. u/v) us;
+let divel us v = zipwithsc us v opdiv;
 
 //--------- min-max ops-----------------------
 
