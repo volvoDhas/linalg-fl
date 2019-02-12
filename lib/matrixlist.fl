@@ -71,14 +71,17 @@ let maddsc m s = map (\r. laddsc r s) m;
 
 //--------- diff ops-----------------------
 
+//the defix - operator
+let opminus = (defix -);
+
 //returns the element-wise difference of 2 lists
-let ldiffl us vs = zipwith us vs (defix -);
+let ldiffl us vs = zipwith us vs opminus;
 
 //returns the row-wise difference between a matrix and a vector
 let mdiffl m vs = map (\r. ldiffl r vs) m;
 
 //returns the element-wise difference between a list and a scalar
-let ldiffsc us v = zipwithsc us v (defix -);
+let ldiffsc us v = zipwithsc us v opminus;
 
 //returns the element-wise difference between a matrix and a scalar
 let mdiffsc m v = mmap (\e. e-v) m;
@@ -88,8 +91,12 @@ let mdiffsc m v = mmap (\e. e-v) m;
 
 //--------- mul ops-----------------------
 
+//the defix * operator
+let opmul = (defix *);
+
 //returns the dot product of 2 lists
-let dot us vs = lsum (zipwith us vs (defix *));
+let dot us vs = lsum (zipwith us vs opmul);
+
 
 //returns the dot product of 2 scaled lists
 //output in scaled form
@@ -126,7 +133,7 @@ let smmulm m1 m2 scale =
 
 
 //returns the element-wise product of a list and a scalar
-let lmulsc us v = map (\u. u*v) us;
+let lmulsc us v = zipwithsc us v opmul;
 
 //returns the element-wise product of a matrix and a scalar
 let mmulsc m v = mmap (\e. e*v) m;
