@@ -21,6 +21,12 @@ let zipwithsc xs n f = map (\x. f x n) xs;
 //applies the operator f element-wise to 2 lists
 let zipwith xs ys f = map2 f xs ys;
 
+//returns list-wise zipwith between a (list) list and a scalar
+let lmap f m v = map (\r. f r v) m;
+
+//returns the element-wise map of f over a (list) list m
+let mmap f m = map (\r. map f r) m;
+
 //returns true if list is empty, false otherwise
 let islempty l = length l == 0 => T | F;
 let ismempty m = length (flat m) == 0 => T | F;
@@ -32,9 +38,6 @@ let ismempty m = length (flat m) == 0 => T | F;
 let lzeros n = replicate n '0;
 let mzeros m n = replicate m (lzeros n);
 overload zeros lzeros mzeros;
-
-//returns the element-wise map of f over a (list) list m
-let mmap f m = map (\r. map f r) m;
 
 //returns sum of elements of a list
 //all numeric types applicable
@@ -55,6 +58,7 @@ let opplus = (defix +);
 
 //returns the element-wise sum 2 lists
 let laddl us vs =  zipwith us vs opplus;
+
 
 //returns the row-wise sum of a matrix and a vector
 let maddl m vs = map (\r. laddl r vs) m;
