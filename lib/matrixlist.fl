@@ -78,7 +78,7 @@ let ldiffl us vs = zipwith us vs (defix -);
 let mdiffl m vs = map (\r. ldiffl r vs) m;
 
 //returns the element-wise difference between a list and a scalar
-let ldiffsc us v = map (\u. u-v) us;
+let ldiffsc us v = zipwithsc us v (defix -);
 
 //returns the element-wise difference between a matrix and a scalar
 let mdiffsc m v = mmap (\e. e-v) m;
