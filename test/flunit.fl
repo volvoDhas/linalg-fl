@@ -18,6 +18,9 @@ let check_eq a b = a == b;
 //check if length of returned list is equal to expected value
 let check_len l n = check_eq (length l) n;
 
+//check if absolute value of the evaluation is less than
+let check_maglt f n = (abs f) < n;
+
 //check if executing the function fails
 //supply fflag as a sanity check
 //fflag should be the same type as the correct output
