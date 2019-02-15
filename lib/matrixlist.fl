@@ -86,19 +86,13 @@ let rbvadd {i:: {bv} range} {j:: {bv} range} =
 ;
 add_open_overload opadd rbvadd;
 
-//the defix + operator
-let opplus = opadd; //(defix +);
-let opplusrng (RANGE l1 h1) (RANGE l2 h2) = 
-    mk_range (l1+l2) (h1+h2)
-;
-
 //returns sum of elements of a list
 //all numeric types applicable
-letrec lsum us = length us == 0 => '0 | opplus (hd us) (lsum (tl us));
+letrec lsum us = length us == 0 => '0 | opadd (hd us) (lsum (tl us));
 //definition for a list of intervals
 letrec lsumrng uis = 
     length uis == 0 => mk_range '0 '0 | 
-    opplusrng (hd uis) (lsumrng (tl uis))
+    opadd (hd uis) (lsumrng (tl uis))
 ;
 
 
@@ -111,14 +105,14 @@ let msum m = map lsum m;
 //overload sum lsum msum;
 
 //returns the element-wise sum 2 lists
-let laddl us vs =  zipwith us vs opplus;
+let laddl us vs =  zipwith us vs opadd;
 
 
 //returns the row-wise sum of a matrix and a vector
 let maddl m vs = lmap laddl m vs;
 
 //returns the element-wise sum of a list and a scalar
-let laddsc us s = zipwithsc us s opplus;
+let laddsc us s = zipwithsc us s opadd;
 
 //returns the element-wise sum of a matrix and a scalar
 let maddsc m s = map (\r. laddsc r s) m;
