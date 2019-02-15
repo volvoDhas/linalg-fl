@@ -33,6 +33,20 @@ let mfid = mmap int2float miid;
 let mbvid = mmap int2bv miid;
 
 
+//testcases for mk_range
+let test_mk_range =
+(printf "test_mk_range\n") seq
+    val (RANGE xi yi) =  (mk_range 1 4) in
+    val (RANGE xf yf) =  (mk_range 1.0 4.0) in
+    val (RANGE xb yb) =  (mk_range (int2bv 1) (int2bv 4)) in
+    (check_eq (xi,yi) (1,4)):
+    (check_eq (xf,yf) (1.0,4.0)):
+    (check_eq (xb,yb) (int2bv 1,int2bv 4)):
+    []
+;
+
+check_res test_mk_range;
+
 //testcases for zipwithsc
 let test_zipwithsc = 
 (printf "test_zipwithsc\n") seq
