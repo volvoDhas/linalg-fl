@@ -7,7 +7,7 @@
 lettype *a range = RANGE *a *a;
 
 let mk_range l h = 
-    l > h => error "low > high" |
+    l > h => error "low-lim > high-lim" |
     (RANGE l h)
 ;
 
@@ -52,9 +52,14 @@ let lzeros n = replicate n '0;
 let mzeros m n = replicate m (lzeros n);
 overload zeros lzeros mzeros;
 
+//--------- add ops-----------------------
+
+//the defix + operator
+let opplus = (defix +);
+
 //returns sum of elements of a list
 //all numeric types applicable
-letrec lsum us = length us == 0 => '0 | (hd us) + (lsum (tl us));
+letrec lsum us = length us == 0 => '0 | opplus (hd us) (lsum (tl us));
 
 //returns a list of sum of elements of each row
 //all numeric types applicable
@@ -63,11 +68,6 @@ let msum m = map lsum m;
 //NOTE - lsum & msum cannot be overloaded becuse of
 //a presumed type inference bug in fl
 //overload sum lsum msum;
-
-//--------- add ops-----------------------
-
-//the defix + operator
-let opplus = (defix +);
 
 //returns the element-wise sum 2 lists
 let laddl us vs =  zipwith us vs opplus;
