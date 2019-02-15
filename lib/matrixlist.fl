@@ -3,14 +3,27 @@
 
 //--------- type definitions------------------
 
-//lettype matrix =
-//    MATRIX
-    //scalar value by which each element is scaled
-//    {scl:: int}
-    //T if the matrix is in transposed form, F if not
-//    {trn:: bool}
-//    data
-; 
+//
+lettype *a range = RANGE *a *a;
+
+let mk_range l h = 
+    l > h => error "low > high" |
+    (RANGE l h)
+;
+
+let Prangei (RANGE {l::int} {h::int}) = (printf "(%d,%d)\n" l h) seq "";
+let Prangeb (RANGE {l::bv} {h::bv}) = 
+    let bv2str b =
+	let bl = bv2list b in  
+	list2str T "[" "," "]" (\b. bool2str 5 b) bl
+    in
+    (printf "(%s,%s)\n" (bv2str l) (bv2str h)) seq "";
+let Prangef (RANGE {l::float} {h::float}) =
+    (printf "(%s,%s)\n" (float2str l) (float2str h)) seq "";
+
+install_print_function Prangei;
+install_print_function Prangeb;
+install_print_function Prangef;
 
 
 //--------- special ops-----------------------
@@ -100,7 +113,6 @@ let opmul = (defix *);
 
 //returns the dot product of 2 lists
 let dot us vs = lsum (zipwith us vs opmul);
-
 
 //returns the dot product of 2 scaled lists
 //output in scaled form
