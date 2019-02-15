@@ -56,10 +56,19 @@ overload zeros lzeros mzeros;
 
 //the defix + operator
 let opplus = (defix +);
+let opplusrng (RANGE l1 h1) (RANGE l2 h2) = 
+    mk_range (l1+l2) (h1+h2)
+;
 
 //returns sum of elements of a list
 //all numeric types applicable
 letrec lsum us = length us == 0 => '0 | opplus (hd us) (lsum (tl us));
+//definition for a list of intervals
+letrec lsumrng uis = 
+    length uis == 0 => mk_range '0 '0 | 
+    opplusrng (hd uis) (lsumrng (tl uis))
+;
+
 
 //returns a list of sum of elements of each row
 //all numeric types applicable
