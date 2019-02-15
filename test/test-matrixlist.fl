@@ -39,9 +39,13 @@ let test_mk_range =
     val (RANGE xi yi) =  (mk_range 1 4) in
     val (RANGE xf yf) =  (mk_range 1.0 4.0) in
     val (RANGE xb yb) =  (mk_range (int2bv 1) (int2bv 4)) in
+    let ls = variable "l" => (int2bv 1) | (int2bv 2) in
+    let hs = variable "h" => (int2bv 2) | (int2bv 3) in
+    val (RANGE xs ys) = mk_range ls hs in
     (check_eq (xi,yi) (1,4)):
     (check_eq (xf,yf) (1.0,4.0)):
     (check_eq (xb,yb) (int2bv 1,int2bv 4)):
+    (check_eq (xs,ys) (ls,hs)):
     []
 ;
 
