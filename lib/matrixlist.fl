@@ -54,8 +54,40 @@ overload zeros lzeros mzeros;
 
 //--------- add ops-----------------------
 
+open_overload {opadd :: *a -> *a -> *a};
+
+let iadd {i::int} {j::int} = i+j; // Integer version
+add_open_overload opadd iadd;
+
+let fadd {i::float} {j::float} = i+j; //Floating point version
+add_open_overload opadd fadd;
+
+let badd {i::bv} {j::bv} = i+j;  // bv version
+add_open_overload opadd badd;
+
+let riadd {i:: {int} range} {j:: {int} range} =
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    mk_range (iadd il jl) (iadd ih jh)
+;
+add_open_overload opadd riadd;
+
+let rfadd {i:: {float} range} {j:: {float} range} =
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    mk_range (fadd il jl) (fadd ih jh)
+;
+add_open_overload opadd rfadd;
+
+let rbvadd {i:: {bv} range} {j:: {bv} range} =
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    mk_range (badd il jl) (badd ih jh)
+;
+add_open_overload opadd rbvadd;
+
 //the defix + operator
-let opplus = (defix +);
+let opplus = opadd; //(defix +);
 let opplusrng (RANGE l1 h1) (RANGE l2 h2) = 
     mk_range (l1+l2) (h1+h2)
 ;
