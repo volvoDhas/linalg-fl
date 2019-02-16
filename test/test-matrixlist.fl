@@ -34,7 +34,9 @@ let mbvid   = mmap int2bv miid;
 let lir	    = [mk_range 1 2, mk_range (-2) (-1)];
 let lfr	    = map intr2floatr lir;
 let lbvr    = map intr2bvr  lir;
-
+let mir	    = replicate 4 lir;
+let mfr	    = replicate 4 lfr;
+let mbvr    = replicate 4 lbvr;
 
 //testcases for mk_range
 let test_mk_range =
@@ -185,6 +187,9 @@ let test_msum =
     (check_eq (msum mi) lzi):
     (check_eq (msum mf) lzf):
     (check_eq (msum mbv) lzbv):
+    (check_eq (msum mir) (replicate 4 (mk_range (-1) 1))):
+    (check_eq (msum mfr) (replicate 4 (intr2floatr (mk_range (-1) 1)))):
+    (check_eq (msum mbvr) (replicate 4 (intr2bvr (mk_range (-1) 1)))):
     []
 ;
 
