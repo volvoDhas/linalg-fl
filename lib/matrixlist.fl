@@ -75,7 +75,7 @@ overload zeros lzeros mzeros;
 //overload resolution problems occur
 //when the ' operator is used
 
-open_overload {opadd :: *a -> *a -> *a};
+open_overload {opadd :: *a -> *b -> *a};
 
 //int-int version
 let iadd {i::int} {j::int} = i+j; 
@@ -97,6 +97,13 @@ let riadd {i:: {int} range} {j:: {int} range} =
 ;
 add_open_overload opadd riadd;
 
+//int range - int version
+let riaddi {i:: {int} range} {j:: int} =
+    val (RANGE il ih) = i in
+    mk_range (iadd il j) (iadd ih j)
+;
+add_open_overload opadd riaddi;
+
 //float range - float range version
 let rfadd {i:: {float} range} {j:: {float} range} =
     val (RANGE il ih) = i in
@@ -105,6 +112,13 @@ let rfadd {i:: {float} range} {j:: {float} range} =
 ;
 add_open_overload opadd rfadd;
 
+//float range - float version
+let rfaddf {i:: {float} range} {j:: float} =
+    val (RANGE il ih) = i in
+    mk_range (fadd il j) (fadd ih j)
+;
+add_open_overload opadd rfaddf;
+
 //bv range - bv range version
 let rbvadd {i:: {bv} range} {j:: {bv} range} =
     val (RANGE il ih) = i in
@@ -112,6 +126,13 @@ let rbvadd {i:: {bv} range} {j:: {bv} range} =
     mk_range (badd il jl) (badd ih jh)
 ;
 add_open_overload opadd rbvadd;
+
+//bv range - bv version
+let rbvaddbv {i:: {bv} range} {j:: bv} =
+    val (RANGE il ih) = i in
+    mk_range (badd il j) (badd ih j)
+;
+add_open_overload opadd rbvaddbv;
 
 //returns sum of elements of a list
 open_overload {lsum :: *a list -> *a};
