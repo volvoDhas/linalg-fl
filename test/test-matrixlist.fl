@@ -232,6 +232,7 @@ let test_maddl =
     (check_eq (maddl mip lin) mzi):
     (check_eq (maddl mfp lfn) mzf):
     (check_eq (maddl mbvp lbvn) mzbv):
+    (check_eq (maddl mir2 [0,0]) mir2):
     []
 ;
 
@@ -272,6 +273,7 @@ let test_maddsc =
     (check_eq (maddsc m1i (-1)) mzi):
     (check_eq (maddsc m1f (-1.0)) mzf):
     (check_eq (maddsc m1bv  (int2bv (-1))) mzbv):
+    (check_eq (maddsc mir2 0) mir2):
     []
 ;
 
