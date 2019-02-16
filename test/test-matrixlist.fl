@@ -37,9 +37,9 @@ let lfr2    = map intr2floatr lir2;
 let lfr1    = map intr2floatr lir1;
 let lbvr2   = map intr2bvr  lir2;
 let lbvr1   = map intr2bvr  lir1;
-let mir	    = replicate 4 lir2;
-let mfr	    = replicate 4 lfr2;
-let mbvr    = replicate 4 lbvr2;
+let mir2    = replicate 4 lir2;
+let mfr2    = replicate 4 lfr2;
+let mbvr2   = replicate 4 lbvr2;
 let irlt1   = mk_range (-1) 1;
 let frlt1   = intr2floatr irlt1;
 let bvrlt1  = intr2bvr irlt1;
@@ -193,9 +193,9 @@ let test_msum =
     (check_eq (msum mi) lzi):
     (check_eq (msum mf) lzf):
     (check_eq (msum mbv) lzbv):
-    (check_eq (msum mir) (replicate 4 irlt1)):
-    (check_eq (msum mfr) (replicate 4 frlt1)):
-    (check_eq (msum mbvr) (replicate 4 bvrlt1)):
+    (check_eq (msum mir2) (replicate 4 irlt1)):
+    (check_eq (msum mfr2) (replicate 4 frlt1)):
+    (check_eq (msum mbvr2) (replicate 4 bvrlt1)):
     []
 ;
 
@@ -250,8 +250,10 @@ let test_laddsc =
     (check_lempty (laddsc lei 1)):
     (check_eq (laddsc li1 (-1)) lzi):
     (check_eq (laddsc lf1 (-1.0)) lzf):
-    (check_eq (laddsc lbv1  (int2bv (-1))) lzbv
-    ):
+    (check_eq (laddsc lbv1  (int2bv (-1))) lzbv):
+    (check_eq (laddsc lir1 0) lir1):
+    (check_eq (laddsc lfr1 0.0) lfr1):
+    (check_eq (laddsc lbvr1 (int2bv 0)) lbvr1):
     []
 ;
 
