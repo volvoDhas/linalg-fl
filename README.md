@@ -11,7 +11,7 @@ To enable work realated to my research, this project aims to develop a linear nu
 ## Repo structure
 
 |_lib	-> core library logic  
-|_test	-> flunit framework & unit-tests for the library  
+|_test	-> flunit test framework & unit-tests for the library  
 
 ## Testing & quality
 
