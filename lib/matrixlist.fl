@@ -11,15 +11,15 @@ let mk_range l h =
     (RANGE l h)
 ;
 
-let Prangei (RANGE {l::int} {h::int}) = (printf "(%d,%d)\n" l h) seq "";
+let Prangei (RANGE {l::int} {h::int}) = (printf "(%d,%d)" l h) seq "";
 let Prangeb (RANGE {l::bv} {h::bv}) = 
     let bv2str b =
 	let bl = bv2list b in  
 	list2str T "[" "," "]" (\b. bool2str 5 b) bl
     in
-    (printf "(%s,%s)\n" (bv2str l) (bv2str h)) seq "";
+    (printf "(%s,%s)" (bv2str l) (bv2str h)) seq "";
 let Prangef (RANGE {l::float} {h::float}) =
-    (printf "(%s,%s)\n" (float2str l) (float2str h)) seq "";
+    (printf "(%s,%s)" (float2str l) (float2str h)) seq "";
 
 install_print_function Prangei;
 install_print_function Prangeb;
@@ -87,14 +87,38 @@ let rbvadd {i:: {bv} range} {j:: {bv} range} =
 add_open_overload opadd rbvadd;
 
 //returns sum of elements of a list
-//all numeric types applicable
-letrec lsum us = length us == 0 => '0 | opadd (hd us) (lsum (tl us));
-//definition for a list of intervals
-letrec lsumrng uis = 
-    length uis == 0 => mk_range '0 '0 | 
-    opadd (hd uis) (lsumrng (tl uis))
-;
 
+open_overload {lsum :: *a list -> *a};
+
+letrec lsumi {us::int list} = 
+    length us == 0 => 0 | opadd (hd us) (lsumi (tl us));
+add_open_overload lsum lsumi;
+
+letrec lsumf {us::float list} = 
+    length us == 0 => 0.0 | opadd (hd us) (lsumf (tl us));
+add_open_overload lsum lsumf;
+
+letrec lsumbv {us::bv list} = 
+    length us == 0 => (int2bv 0) | opadd (hd us) (lsumbv (tl us));
+add_open_overload lsum lsumbv;
+
+letrec lsumri {uis :: ({int} range) list} = 
+    length uis == 0 => mk_range 0 0 | 
+    opadd (hd uis) (lsumri (tl uis))
+;
+add_open_overload lsum lsumri;
+
+letrec lsumrf {uis :: ({float} range) list} = 
+    length uis == 0 => mk_range 0.0 0.0 | 
+    opadd (hd uis) (lsumrf (tl uis))
+;
+add_open_overload lsum lsumrf;
+
+letrec lsumrbv {uis :: ({bv} range) list} = 
+    length uis == 0 => mk_range (int2bv 0) (int2bv 0) | 
+    opadd (hd uis) (lsumrbv (tl uis))
+;
+add_open_overload lsum lsumrbv;
 
 //returns a list of sum of elements of each row
 //all numeric types applicable
