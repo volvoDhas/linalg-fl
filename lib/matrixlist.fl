@@ -31,7 +31,7 @@ let Prangei (RANGE {l::int} {h::int}) = (printf "(%d,%d)" l h) seq "";
 let Prangeb (RANGE {l::bv} {h::bv}) = 
     let bv2str b =
 	let bl = bv2list b in  
-	list2str T "[" "," "]" (\b. bool2str 5 b) bl
+	list2str T "<" "," ">" (\b. bool2str 5 b) bl
     in
     (printf "(%s,%s)" (bv2str l) (bv2str h)) seq "";
 let Prangef (RANGE {l::float} {h::float}) =
