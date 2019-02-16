@@ -77,15 +77,19 @@ overload zeros lzeros mzeros;
 
 open_overload {opadd :: *a -> *a -> *a};
 
-let iadd {i::int} {j::int} = i+j; // Integer version
+//int-int version
+let iadd {i::int} {j::int} = i+j; 
 add_open_overload opadd iadd;
 
-let fadd {i::float} {j::float} = i+j; //Floating point version
+//float-float version
+let fadd {i::float} {j::float} = i+j;
 add_open_overload opadd fadd;
 
+//bv-bv version
 let badd {i::bv} {j::bv} = i+j;  // bv version
 add_open_overload opadd badd;
 
+//int range - int range version
 let riadd {i:: {int} range} {j:: {int} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
@@ -93,6 +97,7 @@ let riadd {i:: {int} range} {j:: {int} range} =
 ;
 add_open_overload opadd riadd;
 
+//float range - float range version
 let rfadd {i:: {float} range} {j:: {float} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
@@ -100,6 +105,7 @@ let rfadd {i:: {float} range} {j:: {float} range} =
 ;
 add_open_overload opadd rfadd;
 
+//bv range - bv range version
 let rbvadd {i:: {bv} range} {j:: {bv} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
