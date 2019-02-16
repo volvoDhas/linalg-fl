@@ -14,9 +14,16 @@ let mk_range l h =
 ;
 
 //utilities for the range type
+//converts an integer range to a float range
 let intr2floatr {r::{int} range} =
     val(RANGE li hi) = r in
     mk_range (int2float li) (int2float hi)
+;
+
+//converts an integer range to a bv range
+let intr2bvr {r::{int} range} =
+    val (RANGE li hi) = r in
+    mk_range (int2bv li) (int2bv hi)
 ;
 
 //Pretty printers for int, float and bv ranges

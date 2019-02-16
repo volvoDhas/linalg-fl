@@ -64,6 +64,16 @@ let test_intr2floatr =
 
 check_res test_intr2floatr;
 
+//testcases for intr2bvr
+let test_intr2bvr =
+(printf "test_intr2bvr\n") seq
+    val (RANGE xf yf) = intr2bvr (mk_range 1 2) in
+    (check_eq (xf,yf) (int2bv 1,int2bv 2)):
+    []
+;
+
+check_res test_intr2bvr;
+
 //testcases for zipwithsc
 let test_zipwithsc = 
 (printf "test_zipwithsc\n") seq
