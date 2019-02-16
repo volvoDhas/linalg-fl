@@ -54,6 +54,11 @@ overload zeros lzeros mzeros;
 
 //--------- add ops-----------------------
 
+//NOTE - the following sequence of overloading definitions
+//declares 3 base types explicitly (int, bv, float)
+//overload resolution problems occur
+//when the ' operator is used
+
 open_overload {opadd :: *a -> *a -> *a};
 
 let iadd {i::int} {j::int} = i+j; // Integer version
@@ -87,7 +92,6 @@ let rbvadd {i:: {bv} range} {j:: {bv} range} =
 add_open_overload opadd rbvadd;
 
 //returns sum of elements of a list
-
 open_overload {lsum :: *a list -> *a};
 
 letrec lsumi {us::int list} = 
