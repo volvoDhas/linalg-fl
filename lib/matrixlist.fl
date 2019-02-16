@@ -13,6 +13,12 @@ let mk_range l h =
     (RANGE l h)
 ;
 
+//utilities for the range type
+let intr2floatr {r::{int} range} =
+    val(RANGE li hi) = r in
+    mk_range (int2float li) (int2float hi)
+;
+
 //Pretty printers for int, float and bv ranges
 let Prangei (RANGE {l::int} {h::int}) = (printf "(%d,%d)" l h) seq "";
 let Prangeb (RANGE {l::bv} {h::bv}) = 
