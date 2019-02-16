@@ -37,6 +37,9 @@ let lbvr    = map intr2bvr  lir;
 let mir	    = replicate 4 lir;
 let mfr	    = replicate 4 lfr;
 let mbvr    = replicate 4 lbvr;
+let irlt1   = mk_range (-1) 1;
+let frlt1   = intr2floatr irlt1;
+let bvrlt1  = intr2bvr irlt1;
 
 //testcases for mk_range
 let test_mk_range =
@@ -163,9 +166,9 @@ let test_lsum =
     (check_eq (lsum li) 0):
     (check_eq (lsum lf) 0.0):
     (check_eq (lsum lbv) (int2bv 0)):
-    (check_eq (lsum lir) (RANGE (-1) 1)):
-    (check_eq (lsum lfr) (RANGE (-1.0) 1.0)):
-    (check_eq (lsum lbvr) (RANGE (int2bv (-1)) (int2bv 1))):
+    (check_eq (lsum lir) irlt1):
+    (check_eq (lsum lfr) frlt1):
+    (check_eq (lsum lbvr) bvrlt1):
     []
 ;
 
@@ -187,9 +190,9 @@ let test_msum =
     (check_eq (msum mi) lzi):
     (check_eq (msum mf) lzf):
     (check_eq (msum mbv) lzbv):
-    (check_eq (msum mir) (replicate 4 (mk_range (-1) 1))):
-    (check_eq (msum mfr) (replicate 4 (intr2floatr (mk_range (-1) 1)))):
-    (check_eq (msum mbvr) (replicate 4 (intr2bvr (mk_range (-1) 1)))):
+    (check_eq (msum mir) (replicate 4 irlt1)):
+    (check_eq (msum mfr) (replicate 4 frlt1)):
+    (check_eq (msum mbvr) (replicate 4 bvrlt1)):
     []
 ;
 
