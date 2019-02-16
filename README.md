@@ -6,7 +6,7 @@ fl is a framework that packages a strongly typed functional language, an efficie
 More information on fl can be found in this (private) github repo https://github.com/cjhseger/VossII
 
 ## Main intent of this project
-To enable work realated to my research, this project aims to develop a linear numerical computation library. The library's scope is a little fluid at the moment.
+To enable work realated to my research, this project aims to develop a linear numerical computation library for the fl framework.
 
 ## Repo structure
 
