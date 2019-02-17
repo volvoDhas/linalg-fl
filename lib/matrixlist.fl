@@ -207,13 +207,61 @@ open_overload {opsub :: *a -> *b -> *a};
 let isub {i::int} {j::int} = i-j; 
 add_open_overload opsub isub;
 
+//int range-int range version
+let irsub {i::{int} range} {j::{int} range} = 
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    //NOTE - inversion of interval limits
+    mk_range (isub il jh) (isub ih jl)
+; 
+add_open_overload opsub irsub;
+
+//int range-int version
+let irsubi {i::{int} range} {j::int} = 
+    val (RANGE il ih) = i in
+    mk_range (isub il j) (isub ih j)
+; 
+add_open_overload opsub irsubi;
+
 //float-float version
 let fsub {i::float} {j::float} = i-j; 
 add_open_overload opsub fsub;
 
+//float range-float range version
+let frsub {i::{float} range} {j::{float} range} = 
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    //NOTE - inversion of interval limits
+    mk_range (fsub il jh) (fsub ih jl)
+; 
+add_open_overload opsub frsub;
+
+//float range-float version
+let frsubf {i::{float} range} {j::float} = 
+    val (RANGE il ih) = i in
+    mk_range (fsub il j) (fsub ih j)
+; 
+add_open_overload opsub frsubf;
+
 //bv-bv version
 let bvsub {i::bv} {j::bv} = i-j; 
 add_open_overload opsub bvsub;
+
+//bv range-bv range version
+let bvrsub {i::{bv} range} {j::{bv} range} = 
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    //NOTE - inversion of interval limits
+    mk_range (bvsub il jh) (bvsub ih jl)
+; 
+add_open_overload opsub bvrsub;
+
+//bv range-bv version
+let bvrsubbv {i::{bv} range} {j::bv} = 
+    val (RANGE il ih) = i in
+    mk_range (bvsub il j) (bvsub ih j)
+; 
+add_open_overload opsub bvrsubbv;
 
 
 //returns the element-wise difference of 2 lists
