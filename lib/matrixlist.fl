@@ -282,7 +282,7 @@ let mdiffl m vs = lmap ldiffl m vs;
 let ldiffsc us v = zipwithsc us v opsub;
 
 //returns the element-wise difference between a matrix and a scalar
-let mdiffsc m v = mmap (\e. e-v) m;
+let mdiffsc m v = map (\r. ldiffsc r v) m;
 
 //TODO - overloading of all diff ops
 //paused because of a presumed type inference bug in fl
