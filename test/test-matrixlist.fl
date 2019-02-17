@@ -280,6 +280,7 @@ let test_maddsc =
 check_res test_maddsc;
 
 let lir22 = [mk_range (-2) 0, mk_range 0 2];
+let mir22 = replicate 4 lir22;
 let lfr22 = map intr2floatr lir22;
 let lbvr22 = map intr2bvr lir22;
 
@@ -307,6 +308,7 @@ let test_mdiffl =
     (check_eq (mdiffl mfp lfp) mzf):
     (check_eq (mdiffl mbvp lbvp) mzbv):
     (check_fail (mdiffl mip [-1]) [[]]):
+    (check_eq (mdiffl mir2 lir1) mir22):
     []
 ;
 
