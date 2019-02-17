@@ -7,6 +7,13 @@
 //between a lower bound and an upper bound
 lettype *a range = RANGE *a *a;
 
+//NOTE - implementation of interval arithmetic follows
+//T. Hickey, Q. Ju, and M. H. Van Emden. 2001. 
+//Interval arithmetic: From principles to implementation. 
+//J. ACM 48, 5 (September 2001), 1038-1068. 
+//DOI=http://dx.doi.org/10.1145/502102.502106
+
+
 //Constructor for the range type
 let mk_range l h = 
     l > h => error "low-lim > high-lim" |
