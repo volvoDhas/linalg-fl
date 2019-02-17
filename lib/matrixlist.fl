@@ -216,17 +216,14 @@ let bvsub {i::bv} {j::bv} = i-j;
 add_open_overload opsub bvsub;
 
 
-//the defix - operator
-let opminus = opsub; //(defix -);
-
 //returns the element-wise difference of 2 lists
-let ldiffl us vs = zipwith us vs opminus;
+let ldiffl us vs = zipwith us vs opsub;
 
 //returns the row-wise difference between a matrix and a vector
 let mdiffl m vs = lmap ldiffl m vs;
 
 //returns the element-wise difference between a list and a scalar
-let ldiffsc us v = zipwithsc us v opminus;
+let ldiffsc us v = zipwithsc us v opsub;
 
 //returns the element-wise difference between a matrix and a scalar
 let mdiffsc m v = mmap (\e. e-v) m;
