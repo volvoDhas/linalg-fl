@@ -80,8 +80,7 @@ overload zeros lzeros mzeros;
 //NOTE - the following sequence of 
 //overloading definitions for add
 //declares 3 base types explicitly (int, bv, float)
-//overload resolution problems occur
-//when the ' operator is used
+//to avoid overload resolution problems
 
 open_overload {opadd :: *a -> *b -> *a};
 
@@ -141,6 +140,12 @@ let rbvaddbv {i:: {bv} range} {j:: bv} =
     mk_range (badd il j) (badd ih j)
 ;
 add_open_overload opadd rbvaddbv;
+
+//NOTE - the following sequence of 
+//overloading definitions for lsum
+//declares 3 base types explicitly (int, bv, float)
+//to avoid overload resolution problems
+//which seem to occur when using ' operator
 
 //returns sum of elements of a list
 open_overload {lsum :: *a list -> *a};
@@ -202,8 +207,7 @@ let maddsc m s = map (\r. laddsc r s) m;
 //NOTE - the following sequence of 
 //overloading definitions for subtract
 //declares 3 base types explicitly (int, bv, float)
-//overload resolution problems occur
-//when the ' operator is used
+//to avoid overload resolution problems
 
 open_overload {opsub :: *a -> *b -> *a};
 
