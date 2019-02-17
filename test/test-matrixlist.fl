@@ -314,6 +314,9 @@ let test_mdiffl =
 
 check_res test_mdiffl;
 
+let lir3 = [mk_range (-3) 0, mk_range 0 3];
+let lfr3 = map intr2floatr lir3;
+let lbvr3 = map intr2bvr lir3;
 
 //testcases for ldiffsc
 (printf "test_ldiffsc\n");
@@ -322,6 +325,9 @@ let test_ldiffsc =
     (check_eq (ldiffsc li1 1) lzi):
     (check_eq (ldiffsc lf1 1.0) lzf):
     (check_eq (ldiffsc lbv1 (int2bv 1)) lzbv):
+    (check_eq (ldiffsc lir2 irlt1) lir3):
+    (check_eq (ldiffsc lfr2 frlt1) lfr3):
+    (check_eq (ldiffsc lbvr2 bvrlt1) lbvr3):
     []
 ;
 
