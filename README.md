@@ -21,6 +21,6 @@ As a measure of the library's quality, a decent set of unit tests have been writ
 Prepend commit messages with 
 *repo	 - repo structure changes  
 *feature  - feature additions  
-*fix	 - minor & major (bug) fixes  
+*fix	 - comment enhancements, minor & major (bug) fixes  
 *test	 - test cases  
 *refactor - noteworthy refactoring  
