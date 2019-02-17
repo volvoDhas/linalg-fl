@@ -179,13 +179,11 @@ add_open_overload lsum lsumrbv;
 //all numeric types applicable
 let msum m = map lsum m;
 
-//NOTE - lsum & msum cannot be overloaded becuse of
-//a presumed type inference bug in fl
-//overload sum lsum msum;
+//TODO - overloading of sum ops
+//paused because of a presumed type inference bug in fl
 
 //returns the element-wise sum 2 lists
 let laddl us vs =  zipwith us vs opadd;
-
 
 //returns the row-wise sum of a matrix and a vector
 let maddl m vs = lmap laddl m vs;
@@ -198,7 +196,6 @@ let maddsc m s = map (\r. laddsc r s) m;
 
 //TODO - overloading of all add ops
 //paused because of a presumed type inference bug in fl
-//overload add laddl maddl laddsc maddsc;
 
 //--------- diff ops-----------------------
 
