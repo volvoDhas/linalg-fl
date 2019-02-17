@@ -70,7 +70,8 @@ overload zeros lzeros mzeros;
 
 //--------- add ops-----------------------
 
-//NOTE - the following sequence of overloading definitions
+//NOTE - the following sequence of 
+//overloading definitions for add
 //declares 3 base types explicitly (int, bv, float)
 //overload resolution problems occur
 //when the ' operator is used
@@ -194,8 +195,29 @@ let maddsc m s = map (\r. laddsc r s) m;
 
 //--------- diff ops-----------------------
 
+//NOTE - the following sequence of 
+//overloading definitions for subtract
+//declares 3 base types explicitly (int, bv, float)
+//overload resolution problems occur
+//when the ' operator is used
+
+open_overload {opsub :: *a -> *b -> *a};
+
+//int-int version
+let isub {i::int} {j::int} = i-j; 
+add_open_overload opsub isub;
+
+//float-float version
+let fsub {i::float} {j::float} = i-j; 
+add_open_overload opsub fsub;
+
+//bv-bv version
+let bvsub {i::bv} {j::bv} = i-j; 
+add_open_overload opsub bvsub;
+
+
 //the defix - operator
-let opminus = (defix -);
+let opminus = opsub; //(defix -);
 
 //returns the element-wise difference of 2 lists
 let ldiffl us vs = zipwith us vs opminus;
