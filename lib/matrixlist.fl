@@ -404,10 +404,10 @@ let mmulsc m v = map (\r. lmulsc r v) m;
 //--------- div ops-----------------------
 
 //the defix / operator
-let opdiv = (defix /);
+//let opdiv = (defix /);
 
 //returns the element-wise quotient of a list and a scalar
-let divel us v = zipwithsc us v opdiv;
+//let divel us v = zipwithsc us v opdiv;
 
 //--------- index ops-----------------------
 //NOTE - in fl, indices start from 1
