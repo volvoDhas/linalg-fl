@@ -362,6 +362,9 @@ let test_dot =
     (check_eq (dot xf yf) (int2float 6)):
     (check_eq (dot xb yb) (int2bv 6)):
     (check_fail (dot xi yi') (-255)):
+    (check_eq (dot lir2 [-1,-1]) irlt1):
+    (check_eq (dot lfr2 [-1.0,-1.0]) frlt1):
+    (check_eq (dot lbvr2 [int2bv (-1),int2bv (-1)]) bvrlt1):
     []
 ;
 
