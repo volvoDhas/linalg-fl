@@ -367,26 +367,6 @@ let test_dot =
 
 check_res test_dot;
 
-
-//testcases for sdot
-(print "test_sdot\n");
-let test_sdot =
-    let xi = (lmulsc [1,0,0,1] scale) in
-    let yi = (lmulsc [4,1,2,2] scale) in
-    let yi' = (lmulsc [4,1,2] scale) in
-    let xf = map int2float xi in
-    let yf = map int2float yi in
-    let xb = map int2bv xi in
-    let yb = map int2bv yi in 
-    (check_eq (sdot xi yi scale) (6*scale)):
-    (check_eq (sdot xf yf scale) (int2float (6*scale))):
-    (check_eq (sdot xb yb scale) (int2bv (6*scale))):
-    (check_fail (sdot xi yi' scale) (-255)):
-    []
-;
-
-check_res test_sdot;
-
 //testcases for mmulm
 (print "test_mmulm\n");
 let test_mmulm =

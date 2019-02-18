@@ -380,10 +380,6 @@ add_open_overload opmul rbvmulbv;
 //returns the dot product of 2 lists
 let dot us vs = lsum (zipwith us vs opmul);
 
-//returns the dot product of 2 scaled lists
-//output in scaled form
-let sdot us vs scale = lsum (map2 (\u. \v. u*v/scale) us vs);
-
 
 //returns the product of 2 matrices lhs*rhs 
 //with rhs in a transposed form
