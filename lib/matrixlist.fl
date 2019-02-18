@@ -399,7 +399,7 @@ let mmulm m1 m2 =
 let lmulsc us v = zipwithsc us v opmul;
 
 //returns the element-wise product of a matrix and a scalar
-let mmulsc m v = mmap (\e. e*v) m;
+let mmulsc m v = map (\r. lmulsc r v) m;
 
 //--------- div ops-----------------------
 
