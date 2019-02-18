@@ -382,6 +382,10 @@ let test_mmulm =
     (check_eq (mmulm mfid yf) yf):
     (check_eq (mmulm mbvid yb) yb):
     (check_fail (mmulm miid yi') [[]]):
+    (check_eq 
+	(mmulm mir2 (replicate 2 [1,1])) 
+	(replicate 4 (replicate 2 irlt1))
+    ):
     []
 ;
 
@@ -398,6 +402,10 @@ let test_mmultm =
     (check_eq (mmultm mfid yf) (transpose yf)):
     (check_eq (mmultm mbvid yb) (transpose yb)):
     (check_fail (mmultm miid yi') [[]]):
+    (check_eq 
+	(mmultm mir2 (transpose (replicate 2 [1,1,1,1])))
+	(replicate 4 (replicate 4 irlt1))
+    ):
     []
 ;
 
