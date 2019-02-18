@@ -414,10 +414,14 @@ check_res test_mmultm;
 //testcases for lmulsc
 (printf "test_lmulsc\n");
 let test_lmulsc = 
+    let lir2' = [mk_range 1 2, mk_range (-2) (-1)] in
     (check_lempty (lmulsc lei 1)):
     (check_eq (lmulsc li1 0) lzi):
     (check_eq (lmulsc lf1 0.0) lzf):
     (check_eq (lmulsc lbv1 (int2bv 0)) lzbv):
+    (check_eq (lmulsc lir2 (-1)) lir2'):
+    (check_eq (lmulsc lfr2 (-1.0)) (map intr2floatr lir2')):
+    (check_eq (lmulsc lbvr2 (int2bv (-1))) (map intr2bvr lir2')):
     []
 ;
 
