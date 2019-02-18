@@ -75,6 +75,20 @@ let lzeros n = replicate n '0;
 let mzeros m n = replicate m (lzeros n);
 overload zeros lzeros mzeros;
 
+//--------- min-max ops-----------------------
+
+//retruns the highest element of a list
+letrec lmax us = 
+    length us <= 1 => hd us |
+    max (hd us) (lmax (tl us))
+;
+
+//retruns the lowest element of a list
+letrec lmin us = 
+    length us <= 1 => hd us |
+    min (hd us) (lmin (tl us))
+;
+
 //--------- add ops-----------------------
 
 //NOTE - the following sequence of 
@@ -289,8 +303,79 @@ let mdiffsc m v = map (\r. ldiffsc r v) m;
 
 //--------- mul ops-----------------------
 
-//the defix * operator
-let opmul = (defix *);
+//NOTE - the following sequence of 
+//overloading definitions for multiply
+//declares 3 base types explicitly (int, bv, float)
+//to avoid overload resolution problems
+
+open_overload {opmul :: *a -> *b -> *a};
+
+//int-int version
+let imul {i::int} {j::int} = i*j; 
+add_open_overload opmul imul;
+
+//int range-int range version
+let rimul {i::{int} range} {j::{int} range} = 
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    let s = [imul il jl, imul il jh, imul ih jl, imul ih jh] in
+    mk_range (lmin s) (lmax s)
+; 
+add_open_overload opmul rimul;
+
+//int range-int version
+let rimuli {i::{int} range} {j::int} = 
+    val (RANGE il ih) = i in
+    let s1 = imul il j in
+    let s2 = imul ih j in
+    mk_range (min s1 s2) (max s1 s2)
+; 
+add_open_overload opmul rimuli;
+
+//float-float version
+let fmul {i::float} {j::float} = i*j; 
+add_open_overload opmul fmul;
+
+//float range-float range version
+let rfmul {i::{float} range} {j::{float} range} = 
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    let s = [fmul il jl, fmul il jh, fmul ih jl, fmul ih jh] in
+    mk_range (lmin s) (lmax s)
+; 
+add_open_overload opmul rfmul;
+
+//float range-float version
+let rfmulf {i::{float} range} {j::float} = 
+    val (RANGE il ih) = i in
+    let s1 = fmul il j in
+    let s2 = fmul ih j in
+    mk_range (min s1 s2) (max s1 s2)
+; 
+add_open_overload opmul rfmulf;
+
+//bv-bv version
+let bvmul {i::bv} {j::bv} = i*j;
+add_open_overload opmul bvmul;
+
+//bv range-bv range version
+let rbvmul {i::{bv} range} {j::{bv} range} =
+    val (RANGE il ih) = i in
+    val (RANGE jl jh) = j in
+    let s = [bvmul il jl, bvmul il jh, bvmul ih jl, bvmul ih jh] in
+    mk_range (lmin s) (lmax s)
+;
+add_open_overload opmul rbvmul;
+
+//bv range-bv version
+let rbvmulbv {i::{bv} range} {j::bv} =
+    val (RANGE il ih) = i in
+    let s1 = bvmul il j in
+    let s2 = bvmul ih j in
+    mk_range (min s1 s2) (max s1 s2)
+;
+add_open_overload opmul rbvmulbv;
+
 
 //returns the dot product of 2 lists
 let dot us vs = lsum (zipwith us vs opmul);
@@ -342,20 +427,6 @@ let opdiv = (defix /);
 
 //returns the element-wise quotient of a list and a scalar
 let divel us v = zipwithsc us v opdiv;
-
-//--------- min-max ops-----------------------
-
-//retruns the highest element of a list
-letrec lmax us = 
-    length us <= 1 => hd us |
-    max (hd us) (lmax (tl us))
-;
-
-//retruns the lowest element of a list
-letrec lmin us = 
-    length us <= 1 => hd us |
-    min (hd us) (lmax (tl us))
-;
 
 //--------- index ops-----------------------
 //NOTE - in fl, indices start from 1
