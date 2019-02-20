@@ -496,6 +496,17 @@ let test_largmax =
 
 check_res test_largmax;
 
+//testcases for largnmax
+let test_largnmax = 
+(printf "test_largnmax\n") seq
+    (check_eq (largnmax lei 2) [0]):
+    (check_eq (largnmax [1,-1,2,-2,3,-3] 2) [5,3]):
+    (check_eq (largnmax [1,1,1,1,1,1] 2) [6,5]):
+    []
+;
+
+check_res test_largnmax;
+
 //testcases for margmax
 (printf "test_margmax\n");
 let test_margmax = 

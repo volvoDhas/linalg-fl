@@ -427,6 +427,7 @@ letrec largmax us = fstindexof us (lmax us);
 
 //returns the indices of n highest elements in the list
 let largnmax us n = 
+    us == [] => [0] |
     let uswind = zip us (1--(length us)) in
     let sus = 
 	qsort (\(xp,xi). \(yp,yi). xp == yp => 0 | xp < yp => -1 | 1) uswind
