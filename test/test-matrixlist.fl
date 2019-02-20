@@ -508,14 +508,14 @@ let test_largnmax =
 check_res test_largnmax;
 
 //testcases for margmax
-(printf "test_margmax\n");
 let test_margmax = 
+(printf "test_margmax\n") seq
     let t1 = replicate 4 [1,-1,2,-2,3,-3] in
     let t2 = replicate 4 [1,1,1,1] in
-    (check_eq (margmax mei) lzi):
+    (check_eq (margmax mei) (replicate 4 0)):
     (check_eq (margmax t1) (replicate 4 5)):
     (check_eq (margmax t2) (replicate 4 1)):
     []
 ;
 
-check_res test_largmax;
+check_res test_margmax;
