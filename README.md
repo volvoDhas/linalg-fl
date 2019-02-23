@@ -5,6 +5,15 @@ A (minimal) linear algebra and numerical computation library for fl, meant aid r
 fl is a framework that packages a strongly typed functional language, an efficient implementation of Ordered Binary Decision Diagrams (OBDDs), a SAT solver, symbolic simulation and the necessary visuzalization.
 More information on fl can be found in this (private) github repo https://github.com/cjhseger/VossII
 
+## Getting started
+Installing fl is a prerequisite, and to do so follow instructions provided [here](https://github.com/cjhseger/VossII)  
+Once fl is installed successfully, run  
+```
+cd test/  
+fl -f test_matrixlist.fl
+```
+To execute unit test cases currently written for the library
+
 ## Main intent of this project
 To enable work realated to my research, this project aims to develop a linear numerical computation library for the fl framework.
 
