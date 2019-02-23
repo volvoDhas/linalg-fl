@@ -3,6 +3,20 @@
 load (DIR^"../lib/matrixlist.fl");
 load (DIR^"flunit.fl");
 
+//NOTE (on unit testing strategy)
+//The main purpose of this library (ref README) is
+//to perform linear numerics on floats, ints, bit vectors
+//and ranges of these types.
+//However, because of a current weakness in 
+//the fl framework's type-checking system,
+//type inference between the 3 concerned types does
+//not always succeed. (Refer to various NOTEs in ../lib/*.fl
+//So the primary formula for testing is to ensure
+//that types are indeed correctly inferred.
+//The next object of importance is of course
+//the correctness of the numerical computation
+
+
 //some handy definitions
 let lei	    = {[]::int list};
 let mei	    = replicate 4 lei;
