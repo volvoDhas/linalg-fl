@@ -14,7 +14,10 @@ load (DIR^"flunit.fl");
 //So the primary formula for testing is to ensure
 //that types are indeed correctly inferred.
 //The next object of importance is of course
-//the correctness of the numerical computation
+//the correctness of the numerical computation.
+//The choice of using a heuristic oracle (refer NOTE in ./flunit.fl)
+//suffices for the limited ambition of this library
+//as a research aid
 
 
 //some handy definitions
