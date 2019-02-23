@@ -1,5 +1,5 @@
 # linalg-fl
-A (minimal) linear algebra and numerical computation library for fl, meant aid research on formal methods
+A (minimal) linear algebra and numerical computation library for fl, meant aid research on the application of formal methods to statistical models
 
 ## Background
 fl is a framework that packages a strongly typed functional language, an efficient implementation of Ordered Binary Decision Diagrams (OBDDs), a SAT solver, symbolic simulation and the necessary visuzalization.
