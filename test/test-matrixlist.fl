@@ -120,8 +120,8 @@ let test_zipwith =
 check_res test_zipwith;
 
 //testcases for islempty
-(printf "test_islempty\n");
 let test_islempty = 
+(printf "test_islempty\n") seq
     let l = replicate 4 1 in
     (check_false (islempty l)):
     (check_true (islempty lei)):
@@ -131,8 +131,8 @@ let test_islempty =
 check_res test_islempty;
 
 //testcases for islempty
-(printf "test_ismempty\n");
 let test_ismempty = 
+(printf "test_ismempty\n") seq
     let l = replicate 4 1 in
     let m = replicate 4 l in
     (check_false (ismempty m)):
@@ -144,8 +144,8 @@ check_res test_ismempty;
 
 
 //testcases for zeros
-(printf "test_zeros\n");
 let test_zeros =
+(printf "test_zeros\n") seq
     let e1 = {zeros 0 :: int list} in
     let e2 = {zeros (-10) :: int list} in
     let z1 = {zeros 10 :: int list} in
@@ -165,8 +165,8 @@ let test_zeros =
 check_res test_zeros;
 
 //testcases for mmap
-(printf "test_mmap\n");
 let test_mmap =
+(printf "test_mmap\n") seq
     let m = zeros 2 2 in
     let mm = mmap (\e. e+1) m in
     let fmm = filter (\e. e!=1) (flat mm) in 
@@ -177,8 +177,8 @@ let test_mmap =
 check_res test_mmap;
 
 //testcases for lsum
-(printf "test_lsum\n");
 let test_lsum = 
+(printf "test_lsum\n") seq
     let li = [1,-1,2,-2,3,-3] in
     let lf = [1.0,-1.0,2.0,-2.0] in
     let lbv =  map int2bv li in
@@ -195,8 +195,8 @@ let test_lsum =
 check_res test_lsum;
 
 //testcases for msum
-(printf "test_msum\n");
 let test_msum = 
+(printf "test_msum\n") seq
     let li = [1,-1,2,-2,3,-3] in
     let mi = replicate 4 li in
     let lf = [1.0,-1.0,2.0,-2.0] in
@@ -220,8 +220,8 @@ check_res test_msum;
 
 
 //testcases for laddl
-(printf "test_laddl\n");
 let test_laddl =
+(printf "test_laddl\n") seq
     let lin =	[-1,-2] in
     let lfn =	[-1.0,-2.0] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
@@ -240,8 +240,8 @@ check_res test_laddl;
 
 
 //testcases for maddl
-(printf "test_maddl\n");
 let test_maddl =
+(printf "test_maddl\n") seq
     let lin =	[-1,-2] in
     let lfn =	[-1.0,-2.0] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
@@ -257,8 +257,8 @@ check_res test_maddl;
 
 
 //testcases for laddsc
-(printf "test_laddsc\n");
 let test_laddsc = 
+(printf "test_laddsc\n") seq
     let li1 = [1,1] in
     let lf1 = [1.0,1.0] in
     let lbv1 = map int2bv li1 in
@@ -278,8 +278,8 @@ let test_laddsc =
 check_res test_laddsc;
 
 //testcases for maddsc
-(printf "test_maddsc\n");
 let test_maddsc = 
+(printf "test_maddsc\n") seq
     let m1i = replicate 2 [1,1] in
     let m1f = replicate 2 [1.0,1.0] in
     let m1bv = mmap int2bv m1i in
@@ -302,8 +302,8 @@ let lfr22 = map intr2floatr lir22;
 let lbvr22 = map intr2bvr lir22;
 
 //testcases for ldiffl
-(printf "test_ldiffl\n");
 let test_ldiffl = 
+(printf "test_ldiffl\n") seq
     (check_lempty (ldiffl lei lei)):
     (check_eq (ldiffl lip lip) lzi):
     (check_eq (ldiffl lfp lfp) lzf):
@@ -318,8 +318,8 @@ let test_ldiffl =
 check_res test_ldiffl;
 
 //testcases for mdiffl
-(printf "test_mdiffl\n");
 let test_mdiffl = 
+(printf "test_mdiffl\n") seq
     (check_mempty (mdiffl mei lei)):
     (check_eq (mdiffl mip lip) mzi):
     (check_eq (mdiffl mfp lfp) mzf):
@@ -337,8 +337,8 @@ let lfr3 = map intr2floatr lir3;
 let lbvr3 = map intr2bvr lir3;
 
 //testcases for ldiffsc
-(printf "test_ldiffsc\n");
 let test_ldiffsc = 
+(printf "test_ldiffsc\n") seq
     (check_lempty (ldiffsc lei 1)):
     (check_eq (ldiffsc li1 1) lzi):
     (check_eq (ldiffsc lf1 1.0) lzf):
@@ -352,8 +352,8 @@ let test_ldiffsc =
 check_res test_ldiffsc;
 
 //testcases for mdiffsc
-(printf "test_mdiffsc\n");
 let test_mdiffsc = 
+(printf "test_mdiffsc\n") seq
     (check_mempty (mdiffsc mei 1)):
     (check_eq (mdiffsc mi1 1) mzi):
     (check_eq (mdiffsc mf1 1.0) mzf):
@@ -366,8 +366,8 @@ check_res test_ldiffsc;
 
 
 //testcases for dot
-(print "test_dot\n");
 let test_dot =
+(print "test_dot\n") seq
     let xi = [1,0,0,1] in
     let yi = [4,1,2,2] in
     let yi' = [4,1,2] in
@@ -389,8 +389,8 @@ check_res test_dot;
 
 
 //testcases for mmulm
-(print "test_mmulm\n");
 let test_mmulm =
+(print "test_mmulm\n") seq
     let yi = replicate 4 [4,1,2,2] in
     let yi' = replicate 3 [4,1,2] in
     let yf = mmap int2float yi in
@@ -409,8 +409,8 @@ let test_mmulm =
 check_res test_mmulm;
 
 //testcases for mmultm
-(print "test_mmultm\n");
 let test_mmultm =
+(print "test_mmultm\n") seq
     let yi = transpose (replicate 4 [4,1,2,2]) in
     let yi' = transpose (replicate 3 [4,1,2]) in
     let yf = transpose (mmap int2float yi) in
@@ -429,8 +429,8 @@ let test_mmultm =
 check_res test_mmultm;
 
 //testcases for lmulsc
-(printf "test_lmulsc\n");
 let test_lmulsc = 
+(printf "test_lmulsc\n") seq
     let lir2' = [mk_range 1 2, mk_range (-2) (-1)] in
     (check_lempty (lmulsc lei 1)):
     (check_eq (lmulsc li1 0) lzi):
@@ -462,8 +462,8 @@ check_res test_lmulsc;
 //check_res test_divel;
 
 //testcases for lmax
-(printf "test_lmax\n");
 let test_lmax = 
+(printf "test_lmax\n") seq
     (check_eq (lmax [1,-1,2,-2,3,-3]) 3):
     (check_eq (lmax [1.0,-1.0,2.0,-2.0]) 2.0):
     (check_eq
@@ -477,8 +477,8 @@ let test_lmax =
 check_res test_lmax;
 
 //testcases for lmin
-(printf "test_lmin\n");
 let test_lmin = 
+(printf "test_lmin\n") seq
     (check_eq (lmin [1,-1,2,-2,3,-3]) (-3)):
     (check_eq (lmin [1.0,-1.0,2.0,-2.0]) (-2.0)):
     (check_eq
@@ -492,8 +492,8 @@ let test_lmin =
 check_res test_lmin;
 
 //testcases for fstindexof
-(printf "test_fstindexof\n");
 let test_fstindexof = 
+(printf "test_fstindexof\n") seq
     (check_eq (fstindexof [] 4) 0):
     (check_eq (fstindexof [1,-1,2,-2,3,-3] 4) 0):
     (check_eq (fstindexof [1,-1,2,-2,3,-3] 2) 3):
@@ -503,8 +503,8 @@ let test_fstindexof =
 check_res test_fstindexof;
 
 //testcases for largmax
-(printf "test_largmax\n");
 let test_largmax = 
+(printf "test_largmax\n") seq
     (check_eq (largmax lei) 0):
     (check_eq (largmax [1,-1,2,-2,3,-3]) 5):
     (check_eq (largmax [1,1,1,1,1,1]) 1):
