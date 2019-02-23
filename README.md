@@ -19,7 +19,7 @@ It must be noted that this library is meant to aid (quite specific) research, an
 
 As a measure of the library's quality, a decent set of unit tests have been written. (Unit) test automation is enabled by a lightweight framework flunit (test/flunit.fl) custom-built for this purpose  
 
-To learn more about the testing strategy, refer to notes in test/test_*.fl  
+To learn more about the oracle and testing strategy, refer to notes in test/*.fl  
 
 ### Minimal versioning guidelines
 Prepend commit messages with 
