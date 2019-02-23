@@ -1,5 +1,17 @@
 //a minimal unit testing framework for fl
 
+//NOTE on the test orcale strategy
+//flunit firmly identifies with the 
+//heuristic oracle camp.
+//The user is therefore expected to have
+//a fairly good idea on the functions under test
+//and the expected results for a limited set of
+//usage scenarios.
+//This framework is therefore meant to be used
+//primarily as a sanity checker and not
+//for providing deeper guarantees on logic
+
+
 //check if evaluation of f returns T
 let check_true f =  f == T;
 
