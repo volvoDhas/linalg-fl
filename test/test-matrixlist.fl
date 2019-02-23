@@ -3,7 +3,7 @@
 load (DIR^"../lib/matrixlist.fl");
 load (DIR^"flunit.fl");
 
-//NOTE (on unit testing strategy)
+//NOTE on unit testing strategy
 //The main purpose of this library (ref README) is
 //to perform linear numerics on floats, ints, bit vectors
 //and ranges of these types.
@@ -18,6 +18,19 @@ load (DIR^"flunit.fl");
 //The choice of using a heuristic oracle (refer NOTE in ./flunit.fl)
 //suffices for the limited ambition of this library
 //as a research aid
+
+
+
+//NOTE on the general pattern on test cases
+//Reflecting the primary strategy on checking
+//type inference, each function is tested with
+//int, float & bv operands in range and scalar 
+//combinations.
+//In rare cases, symbolic inputs are tested
+//Soundness of numerical computation is an
+//important, but secondary concern.
+//So test inputs toward this end are only
+//at a level to check sanity
 
 
 //some handy definitions
