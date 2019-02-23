@@ -15,6 +15,8 @@ To enable work realated to my research, this project aims to develop a linear nu
 
 ## Testing & quality
 
+It must be noted that this library is meant to aid (quite specific) research, and is not meant to be used in a production setting. This is reflected in the overall engineering approach to  developing this library.  
+
 As a measure of the library's quality, a decent set of unit tests have been written. (Unit) test automation is enabled by a lightweight framework flunit (test/flunit.fl) custom-built for this purpose  
 
 To learn more about the testing strategy, refer to notes in test/test_*.fl  
