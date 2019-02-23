@@ -15,7 +15,9 @@ To enable work realated to my research, this project aims to develop a linear nu
 
 ## Testing & quality
 
-As a measure of the library's quality, a decent set of unit tests have been written. (Unit) test automation is enabled by a lightweight framework flunit (test/flunit.fl) custom-built for this purpose
+As a measure of the library's quality, a decent set of unit tests have been written. (Unit) test automation is enabled by a lightweight framework flunit (test/flunit.fl) custom-built for this purpose  
+
+To learn more about the testing strategy, refer to notes in test/test_*.fl  
 
 ### Minimal versioning guidelines
 Prepend commit messages with 
