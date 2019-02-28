@@ -279,6 +279,17 @@ let test_maddl =
 check_res test_maddl;
 
 
+//test_cases for maddm
+let test_maddm = 
+(printf "test_maddm\n") seq
+    let r = maddm mi1 mi1 in
+    let fr = filter (\e. e!= 2) (flat r) in
+    (check_len fr 0):
+    []
+;
+
+check_res test_maddm;
+
 //testcases for laddsc
 let test_laddsc = 
 (printf "test_laddsc\n") seq
