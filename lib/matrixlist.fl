@@ -298,6 +298,9 @@ let ldiffl us vs = zipwith us vs opsub;
 //returns the row-wise difference between a matrix and a vector
 let mdiffl m vs = lmap ldiffl m vs;
 
+//returns the element-wise difference of 2 matrices
+let mdiffm m1 m2 = mmap2 opsub m1 m2;
+
 //returns the element-wise difference between a list and a scalar
 let ldiffsc us v = zipwithsc us v opsub;
 
