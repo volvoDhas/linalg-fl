@@ -189,6 +189,16 @@ let test_mmap =
 
 check_res test_mmap;
 
+//testcases for mmap2
+let test_mmap2 = 
+(printf "test_mmap2\n") seq
+    let mm2 = mmap2 opsub mi1 mi1 in
+    let fmm2 = filter (\e. e!=0) (flat mm2) in
+    (check_len fmm2 0):
+    []
+;
+check_res test_mmap2;
+
 //testcases for lsum
 let test_lsum = 
 (printf "test_lsum\n") seq
