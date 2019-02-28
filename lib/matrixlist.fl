@@ -63,6 +63,9 @@ let lmap f m v = map (\r. f r v) m;
 //returns the element-wise map of f over a (list) list m
 let mmap f m = map (\r. map f r) m;
 
+//returns the element-wise map of f over a 2 matrices m1 & m2
+let mmap2 f m1 m2 = map2 (\r1. \r2.  map2 f r1 r2) m1 m2;
+
 //returns true if list is empty, false otherwise
 let islempty l = length l == 0 => T | F;
 let ismempty m = length (flat m) == 0 => T | F;
