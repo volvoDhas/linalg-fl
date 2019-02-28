@@ -210,6 +210,9 @@ let laddl us vs =  zipwith us vs opadd;
 //returns the row-wise sum of a matrix and a vector
 let maddl m vs = lmap laddl m vs;
 
+//returns the element-wise sum of 2 matrics
+let maddm m1 m2 = mmap2 opadd m1 m2;
+
 //returns the element-wise sum of a list and a scalar
 let laddsc us s = zipwithsc us s opadd;
 
