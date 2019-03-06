@@ -117,7 +117,7 @@ add_open_overload opadd badd;
 let radd {i::{*a} range} {j::{*a} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
-    mk_range (il+jl) (ih+jh)
+    mk_range (opadd il jl) (opadd ih jh)
 ;
 add_open_overload opadd radd;
 
