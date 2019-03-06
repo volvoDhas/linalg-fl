@@ -406,7 +406,7 @@ let test_mdiffsc =
     []
 ;
 
-check_res test_ldiffsc;
+check_res test_mdiffsc;
 
 
 //testcases for dot

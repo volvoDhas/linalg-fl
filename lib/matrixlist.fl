@@ -113,13 +113,13 @@ add_open_overload opadd fadd;
 let badd {i::bv} {j::bv} = i+j;  // bv version
 add_open_overload opadd badd;
 
-//int range - int range version
-let riadd {i:: {int} range} {j:: {int} range} =
+//range-range version
+let radd {i::{*a} range} {j::{*a} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
-    mk_range (iadd il jl) (iadd ih jh)
+    mk_range (il+jl) (ih+jh)
 ;
-add_open_overload opadd riadd;
+add_open_overload opadd radd;
 
 //int range - int version
 let riaddi {i:: {int} range} {j:: int} =
@@ -128,28 +128,12 @@ let riaddi {i:: {int} range} {j:: int} =
 ;
 add_open_overload opadd riaddi;
 
-//float range - float range version
-let rfadd {i:: {float} range} {j:: {float} range} =
-    val (RANGE il ih) = i in
-    val (RANGE jl jh) = j in
-    mk_range (fadd il jl) (fadd ih jh)
-;
-add_open_overload opadd rfadd;
-
 //float range - float version
 let rfaddf {i:: {float} range} {j:: float} =
     val (RANGE il ih) = i in
     mk_range (fadd il j) (fadd ih j)
 ;
 add_open_overload opadd rfaddf;
-
-//bv range - bv range version
-let rbvadd {i:: {bv} range} {j:: {bv} range} =
-    val (RANGE il ih) = i in
-    val (RANGE jl jh) = j in
-    mk_range (badd il jl) (badd ih jh)
-;
-add_open_overload opadd rbvadd;
 
 //bv range - bv version
 let rbvaddbv {i:: {bv} range} {j:: bv} =
