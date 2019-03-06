@@ -124,7 +124,7 @@ add_open_overload opadd radd;
 //range-scalar version
 let radds {i::{*a} range} {j:: *a} = 
     val (RANGE il ih) = i in
-    mk_range (il + j) (ih+j)
+    mk_range (opadd il j) (opadd ih j)
 ;
 add_open_overload opadd radds;
 
