@@ -99,7 +99,7 @@ letrec lmin us =
 //declares 3 base types explicitly (int, bv, float)
 //to avoid overload resolution problems
 
-open_overload {opadd :: *a -> *b -> *a};
+open_overload {opadd :: *a -> *b -> *c};
 
 //int-int version
 let iadd {i::int} {j::int} = i+j; 
@@ -110,7 +110,7 @@ let fadd {i::float} {j::float} = i+j;
 add_open_overload opadd fadd;
 
 //bv-bv version
-let badd {i::bv} {j::bv} = i+j;  // bv version
+let badd {i::bv} {j::bv} = i+j; 
 add_open_overload opadd badd;
 
 //range-range version
@@ -128,8 +128,8 @@ let radds {i::{*a} range} {j:: *a} =
 ;
 add_open_overload opadd radds;
 
+//scalar-range version
 let saddr {j:: *a} {i::{*a} range} = radds i j;
-
 add_open_overload opadd saddr;
 
 //NOTE - the following sequence of 
