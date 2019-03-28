@@ -40,6 +40,12 @@ let intr2bvr {r::{int} range} =
     mk_range (int2bv li) (int2bv hi)
 ;
 
+//converts an integer range to a bev range
+let intr2bevr {r::{int} range} =
+    val (RANGE li hi) = r in
+    mk_range (int2bev li) (int2bev hi)
+;
+
 //Pretty printers for int, float and bv ranges
 let Prangei (RANGE {l::int} {h::int}) = (printf "(%d,%d)" l h) seq "";
 let Prangeb (RANGE {l::bv} {h::bv}) = 
