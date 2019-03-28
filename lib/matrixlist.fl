@@ -15,10 +15,17 @@ lettype *a range = RANGE *a *a;
 
 
 //Constructor for the range type
-let mk_range l h = 
+let mk_nrange l h = 
     l > h => error "low-lim > high-lim" |
     (RANGE l h)
 ;
+
+let mk_bevrange {l::bev} {h::bev} =
+    ((bev_geq l h) bAND (bev_neq l h)) == bT => error "low-lim > high-lim" |
+    (RANGE l h)
+;
+
+overload mk_range mk_nrange mk_bevrange;
 
 //utilities for the range type
 //converts an integer range to a float range
@@ -41,11 +48,14 @@ let Prangeb (RANGE {l::bv} {h::bv}) =
 	list2str T "<" "," ">" (\b. bool2str 5 b) bl
     in
     (printf "(%s,%s)" (bv2str l) (bv2str h)) seq "";
+let Prangebe (RANGE {l::bev} {h::bev}) = 
+    (printf "(%s,%s)" (bev2str 5 l) (bev2str 5 h)) seq "";
 let Prangef (RANGE {l::float} {h::float}) =
     (printf "(%s,%s)" (float2str l) (float2str h)) seq "";
 
 install_print_function Prangei;
 install_print_function Prangeb;
+install_print_function Prangebe;
 install_print_function Prangef;
 
 
