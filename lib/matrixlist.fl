@@ -1,6 +1,13 @@
 //core matrix arithmetic library
 //implements matrix as a list of lists
 
+//--------- plugs for bev --------------------
+let p_bev_gt x y = ((bev_geq x y) bAND (bev_neq x y)) == bT;
+overload > > p_bev_gt;
+
+let p_bev_max x y = x > y => x | y;
+overload max max p_bev_max;
+
 //--------- type definitions------------------
 
 //The {*a}range type defines an interval 
@@ -15,19 +22,10 @@ lettype *a range = RANGE *a *a;
 
 
 //Constructor for the range type
-let mk_nrange l h = 
+let mk_range l h = 
     l > h => error "low-lim > high-lim" |
     (RANGE l h)
 ;
-
-//bev uses exclusive operands 
-//so we need a separate constructor
-let mk_bevrange {l::bev} {h::bev} =
-    ((bev_geq l h) bAND (bev_neq l h)) == bT => error "low-lim > high-lim" |
-    (RANGE l h)
-;
-
-overload mk_range mk_nrange mk_bevrange;
 
 //utilities for the range type
 //converts an integer range to a float range
