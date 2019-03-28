@@ -20,6 +20,8 @@ let mk_nrange l h =
     (RANGE l h)
 ;
 
+//bev uses exclusive operands 
+//so we need a separate constructor
 let mk_bevrange {l::bev} {h::bev} =
     ((bev_geq l h) bAND (bev_neq l h)) == bT => error "low-lim > high-lim" |
     (RANGE l h)
