@@ -178,12 +178,6 @@ add_open_overload opadd laddsc;
 let maddsc m s = map (\r. laddsc r s) m;
 add_open_overload opadd maddsc;
 
-//NOTE - the following sequence of 
-//overloading definitions for sum
-//declares 3 base types explicitly (int, bv, float)
-//to avoid overload resolution problems
-//which seem to occur when using ' operator
-
 open_overload {sum :: *a list -> *a};
 
 letrec sumsc us =
@@ -205,11 +199,6 @@ add_open_overload sum sumbevrng;
 
 let msum m = map sum m;
 add_open_overload sum msum;
-
-
-
-//TODO - overloading of all add ops
-//paused because of a presumed type inference bug in fl
 
 //--------- diff ops-----------------------
 
