@@ -527,6 +527,11 @@ let test_lmax =
 	      (int2bv 2),(int2bv (-2))])
 	(int2bv 2)
     ):
+    (check_eq
+	(lmax [(int2bev 1),(int2bev (-1)),
+	      (int2bev 2),(int2bev (-2))])
+	(int2bev 2)
+    ):
     []
 ;
 
@@ -541,6 +546,11 @@ let test_lmin =
 	(lmin [(int2bv 1),(int2bv (-1)),
 	      (int2bv 2),(int2bv (-2))])
 	(int2bv (-2))
+    ):
+    (check_eq
+	(lmin [(int2bev 1),(int2bev (-1)),
+	      (int2bev 2),(int2bev (-2))])
+	(int2bev (-2))
     ):
     []
 ;

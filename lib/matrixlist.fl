@@ -5,8 +5,14 @@
 let p_bev_gt x y = ((bev_geq x y) bAND (bev_neq x y)) == bT;
 overload > > p_bev_gt;
 
+let p_bev_lt x y = ((bev_leq x y) bAND (bev_neq x y)) == bT;
+overload < < p_bev_lt;
+
 let p_bev_max x y = x > y => x | y;
 overload max max p_bev_max;
+
+let p_bev_min x y = x < y => x | y;
+overload min min p_bev_min;
 
 //--------- type definitions------------------
 
@@ -112,7 +118,7 @@ letrec lmin us =
 
 //NOTE - the following sequence of 
 //overloading definitions for add
-//declares 3 base types explicitly (int, bv, float)
+//declares 4 base types explicitly (int, bv, bev, float)
 //to avoid overload resolution problems
 
 open_overload {opadd :: *a -> *b -> *c};
@@ -128,6 +134,10 @@ add_open_overload opadd fadd;
 //bv-bv version
 let badd {i::bv} {j::bv} = i+j; 
 add_open_overload opadd badd;
+
+//bev-bev version
+let beadd {i::bev} {j::bev} = bev_add i j; 
+add_open_overload opadd beadd;
 
 //range-range version
 let radd {i::{*a} range} {j::{*a} range} =
