@@ -260,14 +260,14 @@ let test_laddl =
     let lin =	[-1,-2] in
     let lfn =	[-1.0,-2.0] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
-    (check_lempty (laddl lei lei)):
-    (check_eq (laddl lip lin) lzi):
-    (check_eq (laddl lfp lfn) lzf):
-    (check_eq (laddl lbvp lbvn) lzbv):
-    (check_fail (laddl lip [-1]) []):
-    (check_eq (laddl lir2 [1,-1]) lir1):
-    (check_eq (laddl lfr2 [1.0,-1.0]) lfr1):
-    (check_eq (laddl lbvr2 [int2bv 1,int2bv (-1)]) lbvr1):
+    (check_lempty (opadd lei lei)):
+    (check_eq (opadd lip lin) lzi):
+    (check_eq (opadd lfp lfn) lzf):
+    (check_eq (opadd lbvp lbvn) lzbv):
+    (check_fail (opadd lip [-1]) []):
+    (check_eq (opadd lir2 [1,-1]) lir1):
+    (check_eq (opadd lfr2 [1.0,-1.0]) lfr1):
+    (check_eq (opadd lbvr2 [int2bv 1,int2bv (-1)]) lbvr1):
     []
 ;
 
@@ -280,11 +280,11 @@ let test_maddl =
     let lin =	[-1,-2] in
     let lfn =	[-1.0,-2.0] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
-    (check_mempty (maddl mei lei)):
-    (check_eq (maddl mip lin) mzi):
-    (check_eq (maddl mfp lfn) mzf):
-    (check_eq (maddl mbvp lbvn) mzbv):
-    (check_eq (maddl mir2 [0,0]) mir2):
+    (check_mempty (opadd mei lei)):
+    (check_eq (opadd mip lin) mzi):
+    (check_eq (opadd mfp lfn) mzf):
+    (check_eq (opadd mbvp lbvn) mzbv):
+    (check_eq (opadd mir2 [0,0]) mir2):
     []
 ;
 
@@ -294,7 +294,7 @@ check_res test_maddl;
 //test_cases for maddm
 let test_maddm = 
 (printf "test_maddm\n") seq
-    let r = maddm mi1 mi1 in
+    let r = opadd mi1 mi1 in
     let fr = filter (\e. e!= 2) (flat r) in
     (check_len fr 0):
     []
@@ -311,13 +311,13 @@ let test_laddsc =
     let lzi = {zeros 2 :: int list} in
     let lzf = {zeros 2 :: float list} in
     let lzbv = {zeros 2 :: bv list} in
-    (check_lempty (laddsc lei 1)):
-    (check_eq (laddsc li1 (-1)) lzi):
-    (check_eq (laddsc lf1 (-1.0)) lzf):
-    (check_eq (laddsc lbv1  (int2bv (-1))) lzbv):
-    (check_eq (laddsc lir1 0) lir1):
-    (check_eq (laddsc lfr1 0.0) lfr1):
-    (check_eq (laddsc lbvr1 (int2bv 0)) lbvr1):
+    (check_lempty (opadd lei 1)):
+    (check_eq (opadd li1 (-1)) lzi):
+    (check_eq (opadd lf1 (-1.0)) lzf):
+    (check_eq (opadd lbv1  (int2bv (-1))) lzbv):
+    (check_eq (opadd lir1 0) lir1):
+    (check_eq (opadd lfr1 0.0) lfr1):
+    (check_eq (opadd lbvr1 (int2bv 0)) lbvr1):
     []
 ;
 
@@ -332,11 +332,11 @@ let test_maddsc =
     let mzi = {zeros 2 2 :: (int list) list} in
     let mzf = {zeros 2 2 :: (float list) list} in
     let mzbv = {zeros 2 2 :: (bv list) list} in
-    (check_mempty (maddsc mei 1)):
-    (check_eq (maddsc m1i (-1)) mzi):
-    (check_eq (maddsc m1f (-1.0)) mzf):
-    (check_eq (maddsc m1bv  (int2bv (-1))) mzbv):
-    (check_eq (maddsc mir2 0) mir2):
+    (check_mempty (opadd mei 1)):
+    (check_eq (opadd m1i (-1)) mzi):
+    (check_eq (opadd m1f (-1.0)) mzf):
+    (check_eq (opadd m1bv  (int2bv (-1))) mzbv):
+    (check_eq (opadd mir2 0) mir2):
     []
 ;
 

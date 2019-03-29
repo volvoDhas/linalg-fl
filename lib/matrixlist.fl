@@ -158,6 +158,26 @@ add_open_overload opadd radds;
 let saddr {j:: *a} {i::{*a} range} = radds i j;
 add_open_overload opadd saddr;
 
+//returns the element-wise sum 2 lists
+let laddl us vs =  zipwith us vs opadd;
+add_open_overload opadd laddl;
+
+//returns the row-wise sum of a matrix and a vector
+let maddl m vs = lmap laddl m vs;
+add_open_overload opadd maddl;
+
+//returns the element-wise sum of 2 matrics
+let maddm m1 m2 = mmap2 opadd m1 m2;
+add_open_overload opadd maddm;
+
+//returns the element-wise sum of a list and a scalar
+let laddsc us s = zipwithsc us s opadd;
+add_open_overload opadd laddsc;
+
+//returns the element-wise sum of a matrix and a scalar
+let maddsc m s = map (\r. laddsc r s) m;
+add_open_overload opadd maddsc;
+
 //NOTE - the following sequence of 
 //overloading definitions for sum
 //declares 3 base types explicitly (int, bv, float)
@@ -187,20 +207,6 @@ let msum m = map sum m;
 add_open_overload sum msum;
 
 
-//returns the element-wise sum 2 lists
-let laddl us vs =  zipwith us vs opadd;
-
-//returns the row-wise sum of a matrix and a vector
-let maddl m vs = lmap laddl m vs;
-
-//returns the element-wise sum of 2 matrics
-let maddm m1 m2 = mmap2 opadd m1 m2;
-
-//returns the element-wise sum of a list and a scalar
-let laddsc us s = zipwithsc us s opadd;
-
-//returns the element-wise sum of a matrix and a scalar
-let maddsc m s = map (\r. laddsc r s) m;
 
 //TODO - overloading of all add ops
 //paused because of a presumed type inference bug in fl
