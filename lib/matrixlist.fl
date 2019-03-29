@@ -159,50 +159,33 @@ let saddr {j:: *a} {i::{*a} range} = radds i j;
 add_open_overload opadd saddr;
 
 //NOTE - the following sequence of 
-//overloading definitions for lsum
+//overloading definitions for sum
 //declares 3 base types explicitly (int, bv, float)
 //to avoid overload resolution problems
 //which seem to occur when using ' operator
 
-//returns sum of elements of a list
-open_overload {lsum :: *a list -> *a};
+open_overload {sum :: *a list -> *a};
 
-letrec lsumi {us::int list} = 
-    length us == 0 => 0 | opadd (hd us) (lsumi (tl us));
-add_open_overload lsum lsumi;
+letrec sumsc us =
+    length us == 0 => '0 | opadd (hd us) (sumsc (tl us));
+add_open_overload sum sumsc;
 
-letrec lsumf {us::float list} = 
-    length us == 0 => 0.0 | opadd (hd us) (lsumf (tl us));
-add_open_overload lsum lsumf;
+letrec sumbevsc {us:: bev list} =
+    length us == 0 => int2bev 0 | opadd (hd us) (sumbevsc (tl us));
+add_open_overload sum sumbevsc;
 
-letrec lsumbv {us::bv list} = 
-    length us == 0 => (int2bv 0) | opadd (hd us) (lsumbv (tl us));
-add_open_overload lsum lsumbv;
+letrec sumrng us =
+    length us == 0 => mk_range '0 '0 | opadd (hd us) (sumrng (tl us));
+add_open_overload sum sumrng;
 
-letrec lsumri {uis :: ({int} range) list} = 
-    length uis == 0 => mk_range 0 0 | 
-    opadd (hd uis) (lsumri (tl uis))
-;
-add_open_overload lsum lsumri;
+letrec sumbevrng us =
+    length us == 0 => mk_range (int2bev 0) (int2bev 0) | 
+    opadd (hd us) (sumbevrng (tl us));
+add_open_overload sum sumbevrng;
 
-letrec lsumrf {uis :: ({float} range) list} = 
-    length uis == 0 => mk_range 0.0 0.0 | 
-    opadd (hd uis) (lsumrf (tl uis))
-;
-add_open_overload lsum lsumrf;
+let msum m = map sum m;
+add_open_overload sum msum;
 
-letrec lsumrbv {uis :: ({bv} range) list} = 
-    length uis == 0 => mk_range (int2bv 0) (int2bv 0) | 
-    opadd (hd uis) (lsumrbv (tl uis))
-;
-add_open_overload lsum lsumrbv;
-
-//returns a list of sum of elements of each row
-//all numeric types applicable
-let msum m = map lsum m;
-
-//TODO - overloading of sum ops
-//paused because of a presumed type inference bug in fl
 
 //returns the element-wise sum 2 lists
 let laddl us vs =  zipwith us vs opadd;
@@ -387,7 +370,7 @@ add_open_overload opmul rbvmulbv;
 
 
 //returns the dot product of 2 lists
-let dot us vs = lsum (zipwith us vs opmul);
+let dot us vs = sum (zipwith us vs opmul);
 
 
 //returns the product of 2 matrices lhs*rhs 

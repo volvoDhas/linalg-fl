@@ -211,47 +211,36 @@ let test_mmap2 =
 ;
 check_res test_mmap2;
 
-//testcases for lsum
-let test_lsum = 
-(printf "test_lsum\n") seq
+//testcases for sum
+let test_sum = 
+(printf "test_sum\n") seq
     let li = [1,-1,2,-2,3,-3] in
     let lf = [1.0,-1.0,2.0,-2.0] in
     let lbv =  map int2bv li in
-    (check_eq (lsum lei) 0):
-    (check_eq (lsum li) 0):
-    (check_eq (lsum lf) 0.0):
-    (check_eq (lsum lbv) (int2bv 0)):
-    (check_eq (lsum lir2) irlt1):
-    (check_eq (lsum lfr2) frlt1):
-    (check_eq (lsum lbvr2) bvrlt1):
-    []
-;
-
-check_res test_lsum;
-
-//testcases for msum
-let test_msum = 
-(printf "test_msum\n") seq
-    let li = [1,-1,2,-2,3,-3] in
     let mi = replicate 4 li in
-    let lf = [1.0,-1.0,2.0,-2.0] in
     let mf = replicate 4 lf in
-    let lbv =  map int2bv li in
     let mbv = replicate 4 lbv in
     let lzi = {zeros 4 :: int list} in
     let lzf = {zeros 4 :: float list} in
     let lzbv = map int2bv lzi in
-    (check_eq (msum mei) lzi):
-    (check_eq (msum mi) lzi):
-    (check_eq (msum mf) lzf):
-    (check_eq (msum mbv) lzbv):
-    (check_eq (msum mir2) (replicate 4 irlt1)):
-    (check_eq (msum mfr2) (replicate 4 frlt1)):
-    (check_eq (msum mbvr2) (replicate 4 bvrlt1)):
+    (check_eq (sum lei) 0):
+    (check_eq (sum li) 0):
+    (check_eq (sum lf) 0.0):
+    (check_eq (sum lbv) (int2bv 0)):
+    (check_eq (sum lir2) irlt1):
+    (check_eq (sum lfr2) frlt1):
+    (check_eq (sum lbvr2) bvrlt1):
+    (check_eq (sum mei) lzi):
+    (check_eq (sum mi) lzi):
+    (check_eq (sum mf) lzf):
+    (check_eq (sum mbv) lzbv):
+    (check_eq (sum mir2) (replicate 4 irlt1)):
+    (check_eq (sum mfr2) (replicate 4 frlt1)):
+    (check_eq (sum mbvr2) (replicate 4 bvrlt1)):
     []
 ;
 
-check_res test_msum;
+check_res test_sum;
 
 
 //testcases for laddl
