@@ -67,12 +67,16 @@ let lfr2    = map intr2floatr lir2;
 let lfr1    = map intr2floatr lir1;
 let lbvr2   = map intr2bvr  lir2;
 let lbvr1   = map intr2bvr  lir1;
+let lbevr2   = map intr2bevr  lir2;
+let lbevr1   = map intr2bevr  lir1;
 let mir2    = replicate 4 lir2;
 let mfr2    = replicate 4 lfr2;
 let mbvr2   = replicate 4 lbvr2;
+let mbevr2   = replicate 4 lbevr2;
 let irlt1   = mk_range (-1) 1;
 let frlt1   = intr2floatr irlt1;
 let bvrlt1  = intr2bvr irlt1;
+let bevrlt1  = intr2bevr irlt1;
 
 //testcases for mk_range
 let test_mk_range =
@@ -217,26 +221,33 @@ let test_sum =
     let li = [1,-1,2,-2,3,-3] in
     let lf = [1.0,-1.0,2.0,-2.0] in
     let lbv =  map int2bv li in
+    let lbev =  map int2bev li in
     let mi = replicate 4 li in
     let mf = replicate 4 lf in
     let mbv = replicate 4 lbv in
+    let mbev = replicate 4 lbev in
     let lzi = {zeros 4 :: int list} in
     let lzf = {zeros 4 :: float list} in
     let lzbv = map int2bv lzi in
+    let lzbev = map int2bev lzi in
     (check_eq (sum lei) 0):
     (check_eq (sum li) 0):
     (check_eq (sum lf) 0.0):
     (check_eq (sum lbv) (int2bv 0)):
+    (check_eq (sum lbev) (int2bev 0)):
     (check_eq (sum lir2) irlt1):
     (check_eq (sum lfr2) frlt1):
     (check_eq (sum lbvr2) bvrlt1):
+    (check_eq (sum lbevr2) bevrlt1):
     (check_eq (sum mei) lzi):
     (check_eq (sum mi) lzi):
     (check_eq (sum mf) lzf):
     (check_eq (sum mbv) lzbv):
+    (check_eq (sum mbev) lzbev):
     (check_eq (sum mir2) (replicate 4 irlt1)):
     (check_eq (sum mfr2) (replicate 4 frlt1)):
     (check_eq (sum mbvr2) (replicate 4 bvrlt1)):
+    (check_eq (sum mbevr2) (replicate 4 bevrlt1)):
     []
 ;
 
