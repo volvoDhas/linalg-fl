@@ -221,6 +221,10 @@ add_open_overload opsub fsub;
 let bvsub {i::bv} {j::bv} = i-j; 
 add_open_overload opsub bvsub;
 
+//bev-bev version
+let bevsub {i::bev} {j::bev} = bev_sub i j;
+add_open_overload opsub bevsub;
+
 //range-range version
 let rsub {i::{*a} range} {j::{*a} range} =
     val (RANGE il ih) = i in
