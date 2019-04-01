@@ -251,18 +251,23 @@ add_open_overload opsub ssubr;
 
 //returns the element-wise difference of 2 lists
 let ldiffl us vs = zipwith us vs opsub;
+add_open_overload opsub ldiffl;
 
 //returns the row-wise difference between a matrix and a vector
 let mdiffl m vs = lmap ldiffl m vs;
+add_open_overload opsub mdiffl;
 
 //returns the element-wise difference of 2 matrices
 let mdiffm m1 m2 = mmap2 opsub m1 m2;
+add_open_overload opsub mdiffm;
 
 //returns the element-wise difference between a list and a scalar
 let ldiffsc us v = zipwithsc us v opsub;
+add_open_overload opsub ldiffsc;
 
 //returns the element-wise difference between a matrix and a scalar
 let mdiffsc m v = map (\r. ldiffsc r v) m;
+add_open_overload opsub mdiffsc;
 
 //TODO - overloading of all diff ops
 //paused because of a presumed type inference bug in fl

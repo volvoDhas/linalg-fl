@@ -350,14 +350,14 @@ let lbvr22 = map intr2bvr lir22;
 //testcases for ldiffl
 let test_ldiffl = 
 (printf "test_ldiffl\n") seq
-    (check_lempty (ldiffl lei lei)):
-    (check_eq (ldiffl lip lip) lzi):
-    (check_eq (ldiffl lfp lfp) lzf):
-    (check_eq (ldiffl lbvp lbvp) lzbv):
-    (check_fail (ldiffl lip [-1]) []):
-    (check_eq (ldiffl lir2 lir1) lir22):
-    (check_eq (ldiffl lfr2 lfr1) lfr22):
-    (check_eq (ldiffl lbvr2 lbvr1) lbvr22):
+    (check_lempty (opsub lei lei)):
+    (check_eq (opsub lip lip) lzi):
+    (check_eq (opsub lfp lfp) lzf):
+    (check_eq (opsub lbvp lbvp) lzbv):
+    (check_fail (opsub lip [-1]) []):
+    (check_eq (opsub lir2 lir1) lir22):
+    (check_eq (opsub lfr2 lfr1) lfr22):
+    (check_eq (opsub lbvr2 lbvr1) lbvr22):
     []
 ;
 
@@ -366,12 +366,12 @@ check_res test_ldiffl;
 //testcases for mdiffl
 let test_mdiffl = 
 (printf "test_mdiffl\n") seq
-    (check_mempty (mdiffl mei lei)):
-    (check_eq (mdiffl mip lip) mzi):
-    (check_eq (mdiffl mfp lfp) mzf):
-    (check_eq (mdiffl mbvp lbvp) mzbv):
-    (check_fail (mdiffl mip [-1]) [[]]):
-    (check_eq (mdiffl mir2 lir1) mir22):
+    (check_mempty (opsub mei lei)):
+    (check_eq (opsub mip lip) mzi):
+    (check_eq (opsub mfp lfp) mzf):
+    (check_eq (opsub mbvp lbvp) mzbv):
+    (check_fail (opsub mip [-1]) [[]]):
+    (check_eq (opsub mir2 lir1) mir22):
     []
 ;
 
@@ -380,7 +380,7 @@ check_res test_mdiffl;
 //test_cases for mdiffm:
 let test_mdiffm = 
 (printf "test_mdiffm\n") seq
-    let r = mdiffm mi1 mi1 in
+    let r = opsub mi1 mi1 in
     (check_eq r mzi):
     []
 ;
@@ -395,13 +395,13 @@ let lbvr3 = map intr2bvr lir3;
 //testcases for ldiffsc
 let test_ldiffsc = 
 (printf "test_ldiffsc\n") seq
-    (check_lempty (ldiffsc lei 1)):
-    (check_eq (ldiffsc li1 1) lzi):
-    (check_eq (ldiffsc lf1 1.0) lzf):
-    (check_eq (ldiffsc lbv1 (int2bv 1)) lzbv):
-    (check_eq (ldiffsc lir2 irlt1) lir3):
-    (check_eq (ldiffsc lfr2 frlt1) lfr3):
-    (check_eq (ldiffsc lbvr2 bvrlt1) lbvr3):
+    (check_lempty (opsub lei 1)):
+    (check_eq (opsub li1 1) lzi):
+    (check_eq (opsub lf1 1.0) lzf):
+    (check_eq (opsub lbv1 (int2bv 1)) lzbv):
+    (check_eq (opsub lir2 irlt1) lir3):
+    (check_eq (opsub lfr2 frlt1) lfr3):
+    (check_eq (opsub lbvr2 bvrlt1) lbvr3):
     []
 ;
 
@@ -410,11 +410,11 @@ check_res test_ldiffsc;
 //testcases for mdiffsc
 let test_mdiffsc = 
 (printf "test_mdiffsc\n") seq
-    (check_mempty (mdiffsc mei 1)):
-    (check_eq (mdiffsc mi1 1) mzi):
-    (check_eq (mdiffsc mf1 1.0) mzf):
-    (check_eq (mdiffsc mbv1 (int2bv 1)) mzbv):
-    (check_eq (mdiffsc mir2 irlt1) mir3):
+    (check_mempty (opsub mei 1)):
+    (check_eq (opsub mi1 1) mzi):
+    (check_eq (opsub mf1 1.0) mzf):
+    (check_eq (opsub mbv1 (int2bv 1)) mzbv):
+    (check_eq (opsub mir2 irlt1) mir3):
     []
 ;
 
