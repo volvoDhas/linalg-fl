@@ -52,7 +52,7 @@ let intr2bevr {r::{int} range} =
     mk_range (int2bev li) (int2bev hi)
 ;
 
-//Pretty printers for int, float and bv ranges
+//Pretty printers for int, float, bv & bev ranges
 let Prangei (RANGE {l::int} {h::int}) = (printf "(%d,%d)" l h) seq "";
 let Prangeb (RANGE {l::bv} {h::bv}) = 
     let bv2str b =

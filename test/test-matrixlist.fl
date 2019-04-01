@@ -45,6 +45,7 @@ let lbvp    = map int2bv lip;
 let lzi	    = {zeros 2 :: int list};
 let lzf	    = {zeros 2 :: float list};
 let lzbv    = {zeros 2 :: bv list};
+let lzbev   = [int2bev 0,int2bev 0]; //{zeros 2 :: bev list};
 let mzi	    = {zeros 4 2 :: (int list) list};
 let lip	    = [1,2];
 let mip	    = replicate 4 lip;
@@ -54,6 +55,8 @@ let mfp	    = replicate 4 lfp;
 let mzbv    = {zeros 4 2 :: (bv list) list};
 let lbvp    = [int2bv 1, int2bv 2];
 let mbvp    = replicate 4 lbvp;
+let lbevp   = map int2bev lip;
+let mbevp   = replicate 4 lbevp;
 let mi1	    = replicate 4 li1;
 let mf1	    = mmap int2float mi1;
 let mbv1    = mmap int2bv mi1;
@@ -260,14 +263,17 @@ let test_laddl =
     let lin =	[-1,-2] in
     let lfn =	[-1.0,-2.0] in
     let lbvn =  [int2bv (-1),int2bv (-2)] in
+    let lbevn =  map int2bev lin in
     (check_lempty (opadd lei lei)):
     (check_eq (opadd lip lin) lzi):
     (check_eq (opadd lfp lfn) lzf):
     (check_eq (opadd lbvp lbvn) lzbv):
+    (check_eq (opadd lbevp lbevn) lzbev):
     (check_fail (opadd lip [-1]) []):
     (check_eq (opadd lir2 [1,-1]) lir1):
     (check_eq (opadd lfr2 [1.0,-1.0]) lfr1):
     (check_eq (opadd lbvr2 [int2bv 1,int2bv (-1)]) lbvr1):
+    (check_eq (opadd lbevr2 [int2bev 1,int2bev (-1)]) lbevr1):
     []
 ;
 
@@ -346,6 +352,7 @@ let lir22 = [mk_range (-2) 0, mk_range 0 2];
 let mir22 = replicate 4 lir22;
 let lfr22 = map intr2floatr lir22;
 let lbvr22 = map intr2bvr lir22;
+let lbevr22 = map intr2bevr lir22;
 
 //testcases for ldiffl
 let test_ldiffl = 
@@ -354,10 +361,12 @@ let test_ldiffl =
     (check_eq (opsub lip lip) lzi):
     (check_eq (opsub lfp lfp) lzf):
     (check_eq (opsub lbvp lbvp) lzbv):
+    (check_eq (opsub lbevp lbevp) lzbev):
     (check_fail (opsub lip [-1]) []):
     (check_eq (opsub lir2 lir1) lir22):
     (check_eq (opsub lfr2 lfr1) lfr22):
     (check_eq (opsub lbvr2 lbvr1) lbvr22):
+    (check_eq (opsub lbevr2 lbevr1) lbevr22):
     []
 ;
 
