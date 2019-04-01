@@ -283,10 +283,10 @@ add_open_overload opsub mdiffsc;
 
 //NOTE - the following sequence of 
 //overloading definitions for multiply
-//declares 3 base types explicitly (int, bv, float)
+//declares 4 base types explicitly (int, bv, bev, float)
 //to avoid overload resolution problems
 
-open_overload {opmul :: *a -> *b -> *a};
+open_overload {opmul :: *a -> *b -> *c};
 
 //int-int version
 let imul {i::int} {j::int} = i*j; 
@@ -301,6 +301,10 @@ add_open_overload opmul fmul;
 //bv-bv version
 let bvmul {i::bv} {j::bv} = i*j;
 add_open_overload opmul bvmul;
+
+//bev-bev version
+let bevmul {i::bev} {j::bev} = bev_mul i j;
+add_open_overload opmul bevmul;
 
 //range-range version
 let rmul {i::{*a} range} {j::{*a} range} =
