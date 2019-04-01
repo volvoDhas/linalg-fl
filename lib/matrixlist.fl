@@ -207,68 +207,43 @@ add_open_overload sum msum;
 //declares 3 base types explicitly (int, bv, float)
 //to avoid overload resolution problems
 
-open_overload {opsub :: *a -> *b -> *a};
+open_overload {opsub :: *a -> *b -> *c};
 
 //int-int version
 let isub {i::int} {j::int} = i-j; 
 add_open_overload opsub isub;
 
-//int range-int range version
-let irsub {i::{int} range} {j::{int} range} = 
-    val (RANGE il ih) = i in
-    val (RANGE jl jh) = j in
-    //NOTE - inversion of interval limits
-    mk_range (isub il jh) (isub ih jl)
-; 
-add_open_overload opsub irsub;
-
-//int range-int version
-let irsubi {i::{int} range} {j::int} = 
-    val (RANGE il ih) = i in
-    mk_range (isub il j) (isub ih j)
-; 
-add_open_overload opsub irsubi;
-
 //float-float version
 let fsub {i::float} {j::float} = i-j; 
 add_open_overload opsub fsub;
-
-//float range-float range version
-let frsub {i::{float} range} {j::{float} range} = 
-    val (RANGE il ih) = i in
-    val (RANGE jl jh) = j in
-    //NOTE - inversion of interval limits
-    mk_range (fsub il jh) (fsub ih jl)
-; 
-add_open_overload opsub frsub;
-
-//float range-float version
-let frsubf {i::{float} range} {j::float} = 
-    val (RANGE il ih) = i in
-    mk_range (fsub il j) (fsub ih j)
-; 
-add_open_overload opsub frsubf;
 
 //bv-bv version
 let bvsub {i::bv} {j::bv} = i-j; 
 add_open_overload opsub bvsub;
 
-//bv range-bv range version
-let bvrsub {i::{bv} range} {j::{bv} range} = 
+//range-range version
+let rsub {i::{*a} range} {j::{*a} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
     //NOTE - inversion of interval limits
-    mk_range (bvsub il jh) (bvsub ih jl)
-; 
-add_open_overload opsub bvrsub;
+    mk_range (opsub il jh) (opsub ih jl)
+;
+add_open_overload opsub rsub;
 
-//bv range-bv version
-let bvrsubbv {i::{bv} range} {j::bv} = 
+//range-scalar version
+let rsubs {i::{*a} range} {j:: *a} = 
     val (RANGE il ih) = i in
-    mk_range (bvsub il j) (bvsub ih j)
-; 
-add_open_overload opsub bvrsubbv;
+    mk_range (opsub il j) (opsub ih j)
+;
+add_open_overload opsub rsubs;
 
+//scalar-range version
+let ssubr {j:: *a} {i::{*a} range} = 
+    val (RANGE il ih) = i in
+    //NOTE - inversion of interval limits
+    mk_range (opsub j ih) (opsub j il)
+;
+add_open_overload opsub ssubr;
 
 //returns the element-wise difference of 2 lists
 let ldiffl us vs = zipwith us vs opsub;
