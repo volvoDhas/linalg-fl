@@ -328,6 +328,16 @@ add_open_overload opmul rmuls;
 let smulr j {i::{*a} range} = rmuls i j;
 add_open_overload opmul smulr;
 
+//returns the element-wise product of a list and a scalar
+let lmulsc us v = zipwithsc us v opmul;
+add_open_overload opmul lmulsc;
+
+//returns the element-wise product of a matrix and a scalar
+let mmulsc m v = map (\r. lmulsc r v) m;
+add_open_overload opmul mmulsc;
+
+//--------- dot ops-----------------------
+
 //returns the dot product of 2 lists
 let dot us vs = sum (zipwith us vs opmul);
 
@@ -345,12 +355,6 @@ let mmulm m1 m2 =
     let tm2 = transpose m2 in
     mmultm m1 tm2;
 ;
-
-//returns the element-wise product of a list and a scalar
-let lmulsc us v = zipwithsc us v opmul;
-
-//returns the element-wise product of a matrix and a scalar
-let mmulsc m v = map (\r. lmulsc r v) m;
 
 //--------- div ops-----------------------
 

@@ -67,6 +67,7 @@ let scale   = '256;
 let miid    = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
 let mfid    = mmap int2float miid;
 let mbvid   = mmap int2bv miid;
+let mbevid  = mmap int2bev miid;
 let lir2    = [mk_range (-2) (-1), mk_range 1 2];
 let lir1    = [mk_range (-1) 0, mk_range 0 1];
 let lfr2    = map intr2floatr lir2;
@@ -427,6 +428,22 @@ let test_mdiffsc =
 
 check_res test_mdiffsc;
 
+//testcases for lmulsc
+let test_lmulsc = 
+(printf "test_lmulsc\n") seq
+    let lir2' = [mk_range 1 2, mk_range (-2) (-1)] in
+    (check_lempty (opmul lei 1)):
+    (check_eq (opmul li1 0) lzi):
+    (check_eq (opmul lf1 0.0) lzf):
+    (check_eq (opmul lbv1 (int2bv 0)) lzbv):
+    (check_eq (opmul lir2 (-1)) lir2'):
+    (check_eq (opmul lfr2 (-1.0)) (map intr2floatr lir2')):
+    (check_eq (opmul lbvr2 (int2bv (-1))) (map intr2bvr lir2')):
+    []
+;
+
+check_res test_lmulsc;
+
 let xi = [1,0,0,1];
 let yi = [4,1,2,2];
 let yi' = [4,1,2];
@@ -440,20 +457,15 @@ let ybe = map int2bev yi;
 //testcases for dot
 let test_dot =
 (print "test_dot\n") seq
-    let xi = [1,0,0,1] in
-    let yi = [4,1,2,2] in
-    let yi' = [4,1,2] in
-    let xf = map int2float xi in
-    let yf = map int2float yi in
-    let xb = map int2bv xi in
-    let yb = map int2bv yi in 
     (check_eq (dot xi yi) 6):
     (check_eq (dot xf yf) (int2float 6)):
     (check_eq (dot xb yb) (int2bv 6)):
+    (check_eq (dot xbe ybe) (int2bev 6)):
     (check_fail (dot xi yi') (-255)):
     (check_eq (dot lir2 [-1,-1]) irlt1):
     (check_eq (dot lfr2 [-1.0,-1.0]) frlt1):
     (check_eq (dot lbvr2 [int2bv (-1),int2bv (-1)]) bvrlt1):
+    (check_eq (dot lbevr2 [int2bev (-1),int2bev (-1)]) bevrlt1):
     []
 ;
 
@@ -467,9 +479,11 @@ let test_mmulm =
     let yi' = replicate 3 [4,1,2] in
     let yf = mmap int2float yi in
     let yb = mmap int2bv yi in 
+    let ybe = mmap int2bev yi in 
     (check_eq (mmulm miid yi) yi):
     (check_eq (mmulm mfid yf) yf):
     (check_eq (mmulm mbvid yb) yb):
+    (check_eq (mmulm mbevid ybe) ybe):
     (check_fail (mmulm miid yi') [[]]):
     (check_eq 
 	(mmulm mir2 (replicate 2 [1,1])) 
@@ -487,9 +501,11 @@ let test_mmultm =
     let yi' = transpose (replicate 3 [4,1,2]) in
     let yf = transpose (mmap int2float yi) in
     let yb = transpose (mmap int2bv yi) in 
+    let ybe = transpose (mmap int2bev yi) in 
     (check_eq (mmultm miid yi) (transpose yi)):
     (check_eq (mmultm mfid yf) (transpose yf)):
     (check_eq (mmultm mbvid yb) (transpose yb)):
+    (check_eq (mmultm mbevid ybe) (transpose ybe)):
     (check_fail (mmultm miid yi') [[]]):
     (check_eq 
 	(mmultm mir2 (transpose (replicate 2 [1,1,1,1])))
@@ -499,22 +515,6 @@ let test_mmultm =
 ;
 
 check_res test_mmultm;
-
-//testcases for lmulsc
-let test_lmulsc = 
-(printf "test_lmulsc\n") seq
-    let lir2' = [mk_range 1 2, mk_range (-2) (-1)] in
-    (check_lempty (lmulsc lei 1)):
-    (check_eq (lmulsc li1 0) lzi):
-    (check_eq (lmulsc lf1 0.0) lzf):
-    (check_eq (lmulsc lbv1 (int2bv 0)) lzbv):
-    (check_eq (lmulsc lir2 (-1)) lir2'):
-    (check_eq (lmulsc lfr2 (-1.0)) (map intr2floatr lir2')):
-    (check_eq (lmulsc lbvr2 (int2bv (-1))) (map intr2bvr lir2')):
-    []
-;
-
-check_res test_lmulsc;
 
 ////testcases for divel
 //(printf "test_divel\n");
