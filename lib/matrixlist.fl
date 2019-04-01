@@ -163,7 +163,7 @@ let laddl us vs =  zipwith us vs opadd;
 add_open_overload opadd laddl;
 
 //returns the row-wise sum of a matrix and a vector
-let maddl m vs = lmap laddl m vs;
+let maddl m vs = lmap opadd m vs;
 add_open_overload opadd maddl;
 
 //returns the element-wise sum of 2 matrics
