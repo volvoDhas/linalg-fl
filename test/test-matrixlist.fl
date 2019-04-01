@@ -427,6 +427,15 @@ let test_mdiffsc =
 
 check_res test_mdiffsc;
 
+let xi = [1,0,0,1];
+let yi = [4,1,2,2];
+let yi' = [4,1,2];
+let xf = map int2float xi;
+let yf = map int2float yi;
+let xb = map int2bv xi;
+let yb = map int2bv yi;
+let xbe = map int2bev xi;
+let ybe = map int2bev yi;
 
 //testcases for dot
 let test_dot =
