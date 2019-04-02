@@ -584,17 +584,6 @@ let test_largmax =
 
 check_res test_largmax;
 
-//testcases for largnmax
-let test_largnmax = 
-(printf "test_largnmax\n") seq
-    (check_eq (largnmax lei 2) [0]):
-    (check_eq (largnmax [1,-1,2,-2,3,-3] 2) [5,3]):
-    (check_eq (largnmax [1,1,1,1,1,1] 2) [6,5]):
-    []
-;
-
-check_res test_largnmax;
-
 //testcases for margmax
 let test_margmax = 
 (printf "test_margmax\n") seq
@@ -608,13 +597,25 @@ let test_margmax =
 
 check_res test_margmax;
 
+//testcases for largnmax
+let test_largnmax = 
+(printf "test_largnmax\n") seq
+    (check_eq (argnmax lei 2) [0]):
+    (check_eq (argnmax [1,-1,2,-2,3,-3] 2) [5,3]):
+    (check_eq (argnmax [1,1,1,1,1,1] 2) [6,5]):
+    []
+;
+
+check_res test_largnmax;
+
+
 //testcases for margnmax
 let test_margnmax = 
 (printf "test_margnmax\n") seq
     let t1 = replicate 4 [1,-1,2,-2,3,-3] in
     let t2 = replicate 4 [1,1,1,1] in
-    (check_eq (margnmax t1 2) (replicate 4 [5,3])):
-    (check_eq (margnmax t2 2) (replicate 4 [4,3])):
+    (check_eq (argnmax t1 2) (replicate 4 [5,3])):
+    (check_eq (argnmax t2 2) (replicate 4 [4,3])):
     []
 ;
 

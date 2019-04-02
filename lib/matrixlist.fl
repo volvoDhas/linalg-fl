@@ -378,4 +378,6 @@ let largnmax us n =
 ;
 
 //returns a vector of indexes of n element in each row
-let margnmax m n = map (\r. largnmax r n) m
+let margnmax m n = map (\r. largnmax r n) m;
+
+overload argnmax largnmax margnmax;
