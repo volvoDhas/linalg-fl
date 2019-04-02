@@ -445,6 +445,7 @@ let test_lmulsc =
     (check_eq (opmul li1 0) lzi):
     (check_eq (opmul lf1 0.0) lzf):
     (check_eq (opmul lbv1 (int2bv 0)) lzbv):
+    (check_eq (opmul lir1 irlt1) (replicate 2 irlt1)):
     []
 ;
 
