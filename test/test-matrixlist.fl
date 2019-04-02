@@ -161,6 +161,7 @@ let test_islempty =
     let l = replicate 4 1 in
     (check_false (islempty l)):
     (check_true (islempty lei)):
+    (check_true (islempty{ []::{int} range list})):
     []
 ;
 
@@ -173,6 +174,7 @@ let test_ismempty =
     let m = replicate 4 l in
     (check_false (ismempty m)):
     (check_true (ismempty mei)):
+    (check_true (ismempty {[[],[]]::({int} range list) list})):
     []
 ;
 
