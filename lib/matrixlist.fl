@@ -7,9 +7,17 @@ let p_bev_gt x y = (bev_greater x y) == bT;
 overload > > p_bev_gt;
 infix 5 >;
 
+let p_bev_geq x y = (bev_geq x y) == bT;
+overload >= >= p_bev_geq;
+infix 5 >=;
+
 let p_bev_lt x y = (bev_less x y) == bT;
 overload < < p_bev_lt;
 infix 5 <;
+
+let p_bev_leq x y = (bev_leq x y) == bT;
+overload <= <= p_bev_leq;
+infix 5 <=;
 
 let p_bev_max {x::bev} {y::bev} = x > y => x | y;
 overload max max p_bev_max;
