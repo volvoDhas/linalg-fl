@@ -576,9 +576,9 @@ check_res test_fstindexof;
 //testcases for largmax
 let test_largmax = 
 (printf "test_largmax\n") seq
-    (check_eq (largmax lei) 0):
-    (check_eq (largmax [1,-1,2,-2,3,-3]) 5):
-    (check_eq (largmax [1,1,1,1,1,1]) 1):
+    (check_eq (argmax lei) 0):
+    (check_eq (argmax [1,-1,2,-2,3,-3]) 5):
+    (check_eq (argmax [1,1,1,1,1,1]) 1):
     []
 ;
 
@@ -600,9 +600,9 @@ let test_margmax =
 (printf "test_margmax\n") seq
     let t1 = replicate 4 [1,-1,2,-2,3,-3] in
     let t2 = replicate 4 [1,1,1,1] in
-    (check_eq (margmax mei) (replicate 4 0)):
-    (check_eq (margmax t1) (replicate 4 5)):
-    (check_eq (margmax t2) (replicate 4 1)):
+    (check_eq (argmax mei) (replicate 4 0)):
+    (check_eq (argmax t1) (replicate 4 5)):
+    (check_eq (argmax t2) (replicate 4 1)):
     []
 ;
 

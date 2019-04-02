@@ -363,6 +363,10 @@ letrec fstindexof us u =
 //returns the index of the max element in the list
 letrec largmax us = fstindexof us (lmax us);
 
+//returns a vector of indexes of max element in each row
+letrec margmax m = map largmax m;
+overload argmax largmax margmax;
+
 //returns the indices of n highest elements in the list
 let largnmax us n = 
     us == [] => [0] |
@@ -372,9 +376,6 @@ let largnmax us n =
     in
     map snd (firstn n (rev susi))
 ;
-
-//returns a vector of indexes of max element in each row
-letrec margmax m = map largmax m;
 
 //returns a vector of indexes of n element in each row
 let margnmax m n = map (\r. largnmax r n) m
