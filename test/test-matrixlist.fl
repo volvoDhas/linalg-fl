@@ -431,6 +431,7 @@ let test_mdiffm =
     (check_eq (opsub mf1 mf1) mzf):
     (check_eq (opsub mbv1 mbv1) mzbv):
     (check_eq (opsub mbev1 mbev1) mzbev):
+    (check_eq (opsub mir2 mir2) (replicate 4 (replicate 2 irlt1))):
     []
 ;
 
