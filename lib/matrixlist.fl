@@ -2,12 +2,14 @@
 //implements matrix as a list of lists
 
 //--------- plugs for bev --------------------
+
 let p_bev_gt x y = ((bev_geq x y) bAND (bev_neq x y)) == bT;
 overload > > p_bev_gt;
 infix 5 >;
 
 let p_bev_lt x y = ((bev_leq x y) bAND (bev_neq x y)) == bT;
 overload < < p_bev_lt;
+infix 5 <;
 
 let p_bev_max x y = x > y => x | y;
 overload max max p_bev_max;
@@ -15,6 +17,13 @@ overload max max p_bev_max;
 let p_bev_min x y = x < y => x | y;
 overload min min p_bev_min;
 
+//let s2bev s = int2bev (sscanf "%d" s);
+//let s2bv s = int2bv (sscanf "%d" s);
+//let s2int s = sscanf "%d" s;
+//let s2float s = str2float s;
+//overload {' :: string-> *a} s2bv s2int s2float s2bev;
+//free_binder ';
+//
 //--------- type definitions------------------
 
 //The {*a}range type defines an interval 
@@ -169,18 +178,18 @@ let madds {m:: (*a list) list} {s:: *a} =
 add_open_overload opadd madds;
 
 //matrix-list version
-//NOTE - overloading this with opadd breaks resolution
 let maddl {m:: (*a list) list} {vs:: *a list} =
 //    {lmap opadd m vs :: (*a list) list}
     {map (\r. opadd r vs) m :: (*a list) list}
 ;
+//NOTE - overloading this breaks resolution
 //add_open_overload opadd maddl;
 
 //matrix-matrix version
-//NOTE - overloading this with opadd breaks resolution
 let maddm {m1:: (*a list) list} {m2:: (*a list) list} =
     {mmap2 opadd m1 m2 :: (*a list) list}
 ;
+//NOTE - overloading this breaks resolution
 //add_open_overload opadd maddm;
 
 //--------- sum ops-----------------------
@@ -242,14 +251,14 @@ let rsub {i::{*a} range} {j::{*a} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
     //NOTE - inversion of interval limits
-    mk_range (opsub il jh) (opsub ih jl)
+    {mk_range (opsub il jh) (opsub ih jl) :: {*a} range}
 ;
 add_open_overload opsub rsub;
 
 //range-scalar version
 let rsubs {i::{*a} range} {j:: *a} = 
     val (RANGE il ih) = i in
-    mk_range (opsub il j) (opsub ih j)
+    {mk_range (opsub il j) (opsub ih j) :: {*a} range}
 ;
 add_open_overload opsub rsubs;
 
@@ -257,32 +266,36 @@ add_open_overload opsub rsubs;
 let ssubr {j:: *a} {i::{*a} range} = 
     val (RANGE il ih) = i in
     //NOTE - inversion of interval limits
-    mk_range (opsub j ih) (opsub j il)
+    {mk_range (opsub j ih) (opsub j il) :: {*a} range}
 ;
 add_open_overload opsub ssubr;
 
-//returns the element-wise difference of 2 lists
-let ldiffl us vs = zipwith us vs opsub;
-add_open_overload opsub ldiffl;
-
-//returns the row-wise difference between a matrix and a vector
-let mdiffl m vs = lmap opsub m vs;
-add_open_overload opsub mdiffl;
-
-//returns the element-wise difference of 2 matrices
-let mdiffm m1 m2 = mmap2 opsub m1 m2;
-add_open_overload opsub mdiffm;
-
-//returns the element-wise difference between a list and a scalar
-let ldiffsc us v = zipwithsc us v opsub;
+//list-scalar version
+let ldiffsc {us :: *a list} {v:: *a} = 
+    {zipwithsc us v opsub :: *a list};
 add_open_overload opsub ldiffsc;
 
-//returns the element-wise difference between a matrix and a scalar
-let mdiffsc m v = map (\r. ldiffsc r v) m;
+//list-list version
+let ldiffl {us :: *a list} {vs :: *a list} = 
+    {zipwith us vs opsub :: *a list}
+;
+add_open_overload opsub ldiffl;
+
+//matrix-scalar version
+let mdiffsc {m :: (*a list) list} {v :: *a} = 
+    {mmap (\e. opsub e v) m :: (*a list) list}
+; 
 add_open_overload opsub mdiffsc;
 
-//TODO - overloading of all diff ops
-//paused because of a presumed type inference bug in fl
+//matrix-list version
+let mdiffl m vs = lmap opsub m vs;
+//NOTE - overloading this breaks resolution
+//add_open_overload opsub mdiffl;
+
+//matrix-matrix version
+let mdiffm m1 m2 = mmap2 opsub m1 m2;
+//NOTE - overloading this breaks resolution
+//add_open_overload opsub mdiffm;
 
 //--------- mul ops-----------------------
 

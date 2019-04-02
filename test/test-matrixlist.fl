@@ -350,6 +350,29 @@ let lfr22 = map intr2floatr lir22;
 let lbvr22 = map intr2bvr lir22;
 let lbevr22 = map intr2bevr lir22;
 
+let lir3 = [mk_range (-3) 0, mk_range 0 3];
+let mir3 = replicate 4 lir3;
+let lfr3 = map intr2floatr lir3;
+let lbvr3 = map intr2bvr lir3;
+let lbevr3 = map intr2bevr lir3;
+
+//testcases for ldiffsc
+let test_ldiffsc = 
+(printf "test_ldiffsc\n") seq
+    (check_lempty (opsub lei 1)):
+    (check_eq (opsub li1 1) lzi):
+    (check_eq (opsub lf1 1.0) lzf):
+    (check_eq (opsub lbv1 (int2bv 1)) lzbv):
+    (check_eq (opsub lbev1 (int2bev 1)) lzbev):
+    (check_eq (opsub lir2 irlt1) lir3):
+    (check_eq (opsub lfr2 frlt1) lfr3):
+    (check_eq (opsub lbvr2 bvrlt1) lbvr3):
+    (check_eq (opsub lbevr2 bevrlt1) lbevr3):
+    []
+;
+
+check_res test_ldiffsc;
+
 //testcases for ldiffl
 let test_ldiffl = 
 (printf "test_ldiffl\n") seq
@@ -367,6 +390,20 @@ let test_ldiffl =
 ;
 
 check_res test_ldiffl;
+
+//testcases for mdiffsc
+let test_mdiffsc = 
+(printf "test_mdiffsc\n") seq
+    (check_mempty (opsub mei 1)):
+    (check_eq (opsub mi1 1) mzi):
+    (check_eq (opsub mf1 1.0) mzf):
+    (check_eq (opsub mbv1 (int2bv 1)) mzbv):
+    (check_eq (opsub mbev1 (int2bev 1)) mzbev):
+    (check_eq (opsub mir2 irlt1) mir3):
+    []
+;
+
+check_res test_mdiffsc;
 
 //testcases for mdiffl
 let test_mdiffl = 
@@ -394,43 +431,6 @@ let test_mdiffm =
 ;
 
 check_res test_mdiffm;
-
-let lir3 = [mk_range (-3) 0, mk_range 0 3];
-let mir3 = replicate 4 lir3;
-let lfr3 = map intr2floatr lir3;
-let lbvr3 = map intr2bvr lir3;
-let lbevr3 = map intr2bevr lir3;
-
-//testcases for ldiffsc
-let test_ldiffsc = 
-(printf "test_ldiffsc\n") seq
-    (check_lempty (opsub lei 1)):
-    (check_eq (opsub li1 1) lzi):
-    (check_eq (opsub lf1 1.0) lzf):
-    (check_eq (opsub lbv1 (int2bv 1)) lzbv):
-    (check_eq (opsub lbev1 (int2bev 1)) lzbev):
-    (check_eq (opsub lir2 irlt1) lir3):
-    (check_eq (opsub lfr2 frlt1) lfr3):
-    (check_eq (opsub lbvr2 bvrlt1) lbvr3):
-    (check_eq (opsub lbevr2 bevrlt1) lbevr3):
-    []
-;
-
-check_res test_ldiffsc;
-
-//testcases for mdiffsc
-let test_mdiffsc = 
-(printf "test_mdiffsc\n") seq
-    (check_mempty (opsub mei 1)):
-    (check_eq (opsub mi1 1) mzi):
-    (check_eq (opsub mf1 1.0) mzf):
-    (check_eq (opsub mbv1 (int2bv 1)) mzbv):
-    (check_eq (opsub mbev1 (int2bev 1)) mzbev):
-    (check_eq (opsub mir2 irlt1) mir3):
-    []
-;
-
-check_res test_mdiffsc;
 
 //testcases for lmulsc
 let test_lmulsc = 
