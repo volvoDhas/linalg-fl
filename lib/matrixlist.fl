@@ -11,10 +11,10 @@ let p_bev_lt x y = (bev_less x y) == bT;
 overload < < p_bev_lt;
 infix 5 <;
 
-let p_bev_max x y = x > y => x | y;
+let p_bev_max {x::bev} {y::bev} = x > y => x | y;
 overload max max p_bev_max;
 
-let p_bev_min x y = x < y => x | y;
+let p_bev_min {x::bev} {y::bev} = x < y => x | y;
 overload min min p_bev_min;
 
 let s2bev s = int2bev (sscanf "%d" s);
