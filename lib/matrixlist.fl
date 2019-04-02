@@ -4,6 +4,7 @@
 //--------- plugs for bev --------------------
 let p_bev_gt x y = ((bev_geq x y) bAND (bev_neq x y)) == bT;
 overload > > p_bev_gt;
+infix 5 >;
 
 let p_bev_lt x y = ((bev_leq x y) bAND (bev_neq x y)) == bT;
 overload < < p_bev_lt;
@@ -34,6 +35,8 @@ let mk_range l h =
 ;
 
 //utilities for the range type
+let scalar2range i = mk_range i i;
+
 //converts an integer range to a float range
 let intr2floatr {r::{int} range} =
     val(RANGE li hi) = r in
@@ -79,7 +82,7 @@ let zipwithsc xs n f = map (\x. f x n) xs;
 //applies the operator f element-wise to 2 lists
 let zipwith xs ys f = map2 f xs ys;
 
-//returns list-wise zipwith between a (list) list and a scalar
+//returns zipwith between a (list) list and a list
 let lmap f m v = map (\r. f r v) m;
 
 //returns the element-wise map of f over a (list) list m
@@ -143,40 +146,42 @@ add_open_overload opadd beadd;
 let radd {i::{*a} range} {j::{*a} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
-    mk_range (opadd il jl) (opadd ih jh)
+    {mk_range (opadd il jl) (opadd ih jh) :: {*a} range}
 ;
 add_open_overload opadd radd;
 
-//range-scalar version
-let radds {i::{*a} range} {j:: *a} = 
-    val (RANGE il ih) = i in
-    mk_range (opadd il j) (opadd ih j)
+//list-scalar version
+let ladds {us:: *a list} {v:: *a} =
+    {zipwithsc us v opadd :: *a list}
 ;
-add_open_overload opadd radds;
+add_open_overload opadd ladds;
 
-//scalar-range version
-let saddr {j:: *a} {i::{*a} range} = radds i j;
-add_open_overload opadd saddr;
-
-//returns the element-wise sum 2 lists
-let laddl us vs =  zipwith us vs opadd;
+//list-list version
+let laddl {us:: *a list} {vs:: *a list} =
+    {zipwith us vs opadd :: *a list}
+;
 add_open_overload opadd laddl;
 
-//returns the row-wise sum of a matrix and a vector
-let maddl m vs = lmap opadd m vs;
-add_open_overload opadd maddl;
+//matrix-scalar version
+let madds {m:: (*a list) list} {s:: *a} =
+    {mmap (\e. opadd e s) m :: (*a list) list}
+;
+add_open_overload opadd madds;
 
-//returns the element-wise sum of 2 matrics
-let maddm m1 m2 = mmap2 opadd m1 m2;
-add_open_overload opadd maddm;
+//matrix-list version
+//NOTE - overloading this with opadd breaks resolution
+let maddl {m:: (*a list) list} {vs:: *a list} =
+//    {lmap opadd m vs :: (*a list) list}
+    {map (\r. opadd r vs) m :: (*a list) list}
+;
+//add_open_overload opadd maddl;
 
-//returns the element-wise sum of a list and a scalar
-let laddsc us s = zipwithsc us s opadd;
-add_open_overload opadd laddsc;
-
-//returns the element-wise sum of a matrix and a scalar
-let maddsc m s = map (\r. laddsc r s) m;
-add_open_overload opadd maddsc;
+//matrix-matrix version
+//NOTE - overloading this with opadd breaks resolution
+let maddm {m1:: (*a list) list} {m2:: (*a list) list} =
+    {mmap2 opadd m1 m2 :: (*a list) list}
+;
+//add_open_overload opadd maddm;
 
 //--------- sum ops-----------------------
 

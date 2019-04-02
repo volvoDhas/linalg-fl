@@ -264,6 +264,10 @@ let lin   = [-1,-2];
 let lfn   = [-1.0,-2.0];
 let lbvn  = [int2bv (-1),int2bv (-2)];
 let lbevn = map int2bev lin;
+let lzir  = map scalar2range lzi;
+let lzfr  = map scalar2range lzf;
+let lzbvr = map scalar2range lzbv;
+let lzbevr= map scalar2range lzbev;
 
 //testcases for laddl
 let test_laddl =
@@ -274,10 +278,10 @@ let test_laddl =
     (check_eq (opadd lbvp lbvn) lzbv):
     (check_eq (opadd lbevp lbevn) lzbev):
     (check_fail (opadd lip [-1]) []):
-    (check_eq (opadd lir2 [1,-1]) lir1):
-    (check_eq (opadd lfr2 [1.0,-1.0]) lfr1):
-    (check_eq (opadd lbvr2 [int2bv 1,int2bv (-1)]) lbvr1):
-    (check_eq (opadd lbevr2 [int2bev 1,int2bev (-1)]) lbevr1):
+    (check_eq (opadd lir2 lzir) lir2):
+    (check_eq (opadd lfr2 lzfr) lfr2):
+    (check_eq (opadd lbvr2 lzbvr) lbvr2):
+    (check_eq (opadd lbevr2 lzbevr) lbevr2):
     []
 ;
 
@@ -291,7 +295,7 @@ let test_maddl =
     (check_eq (opadd mfp lfn) mzf):
     (check_eq (opadd mbvp lbvn) mzbv):
     (check_eq (opadd mbevp lbevn) mzbev):
-    (check_eq (opadd mir2 [0,0]) mir2):
+//    (check_eq (opadd mir2 [0,0]) mir2):
     []
 ;
 
@@ -317,11 +321,11 @@ let test_laddsc =
     (check_eq (opadd lf1 (-1.0)) lzf):
     (check_eq (opadd lbv1  (int2bv (-1))) lzbv):
     (check_eq (opadd lbev1  (int2bev (-1))) lzbev):
-    (check_eq (opadd lir1 0) lir1):
-    (check_eq (opadd lfr1 0.0) lfr1):
-    (check_eq (opadd lbvr1 (int2bv 0)) lbvr1):
-    (check_eq (opadd lbevr1 (int2bev 0)) lbevr1):
-    []
+ //   (check_eq (opadd lir1 0) lir1):
+ //   (check_eq (opadd lfr1 0.0) lfr1):
+ //   (check_eq (opadd lbvr1 (int2bv 0)) lbvr1):
+ //   (check_eq (opadd lbevr1 (int2bev 0)) lbevr1):
+   []
 ;
 
 check_res test_laddsc;
@@ -334,7 +338,7 @@ let test_maddsc =
     (check_eq (opadd mf1 (-1.0)) mzf):
     (check_eq (opadd mbv1  (int2bv (-1))) mzbv):
     (check_eq (opadd mbev1  (int2bev (-1))) mzbev):
-    (check_eq (opadd mir2 0) mir2):
+//    (check_eq (opadd mir2 0) mir2):
     []
 ;
 
