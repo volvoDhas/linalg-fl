@@ -3,11 +3,11 @@
 
 //--------- plugs for bev --------------------
 
-let p_bev_gt x y = ((bev_geq x y) bAND (bev_neq x y)) == bT;
+let p_bev_gt x y = (bev_greater x y) == bT;
 overload > > p_bev_gt;
 infix 5 >;
 
-let p_bev_lt x y = ((bev_leq x y) bAND (bev_neq x y)) == bT;
+let p_bev_lt x y = (bev_less x y) == bT;
 overload < < p_bev_lt;
 infix 5 <;
 
@@ -17,13 +17,13 @@ overload max max p_bev_max;
 let p_bev_min x y = x < y => x | y;
 overload min min p_bev_min;
 
-//let s2bev s = int2bev (sscanf "%d" s);
-//let s2bv s = int2bv (sscanf "%d" s);
-//let s2int s = sscanf "%d" s;
-//let s2float s = str2float s;
-//overload {' :: string-> *a} s2bv s2int s2float s2bev;
-//free_binder ';
-//
+let s2bev s = int2bev (sscanf "%d" s);
+let s2bv s = int2bv (sscanf "%d" s);
+let s2int s = sscanf "%d" s;
+let s2float s = str2float s;
+overload {' :: string-> *a} s2bv s2int s2float s2bev;
+free_binder ';
+
 //--------- type definitions------------------
 
 //The {*a}range type defines an interval 
@@ -205,18 +205,9 @@ letrec sumsc us =
     length us == 0 => '0 | opadd (hd us) (sumsc (tl us));
 add_open_overload sum sumsc;
 
-letrec sumbevsc {us:: bev list} =
-    length us == 0 => int2bev 0 | opadd (hd us) (sumbevsc (tl us));
-add_open_overload sum sumbevsc;
-
 letrec sumrng us =
     length us == 0 => mk_range '0 '0 | opadd (hd us) (sumrng (tl us));
 add_open_overload sum sumrng;
-
-letrec sumbevrng us =
-    length us == 0 => mk_range (int2bev 0) (int2bev 0) | 
-    opadd (hd us) (sumbevrng (tl us));
-add_open_overload sum sumbevrng;
 
 let msum m = map sum m;
 add_open_overload sum msum;
@@ -317,11 +308,15 @@ let rmul {i::{*a} range} {j::{*a} range} =
 add_open_overload opmul rmul;
 
 //returns the element-wise product of a list and a scalar
-let lmulsc us v = zipwithsc us v opmul;
+let lmulsc {us:: *a list} {v :: *a} = 
+    {zipwithsc us v opmul :: *a list}
+;
 add_open_overload opmul lmulsc;
 
 //returns the element-wise product of a matrix and a scalar
-let mmulsc m v = map (\r. lmulsc r v) m;
+let mmulsc {m :: (*a list) list} {v :: *a} = 
+    {mmap (\e. opmul e v) m :: (*a list) list}
+;
 add_open_overload opmul mmulsc;
 
 //--------- dot ops-----------------------
