@@ -340,6 +340,8 @@ let mmulm m1 m2 =
 ;
 
 //--------- div ops-----------------------
+overload / / bev_div;
+infix 8 /;
 
 //the defix / operator
 //let opdiv = (defix /);
