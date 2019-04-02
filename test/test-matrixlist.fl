@@ -440,9 +440,6 @@ let test_lmulsc =
     (check_eq (opmul li1 0) lzi):
     (check_eq (opmul lf1 0.0) lzf):
     (check_eq (opmul lbv1 (int2bv 0)) lzbv):
-    (check_eq (opmul lir2 (-1)) lir2'):
-    (check_eq (opmul lfr2 (-1.0)) (map intr2floatr lir2')):
-    (check_eq (opmul lbvr2 (int2bv (-1))) (map intr2bvr lir2')):
     []
 ;
 
@@ -466,10 +463,6 @@ let test_dot =
     (check_eq (dot xb yb) (int2bv 6)):
     (check_eq (dot xbe ybe) (int2bev 6)):
     (check_fail (dot xi yi') (-255)):
-    (check_eq (dot lir2 [-1,-1]) irlt1):
-    (check_eq (dot lfr2 [-1.0,-1.0]) frlt1):
-    (check_eq (dot lbvr2 [int2bv (-1),int2bv (-1)]) bvrlt1):
-    (check_eq (dot lbevr2 [int2bev (-1),int2bev (-1)]) bevrlt1):
     []
 ;
 
@@ -489,10 +482,6 @@ let test_mmulm =
     (check_eq (mmulm mbvid yb) yb):
     (check_eq (mmulm mbevid ybe) ybe):
     (check_fail (mmulm miid yi') [[]]):
-    (check_eq 
-	(mmulm mir2 (replicate 2 [1,1])) 
-	(replicate 4 (replicate 2 irlt1))
-    ):
     []
 ;
 
@@ -511,10 +500,6 @@ let test_mmultm =
     (check_eq (mmultm mbvid yb) (transpose yb)):
     (check_eq (mmultm mbevid ybe) (transpose ybe)):
     (check_fail (mmultm miid yi') [[]]):
-    (check_eq 
-	(mmultm mir2 (transpose (replicate 2 [1,1,1,1])))
-	(replicate 4 (replicate 4 irlt1))
-    ):
     []
 ;
 

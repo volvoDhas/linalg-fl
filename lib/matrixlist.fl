@@ -295,11 +295,9 @@ open_overload {opmul :: *a -> *b -> *c};
 let imul {i::int} {j::int} = i*j; 
 add_open_overload opmul imul;
 
-
 //float-float version
 let fmul {i::float} {j::float} = i*j; 
 add_open_overload opmul fmul;
-
 
 //bv-bv version
 let bvmul {i::bv} {j::bv} = i*j;
@@ -314,22 +312,9 @@ let rmul {i::{*a} range} {j::{*a} range} =
     val (RANGE il ih) = i in
     val (RANGE jl jh) = j in
     let s = [opmul il jl, opmul il jh, opmul ih jl, opmul ih jh] in
-    mk_range (lmin s) (lmax s)
+    {mk_range (lmin s) (lmax s) :: {*a} range}
 ; 
 add_open_overload opmul rmul;
-
-//range-scalar version
-let rmuls {i::{*a} range} j = 
-    val (RANGE il ih) = i in
-    let s1 = opmul il j in
-    let s2 = opmul ih j in
-    mk_range (min s1 s2) (max s1 s2)
-;
-add_open_overload opmul rmuls;
-
-//scalar-range version
-let smulr j {i::{*a} range} = rmuls i j;
-add_open_overload opmul smulr;
 
 //returns the element-wise product of a list and a scalar
 let lmulsc us v = zipwithsc us v opmul;
