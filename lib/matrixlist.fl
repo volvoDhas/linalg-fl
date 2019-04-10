@@ -377,7 +377,9 @@ let mmultm m1 tm2 =
     let crossmap row nrow = 
 	(printf "processing row %d\n" nrow) fseq
 	map2 
-	    (\col. \ncol. (printf "col %d\n" ncol) fseq dot row col) 
+	    (\col. \ncol. 
+	    (printf "col %d\n" ncol) fseq 
+	    dot row col) 
 	    tm2 (1--(length tm2)) in
     map2 crossmap m1 (1 -- (length m1))
 ;
