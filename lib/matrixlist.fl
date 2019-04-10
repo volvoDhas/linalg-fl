@@ -134,6 +134,44 @@ letrec lmin us =
     min (hd us) (lmin (tl us))
 ;
 
+//--------- index ops-----------------------
+//NOTE - in fl, indices start from 1
+
+//returns a matrix of indices mirroring the input
+let indexmat X =  map (\r. 1--(length r)) X;
+
+//retruns the first index of an element in the list
+letrec fstindexof us u =
+    letrec search [] = 1
+	/\search us = (hd us) == u => 1 | 1 + (search (tl us))
+    in
+    let index = search us in
+    index > (length us) => 0 | index
+;
+
+
+//returns the index of the max element in the list
+letrec largmax us = fstindexof us (lmax us);
+
+//returns a vector of indexes of max element in each row
+letrec margmax m = map largmax m;
+overload argmax largmax margmax;
+
+//returns the indices of n highest elements in the list
+let largnmax us n = 
+    us == [] => [0] |
+    let usi = zip us (1--(length us)) in
+    let susi = 
+	qsort (\(xp,xi). \(yp,yi). xp == yp => 0 | xp < yp => -1 | 1) usi
+    in
+    map snd (firstn n (rev susi))
+;
+
+//returns a vector of indexes of n element in each row
+let margnmax m n = map (\r. largnmax r n) m;
+
+overload argnmax largnmax margnmax;
+
 //--------- add ops-----------------------
 
 //NOTE - the following sequence of 
@@ -336,8 +374,12 @@ let dot us vs = sum (zipwith us vs opmul);
 //returns the product of 2 matrices lhs*rhs 
 //with rhs in a transposed form
 let mmultm m1 tm2 =
-    let crossmap row = map (\col. dot row col) tm2 in
-    map crossmap m1
+    let crossmap row nrow = 
+	(printf "processing row %d\n" nrow) fseq
+	map2 
+	    (\col. \ncol. (printf "col %d\n" ncol) fseq dot row col) 
+	    tm2 (1--(length tm2)) in
+    map2 crossmap m1 (1 -- (length m1))
 ;
 
 //returns the product of 2 matrices
@@ -357,37 +399,3 @@ infix 8 /;
 //returns the element-wise quotient of a list and a scalar
 //let divel us v = zipwithsc us v opdiv;
 
-//--------- index ops-----------------------
-//NOTE - in fl, indices start from 1
-
-//retruns the first index of an element in the list
-letrec fstindexof us u =
-    letrec search [] = 1
-	/\search us = (hd us) == u => 1 | 1 + (search (tl us))
-    in
-    let index = search us in
-    index > (length us) => 0 | index
-;
-
-
-//returns the index of the max element in the list
-letrec largmax us = fstindexof us (lmax us);
-
-//returns a vector of indexes of max element in each row
-letrec margmax m = map largmax m;
-overload argmax largmax margmax;
-
-//returns the indices of n highest elements in the list
-let largnmax us n = 
-    us == [] => [0] |
-    let usi = zip us (1--(length us)) in
-    let susi = 
-	qsort (\(xp,xi). \(yp,yi). xp == yp => 0 | xp < yp => -1 | 1) usi
-    in
-    map snd (firstn n (rev susi))
-;
-
-//returns a vector of indexes of n element in each row
-let margnmax m n = map (\r. largnmax r n) m;
-
-overload argnmax largnmax margnmax;
